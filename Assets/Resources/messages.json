@@ -1,0 +1,62 @@
+[
+        {
+            "sender": "XY",
+            "title": "Hide the hint",
+            "fullMessage": "The murderer is looking for the password. Hide the hint before they find it.",
+            "level": 1
+        },
+        {
+            "sender": "XY",
+            "title": "Something left in Storage Room 3",
+            "fullMessage": "Your previous loop left something useful in Storage Room 3. Recover it quickly.",
+            "level": 1
+        },
+        {
+            "sender": "XY",
+            "title": "Password changes every loop",
+            "fullMessage": "The password changes every loop. The murderer is starting to realize this.",
+            "level": 2
+        },
+        {
+            "sender": "XY",
+            "title": "Terminal B accessed",
+            "fullMessage": "Beware: the murderer accessed Terminal B. They are closer than you think.",
+            "level": 2
+        },
+        {
+            "sender": "XY",
+            "title": "Partial memory retained",
+            "fullMessage": "The murderer retained partial memory from a previous loop. Act carefully.",
+            "level": 3
+        },
+        {
+            "sender": "XY",
+            "title": "Protect the vault",
+            "fullMessage": "If they find the master key, the password won't matter anymore. Protect the vault.",
+            "level": 3
+        },
+        {
+            "sender": "Alex",
+            "title": "Notes by Alex",
+            "fullMessage": "Hide",
+            "level": 2
+        },
+        {
+            "sender": "Alex",
+            "title": "Notes by Alex",
+            "fullMessage": "Inspect",
+            "level": 2
+        },
+        {
+            "sender": "Derek",
+            "title": "Notes from Derek",
+            "fullMessage": "Check the Room",
+            "level": 1
+        },
+        {
+            "sender": "Derek",
+            "title": "Note from Derek",
+            "fullMessage": "Check Box Terminal",
+            "level": 1
+        }
+    ]

@@ -1,0 +1,20 @@
+{
+  "loops": [
+    {
+      "loop": 1,
+      "actions": [ "Check", "Look", "Inspect", "Hide" ],
+      "places": [ "Room", "Hall", "Storage", "Terminal" ],
+      "objects": [ "Key", "Box", "Password", "Hint" ],
+      "numbers": [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ],
+      "common": [ "the", "is", "of", "in" ]
+    },
+    {
+      "loop": 2,
+      "actions": [ "Check", "Look", "Inspect" ],
+      "places": [ "Room", "Hall" ],
+      "objects": [ "Key", "Box" ],
+      "numbers": [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ],
+      "common": [ "the", "is", "of", "in" ]
+    }
+  ]
+}
