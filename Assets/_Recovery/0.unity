@@ -136,8 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696680c08d7c0354d9526e08f17e5be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  sanity: 100
-  sanityReduction: 10
 --- !u!1001 &236943212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SanityManager
   sanityData: {fileID: 11400000, guid: 6d0721172d0dd5d4b85084409e9aeaa1, type: 2}
   currentSanity: 100
+  sanityReduction: 10
   _volume: {fileID: 0}
   cameraDistortion: {fileID: 0}
 --- !u!1 &410087039

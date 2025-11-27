@@ -18,6 +18,7 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private SanitySystemData sanityData;
     // changed to public so player script has access
     [SerializeField] public int currentSanity = 100;
+    [SerializeField] public int sanityReduction = 10;
     [SerializeField] private Volume _volume;
     
     private SanityLevel currentEffect;
@@ -61,7 +62,7 @@ public class SanityManager : MonoBehaviour
         {
             Debug.Log(currentEffect.levelName);
             // changed here so that its minus
-            currentSanity = Mathf.Clamp(currentSanity - currentEffect.sanityExtraction, 0, 100);
+            currentSanity = Mathf.Clamp(currentSanity - sanityReduction, 0, 100);
             Debug.Log("Sanity: " + currentSanity);
             ApplyEffect(currentEffect);
         }
