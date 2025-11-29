@@ -1,13 +1,11 @@
 ﻿// This script handles creating, previewing, and saving player-generated notes based on loop-specific word categories.
 // Currently this system uses a fixed/static structure and will be expanded in later versions.
 
-
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 
 #region JSON Structures
 [System.Serializable]
@@ -68,8 +66,23 @@ public class AddNoteSystem : MonoBehaviour
 
     void Awake()
     {
-        root = ui.rootVisualElement;
+        
+    }
 
+    void OnEnable()
+    {
+       
+        StartCoroutine(InitializeAfterEnable());
+    }
+
+    private IEnumerator InitializeAfterEnable()
+    {
+        while (ui == null || ui.rootVisualElement == null)
+        {
+            yield return null;
+        }
+
+        root = ui.rootVisualElement;
         notesPath = Path.Combine(Application.dataPath, "Resources/messages.json");
 
         LoadLoopWords();
@@ -85,6 +98,7 @@ public class AddNoteSystem : MonoBehaviour
 
         if (json == null)
         {
+            Debug.LogError("loop_words.json not found in Resources folder!");
             return;
         }
 
@@ -138,6 +152,8 @@ public class AddNoteSystem : MonoBehaviour
 
     void CacheUI()
     {
+        if (root == null) return;
+
         addNotePanel = root.Q<VisualElement>("AddNotePanel");
         addNoteBtn = root.Q<Button>("AddNoteButton");
         closeAddNotePanelBtn = root.Q<Button>("CloseAddNotePanel");
@@ -159,49 +175,80 @@ public class AddNoteSystem : MonoBehaviour
 
     void RegisterUI()
     {
-        addNoteBtn.clicked -= OnAddNoteClicked;
-        closeAddNotePanelBtn.clicked -= OnCloseAddNoteClicked;
-        saveBtn.clicked -= SaveNewNote;
-        clearBtn.clicked -= OnClearClicked;
+        if (addNoteBtn != null)
+        {
+            addNoteBtn.clicked -= OnAddNoteClicked;
+            addNoteBtn.clicked += OnAddNoteClicked;
+        }
 
-        addNoteBtn.clicked += OnAddNoteClicked;
-        closeAddNotePanelBtn.clicked += OnCloseAddNoteClicked;
-        saveBtn.clicked += SaveNewNote;
-        clearBtn.clicked += OnClearClicked;
+        if (closeAddNotePanelBtn != null)
+        {
+            closeAddNotePanelBtn.clicked -= OnCloseAddNoteClicked;
+            closeAddNotePanelBtn.clicked += OnCloseAddNoteClicked;
+        }
 
-        tabActions.clicked += () => ShowCategory("actions");
-        tabPlaces.clicked += () => ShowCategory("places");
-        tabObjects.clicked += () => ShowCategory("objects");
-        tabNumbers.clicked += () => ShowCategory("numbers");
-        tabCommon.clicked += () => ShowCategory("common");
+        if (saveBtn != null)
+        {
+            saveBtn.clicked -= SaveNewNote;
+            saveBtn.clicked += SaveNewNote;
+        }
+
+        if (clearBtn != null)
+        {
+            clearBtn.clicked -= OnClearClicked;
+            clearBtn.clicked += OnClearClicked;
+        }
+
+        if (tabActions != null)
+            tabActions.clicked += () => ShowCategory("actions");
+        if (tabPlaces != null)
+            tabPlaces.clicked += () => ShowCategory("places");
+        if (tabObjects != null)
+            tabObjects.clicked += () => ShowCategory("objects");
+        if (tabNumbers != null)
+            tabNumbers.clicked += () => ShowCategory("numbers");
+        if (tabCommon != null)
+            tabCommon.clicked += () => ShowCategory("common");
     }
 
     void OnAddNoteClicked()
     {
-        previewText.text = "";
-        addNotePanel.style.display = DisplayStyle.Flex;
-        addNoteBtn.style.display = DisplayStyle.None;
+        if (previewText != null)
+            previewText.text = "";
+        if (addNotePanel != null)
+            addNotePanel.style.display = DisplayStyle.Flex;
+        if (addNoteBtn != null)
+            addNoteBtn.style.display = DisplayStyle.None;
     }
 
     void OnCloseAddNoteClicked()
     {
-        addNotePanel.style.display = DisplayStyle.None;
-        addNoteBtn.style.display = DisplayStyle.Flex;
+        if (addNotePanel != null)
+            addNotePanel.style.display = DisplayStyle.None;
+        if (addNoteBtn != null)
+            addNoteBtn.style.display = DisplayStyle.Flex;
     }
 
     void OnClearClicked()
     {
-        previewText.text = "";
+        if (previewText != null)
+            previewText.text = "";
     }
 
     void SetLoop(int loop)
     {
+        if (loopData == null || loopData.loops == null) return;
+
         currentWords = loopData.loops.Find(x => x.loop == loop);
-        ShowCategory("actions");
+
+        if (currentWords != null)
+            ShowCategory("actions");
     }
 
     void ShowCategory(string category)
     {
+        if (wordGrid == null || currentWords == null) return;
+
         wordGrid.Clear();
 
         List<string> list = category switch
@@ -214,6 +261,8 @@ public class AddNoteSystem : MonoBehaviour
             _ => null
         };
 
+        if (list == null) return;
+
         foreach (string w in list)
         {
             Button b = new Button(() => AddWord(w));
@@ -224,6 +273,8 @@ public class AddNoteSystem : MonoBehaviour
 
     void AddWord(string word)
     {
+        if (previewText == null) return;
+
         previewText.text = previewText.text.Length == 0
             ? word
             : previewText.text + " " + word;
@@ -231,7 +282,7 @@ public class AddNoteSystem : MonoBehaviour
 
     void SaveNewNote()
     {
-        if (isSaving || previewText.text.Length == 0)
+        if (isSaving || previewText == null || previewText.text.Length == 0)
             return;
 
         isSaving = true;
@@ -250,13 +301,14 @@ public class AddNoteSystem : MonoBehaviour
 
         SaveNotes();
 
-        introLabel.text = "Saved!";
-        previewText.text = "";
+        if (introLabel != null)
+            introLabel.text = "Saved!";
+        if (previewText != null)
+            previewText.text = "";
 
         StartCoroutine(RefreshUIDelayed());
         StartCoroutine(ResetIntro());
     }
-
 
     private IEnumerator RefreshUIDelayed()
     {
@@ -272,6 +324,7 @@ public class AddNoteSystem : MonoBehaviour
     private IEnumerator ResetIntro()
     {
         yield return new WaitForSeconds(1.2f);
-        introLabel.text = "Create your message by choosing words from the categories above.";
+        if (introLabel != null)
+            introLabel.text = "Create your message by choosing words from the categories above.";
     }
 }

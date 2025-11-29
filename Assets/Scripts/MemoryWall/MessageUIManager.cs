@@ -45,20 +45,38 @@ public class MessageUIManager : MonoBehaviour
 
     void Start()
     {
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(InitializeAfterEnable());
+    }
+
+    private IEnumerator InitializeAfterEnable()
+    {
+        while (uiDoc == null || uiDoc.rootVisualElement == null)
+        {
+            yield return null;
+        }
+
         var root = uiDoc.rootVisualElement;
 
         messageContainer = root.Q<VisualElement>("MessageContainer");
         messageTemplate = root.Q<Label>("message");
-        messageTemplate.style.display = DisplayStyle.None;
+
+        if (messageTemplate != null)
+            messageTemplate.style.display = DisplayStyle.None;
 
         detailedMessagePanel = root.Q<VisualElement>("DetailedMessage");
-        detailedMessagePanel.style.display = DisplayStyle.None;
+        if (detailedMessagePanel != null)
+            detailedMessagePanel.style.display = DisplayStyle.None;
 
         senderLabel = root.Q<Label>("SenderLabel");
         fullMessageLabel = root.Q<Label>("FullMessage");
 
         Button closeButton = root.Q<Button>("closeButton");
-        closeButton.clicked += CloseWindow;
+        if (closeButton != null)
+            closeButton.clicked += CloseWindow;
 
         selectedMessage = null;
 
@@ -78,7 +96,6 @@ public class MessageUIManager : MonoBehaviour
 
     private void LoadMessagesFromJson()
     {
- 
         string path = Path.Combine(Application.dataPath, "Resources/messages.json");
 
         if (!File.Exists(path))
@@ -104,9 +121,10 @@ public class MessageUIManager : MonoBehaviour
         }
     }
 
-    // The messages will be displayed based on their loop index
     private void PopulateMessages(int loop)
     {
+        if (messageContainer == null) return;
+
         messageContainer.Clear();
 
         foreach (var msg in allMessages)
@@ -144,6 +162,8 @@ public class MessageUIManager : MonoBehaviour
 
     private void HighlightSelected(Label selectedLabel)
     {
+        if (messageContainer == null) return;
+
         foreach (var child in messageContainer.Children())
             child.RemoveFromClassList("selected-note");
 
@@ -152,6 +172,8 @@ public class MessageUIManager : MonoBehaviour
 
     private void OpenDetailedMessage(string sender, string fullMsg)
     {
+        if (detailedMessagePanel == null || senderLabel == null || fullMessageLabel == null) return;
+
         detailedMessagePanel.style.display = DisplayStyle.Flex;
         senderLabel.text = "Written by: " + sender;
         fullMessageLabel.text = fullMsg;
@@ -159,22 +181,29 @@ public class MessageUIManager : MonoBehaviour
 
     public void CloseDetails()
     {
-        detailedMessagePanel.style.display = DisplayStyle.None;
+        if (detailedMessagePanel != null)
+            detailedMessagePanel.style.display = DisplayStyle.None;
     }
 
     public void DeleteSelectedNote()
     {
         if (selectedMessage == null)
         {
-            deleteIntro.text = "No note selected.";
-            StartCoroutine(ClearDeleteIntro());
+            if (deleteIntro != null)
+            {
+                deleteIntro.text = "No note selected.";
+                StartCoroutine(ClearDeleteIntro());
+            }
             return;
         }
 
         if (selectedMessage.sender != playerName)
         {
-            deleteIntro.text = "You can only delete your own notes.";
-            StartCoroutine(ClearDeleteIntro());
+            if (deleteIntro != null)
+            {
+                deleteIntro.text = "You can only delete your own notes.";
+                StartCoroutine(ClearDeleteIntro());
+            }
             return;
         }
 
@@ -192,8 +221,11 @@ public class MessageUIManager : MonoBehaviour
 
         if (toRemove == null)
         {
-            deleteIntro.text = "Note not found!";
-            StartCoroutine(ClearDeleteIntro());
+            if (deleteIntro != null)
+            {
+                deleteIntro.text = "Note not found!";
+                StartCoroutine(ClearDeleteIntro());
+            }
             return;
         }
 
@@ -209,14 +241,18 @@ public class MessageUIManager : MonoBehaviour
         selectedMessage = null;
         RefreshMessages();
 
-        deleteIntro.text = "Note deleted.";
-        StartCoroutine(ClearDeleteIntro());
+        if (deleteIntro != null)
+        {
+            deleteIntro.text = "Note deleted.";
+            StartCoroutine(ClearDeleteIntro());
+        }
     }
 
     private IEnumerator ClearDeleteIntro()
     {
         yield return new WaitForSeconds(1.2f);
-        deleteIntro.text = "";
+        if (deleteIntro != null)
+            deleteIntro.text = "";
     }
 
     private string JsonListToPureArray(List<MessageData> list)
@@ -243,6 +279,11 @@ public class MessageUIManager : MonoBehaviour
 
     public void CloseWindow()
     {
-        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        if (uiDoc != null)
+            uiDoc.gameObject.SetActive(false);
+
+        var interaction = FindFirstObjectByType<MemoryWallInteraction>();
+        if (interaction != null)
+            interaction.CloseUI();
     }
 }
