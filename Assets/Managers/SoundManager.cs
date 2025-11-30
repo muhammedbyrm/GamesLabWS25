@@ -36,7 +36,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip background_music;
 
     [SerializeField] private float sound_volume;
-    [SerializeField] private AudioClip timemachineSound;
 
 
     private void Start()

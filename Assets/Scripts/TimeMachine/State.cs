@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class State
 {
-    protected Player player;
 
-    public State(Player player)
+    public State()
     {
-        this.player = player;
     }
 
     public virtual void Enter() { }
