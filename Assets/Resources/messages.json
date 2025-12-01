@@ -8,7 +8,7 @@
         {
             "sender": "XY",
             "title": "Something left in Storage Room 3",
-            "fullMessage": "Your previous loop left something useful in Storage Room 3. Recover it quickly.",
+            "fullMessage": "Your previous loop left something useful in Storage Room 2. Recover it quickly.",
             "level": 1
         },
         {
@@ -39,24 +39,24 @@
             "sender": "Alex",
             "title": "Notes by Alex",
             "fullMessage": "Hide",
-            "level": 2
+            "level": 1
         },
         {
             "sender": "Alex",
             "title": "Notes by Alex",
             "fullMessage": "Inspect",
-            "level": 2
+            "level": 1
         },
         {
             "sender": "Derek",
             "title": "Note from Derek",
             "fullMessage": "2 5 7",
-            "level": 1
+            "level": 2
         },
         {
             "sender": "Derek",
             "title": "Note from Derek",
             "fullMessage": "Key in Storage",
-            "level": 1
+            "level": 2
         }
     ]

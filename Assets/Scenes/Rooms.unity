@@ -10247,6 +10247,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 469248, guid: 3845c7234a0ed4843ba4e38e2404f54d, type: 3}
   m_PrefabInstance: {fileID: 567353010}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &570889681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1133076100850022453, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 2545823303096371040}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969c9bd3faa62ae4284f2b341075ac97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonControllerInteractable
 --- !u!1001 &574806191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23860,19 +23871,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_LocalScale.y
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.820301
+      value: -11.054
       objectReference: {fileID: 0}
     - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6640098
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23906,10 +23917,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5320916310070306505, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5729345403922686227, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: m_Name
       value: MemoryWall
       objectReference: {fileID: 0}
+    - target: {fileID: 5758494898347563121, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.187
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1278836333}
+    - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: memoryWallUI
+      value: 
+      objectReference: {fileID: 1222367087}
+    - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: noteSystemUI
+      value: 
+      objectReference: {fileID: 1524790498}
+    - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 570889681}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24892,6 +24927,11 @@ Transform:
   - {fileID: 690118139}
   m_Father: {fileID: 1288036327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1278836333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1510866254447108051, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 2545823303096371040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1278900976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29792,7 +29832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddNoteSystem
   ui: {fileID: 1222367088}
-  playerName: Derek
+  playerName: Alex
   currentLoop: 1
 --- !u!114 &1524790500
 MonoBehaviour:
