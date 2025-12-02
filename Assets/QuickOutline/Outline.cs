@@ -37,7 +37,6 @@ public class Outline : MonoBehaviour {
     [SerializeField] 
     public string interactMessage = "Press E to Interact";
     public float textVerticalOffset = 1f;
-    private bool time_machine = false;
     private Renderer[] renderers;
     private Material outlineMaskMaterial;
     private Material outlineFillMaterial;
@@ -133,12 +132,6 @@ public class Outline : MonoBehaviour {
             if (Physics.Raycast(ray, out RaycastHit hit, distance)) {
                 if (hit.transform == transform || hit.transform.IsChildOf(transform)) {
                     shouldShowOutline = true;
-                    // this if statement is entered iff the object this script is attached
-                    // to is the time machine
-                    if (time_machine)
-                    {
-                        
-                    }
                 }
             }
         }

@@ -144,6 +144,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     public Player player;
 
     #endregion
+    
 
     private void Awake()
     {
@@ -518,6 +519,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
                 GameManager.Instance.stateMachine.ChangeState(new PastState());
+                SanityManager.Instance.UpdateSanityEffects();
             }
         }
     }
@@ -608,7 +610,7 @@ public class FirstPersonControllerInteractableEditor : Editor
         EditorGUILayout.Space();
 
         fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
-        fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);
+        fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The cameraï¿½s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);
         fpc.cameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.cameraCanMove);
 
         GUI.enabled = fpc.cameraCanMove;

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject sphere;
     public GameObject cube;
-
+    public SanityManager sanityManager;
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
     [SerializeReference] private float pastStateDuration;
