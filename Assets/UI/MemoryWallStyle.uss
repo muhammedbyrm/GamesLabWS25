@@ -1,35 +1,33 @@
 ﻿.message-item {
-    background-color: rgba(120, 0, 0, 0.35);
-    border: 1px solid rgba(180, 0, 0, 0.45);
-    color: #fff;
+    background-color: rgba(30, 0, 50, 0.65);      /* dark purple base */
+    border: 2px solid rgba(255, 0, 255, 0.7);     /* neon magenta border */
+    color: #FFFFFF;                         /* soft neon text */
     padding: 18px;
-    margin: 8px 0;
-    border-radius: 12px;
+    margin: 10px 0;
+    border-radius: 14px;
     -unity-text-align: middle-center;
     font-size: 20px;
     font-weight: bold;
-    unity-font-style: bold;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 0 16px rgba(255, 0, 255, 0.35);   /* outer glow */
     transition: 0.15s ease-out;
 }
 
-.message-item {
-    transition: 0.25s ease;
-}
-
 .message-item:hover {
-    background-color: rgba(150, 0, 0, 0.55);
-    transform: scale(1.03);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    background-color: rgba(50, 0, 80, 0.85);       /* brighter purple */
+    border-color: rgba(255, 0, 255, 1.0);
+    transform: scale(1.04);
+    box-shadow: 0 0 24px rgba(255, 0, 255, 0.55);
     cursor: pointer;
 }
 
 .selected-note {
-    background-color: rgba(150, 0, 0, 0.55) !important;
-    border-left: 5px solid rgba(255, 255, 255, 0.9) !important;
-    color: white;
-    transition: none !important;
+    background-color: rgba(60, 0, 120, 0.85) !important;
+    border-left: 5px solid #FF00FF !important;
+    color: #FFFFFF !important;
+}
+
+.message-item {
+    transition: 0.25s ease;
 }
 
 Button {

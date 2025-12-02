@@ -517,7 +517,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Time Machine Button"))
             {
                 hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
-                player.stateMachine.ChangeState(new PastState(player));
+                GameManager.Instance.stateMachine.ChangeState(new PastState());
             }
         }
     }
@@ -764,7 +764,13 @@ public class FirstPersonControllerInteractableEditor : Editor
         fpc.interactKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Interact Key", "Determines what key is used to interact."), fpc.interactKey);
 
         fpc.maxInteractDistance = EditorGUILayout.Slider(new GUIContent("Max Interact Distance", "Determines how far the player can be from an interactable object to interact with it."), fpc.maxInteractDistance, .1f, 5f);
-        fpc.interactLayer = EditorGUILayout.LayerField(new GUIContent("Interact Layer", "Determines what layer interactable objects must be on."), fpc.interactLayer);
+        //fpc.interactLayer = EditorGUILayout.LayerField(new GUIContent("Interact Layer", "Determines what layer interactable objects must be on."), fpc.interactLayer);
+        fpc.interactLayer = EditorGUILayout.MaskField(
+            new GUIContent("Interact Layer", "Determines what layer interactable objects must be on."),
+            fpc.interactLayer,
+            UnityEditorInternal.InternalEditorUtility.layers
+        );
+
         fpc.player = (Player)EditorGUILayout.ObjectField(new GUIContent("Player Object", "Player object to reference for interaction effects."), fpc.player, typeof(Player), true);
         #endregion
 

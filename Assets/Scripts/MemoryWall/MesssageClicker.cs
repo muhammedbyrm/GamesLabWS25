@@ -1,31 +1,50 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class MessageClicker : MonoBehaviour
 {
     public UIDocument uiDoc;
 
-    void Start()
+    void OnEnable()
     {
+        StartCoroutine(InitializeAfterEnable());
+    }
+
+    private IEnumerator InitializeAfterEnable()
+    {
+        while (uiDoc == null || uiDoc.rootVisualElement == null)
+        {
+            yield return null;
+        }
+
         var root = uiDoc.rootVisualElement;
 
         var detailPanel = root.Q<VisualElement>("DetailedMessage");
         var closeButton = root.Q<Button>("CloseDetailPanel");
-
         var deleteNoteButton = root.Q<Button>("DeleteNote");
         var addNoteButton = root.Q<Button>("AddNoteButton");
 
-        detailPanel.RegisterCallback<GeometryChangedEvent>(evt =>
+        if (detailPanel != null)
         {
-            bool isOpen = detailPanel.style.display == DisplayStyle.Flex;
+            detailPanel.RegisterCallback<GeometryChangedEvent>(evt =>
+            {
+                bool isOpen = detailPanel.style.display == DisplayStyle.Flex;
 
-            deleteNoteButton.style.display = isOpen ? DisplayStyle.None : DisplayStyle.Flex;
-            addNoteButton.style.display = isOpen ? DisplayStyle.None : DisplayStyle.Flex;
-        });
+                if (deleteNoteButton != null)
+                    deleteNoteButton.style.display = isOpen ? DisplayStyle.None : DisplayStyle.Flex;
+                if (addNoteButton != null)
+                    addNoteButton.style.display = isOpen ? DisplayStyle.None : DisplayStyle.Flex;
+            });
+        }
 
-        closeButton.RegisterCallback<ClickEvent>(evt =>
+        if (closeButton != null)
         {
-            detailPanel.style.display = DisplayStyle.None;
-        });
+            closeButton.clicked += () =>
+            {
+                if (detailPanel != null)
+                    detailPanel.style.display = DisplayStyle.None;
+            };
+        }
     }
 }

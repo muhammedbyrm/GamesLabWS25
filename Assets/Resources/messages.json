@@ -7,8 +7,8 @@
         },
         {
             "sender": "XY",
-            "title": "Something left in Storage Room 3",
-            "fullMessage": "Your previous loop left something useful in Storage Room 3. Recover it quickly.",
+            "title": "Something left in Storage Room 2",
+            "fullMessage": "Your previous loop left something useful in Storage Room 2. Recover it quickly.",
             "level": 1
         },
         {
@@ -39,24 +39,24 @@
             "sender": "Alex",
             "title": "Notes by Alex",
             "fullMessage": "Hide",
-            "level": 2
+            "level": 1
         },
         {
             "sender": "Alex",
             "title": "Notes by Alex",
             "fullMessage": "Inspect",
-            "level": 2
-        },
-        {
-            "sender": "Derek",
-            "title": "Notes from Derek",
-            "fullMessage": "Check the Room",
             "level": 1
         },
         {
             "sender": "Derek",
             "title": "Note from Derek",
-            "fullMessage": "Check Box Terminal",
-            "level": 1
+            "fullMessage": "2 5 7",
+            "level": 2
+        },
+        {
+            "sender": "Derek",
+            "title": "Note from Derek",
+            "fullMessage": "Key in Storage",
+            "level": 2
         }
     ]
