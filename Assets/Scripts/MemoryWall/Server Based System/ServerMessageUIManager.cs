@@ -1,0 +1,151 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class ServerMessageUIManager : MonoBehaviour
+{
+    public UIDocument uiDoc;
+
+    VisualElement messageContainer;
+    Label messageTemplate;
+
+    VisualElement detailedMessagePanel;
+    Label senderLabel;
+    Label fullMessageLabel;
+
+    Button deleteNoteButton;
+    Label deleteIntro;
+
+    ServerNoteEntry selectedNote;
+
+    string playerName;
+    int currentLoop = 1;
+
+    void OnEnable()
+    {
+        StartCoroutine(InitUI());
+    }
+
+    IEnumerator InitUI()
+    {
+        while (uiDoc == null || uiDoc.rootVisualElement == null)
+            yield return null;
+
+        var root = uiDoc.rootVisualElement;
+
+        messageContainer = root.Q<VisualElement>("MessageContainer");
+        messageTemplate = root.Q<Label>("message");
+        if (messageTemplate != null)
+            messageTemplate.style.display = DisplayStyle.None;
+
+        detailedMessagePanel = root.Q<VisualElement>("DetailedMessage");
+        if (detailedMessagePanel != null)
+            detailedMessagePanel.style.display = DisplayStyle.None;
+
+        senderLabel = root.Q<Label>("SenderLabel");
+        fullMessageLabel = root.Q<Label>("FullMessage");
+        deleteIntro = root.Q<Label>("DeleteIntro");
+
+        deleteNoteButton = root.Q<Button>("DeleteNote");
+        if (deleteNoteButton != null)
+            deleteNoteButton.clicked += OnDeleteNoteClicked;
+
+        var closeBtn = root.Q<Button>("closeButton");
+        if (closeBtn != null)
+            closeBtn.clicked += CloseWindow;
+
+        var noteSys = FindFirstObjectByType<AddNoteSystemServer>();
+        if (noteSys != null)
+            playerName = noteSys.playerName;
+
+        // request data from server
+        var manager = FindFirstObjectByType<ServerNoteManager>();
+        if (manager != null)
+            manager.RefreshNotes();
+    }
+
+    public void RefreshWithServerNotes(List<ServerNoteEntry> notes)
+    {
+        messageContainer.Clear();
+
+        foreach (var n in notes)
+        {
+            if (n.level > currentLoop) continue;
+
+            Label item = new Label(n.title);
+            item.AddToClassList("message-item");
+
+            float lastClick = 0f;
+            const float dbl = 0.25f;
+
+            item.RegisterCallback<ClickEvent>((evt) =>
+            {
+                float t = Time.realtimeSinceStartup;
+
+                if (t - lastClick < dbl)
+                    OpenDetail(n);
+                else
+                {
+                    selectedNote = n;
+                    Highlight(item);
+                }
+
+                lastClick = t;
+            });
+
+            messageContainer.Add(item);
+        }
+    }
+
+    void Highlight(Label target)
+    {
+        foreach (var c in messageContainer.Children())
+            c.RemoveFromClassList("selected-note");
+
+        target.AddToClassList("selected-note");
+    }
+
+    void OpenDetail(ServerNoteEntry n)
+    {
+        detailedMessagePanel.style.display = DisplayStyle.Flex;
+        senderLabel.text = "Written by: " + n.sender;
+        fullMessageLabel.text = n.fullMessage;
+    }
+
+    void OnDeleteNoteClicked()
+    {
+        if (selectedNote == null)
+        {
+            deleteIntro.text = "No note selected.";
+            StartCoroutine(ClearDeleteIntro());
+            return;
+        }
+
+        if (selectedNote.sender != playerName)
+        {
+            deleteIntro.text = "You can only delete your own notes.";
+            StartCoroutine(ClearDeleteIntro());
+            return;
+        }
+
+        var mgr = FindFirstObjectByType<ServerNoteManager>();
+        if (mgr != null)
+            mgr.DeleteNote(selectedNote);
+    }
+
+    IEnumerator ClearDeleteIntro()
+    {
+        yield return new WaitForSeconds(1.2f);
+        deleteIntro.text = "";
+    }
+
+    public void CloseWindow()
+    {
+        uiDoc.gameObject.SetActive(false);
+
+        var memoryWall = FindFirstObjectByType<MemoryWallInteraction>();
+        if (memoryWall != null)
+            memoryWall.CloseUI();
+    }
+}

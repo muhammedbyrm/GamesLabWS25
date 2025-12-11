@@ -77,6 +77,10 @@ public class MicroscopeInteraction : MonoBehaviour
         if (microscope != null)
             microscope.SetActive(true);
 
+        var selector = FindFirstObjectByType<MicroscopeImageSelector>();
+        if (selector != null)
+            selector.ResetToFirstImage();
+
         if (crosshair != null)
             crosshair.SetActive(false);
 

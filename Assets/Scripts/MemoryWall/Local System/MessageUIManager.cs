@@ -286,4 +286,6 @@ public class MessageUIManager : MonoBehaviour
         if (interaction != null)
             interaction.CloseUI();
     }
+
+
 }

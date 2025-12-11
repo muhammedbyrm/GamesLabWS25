@@ -146,4 +146,16 @@ public class MicroscopeImageSelector : MonoBehaviour
 
         uiDocument.rootVisualElement.style.display = uiVisible ? DisplayStyle.Flex : DisplayStyle.None;
     }
+
+    public void ResetToFirstImage()
+    {
+        currentIndex = 0;
+        zoomLevel = 0f;
+
+        if (blurryImages.Length > 0)
+            LoadImage(0);
+
+        UpdateLensAppearance();
+        UpdateHUD();
+    }
 }

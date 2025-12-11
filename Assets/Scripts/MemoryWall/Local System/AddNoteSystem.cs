@@ -66,12 +66,12 @@ public class AddNoteSystem : MonoBehaviour
 
     void Awake()
     {
-        
+
     }
 
     void OnEnable()
     {
-       
+
         StartCoroutine(InitializeAfterEnable());
     }
 
