@@ -655,6 +655,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &885230025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885230027}
+  - component: {fileID: 885230026}
+  m_Layer: 0
+  m_Name: SanityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &885230026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885230025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b742aa2562ba42e458f0451897b1b9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanityManager
+  sanityData: {fileID: 11400000, guid: 6d0721172d0dd5d4b85084409e9aeaa1, type: 2}
+  currentSanity: 100
+  sanityReduction: 10
+  _volume: {fileID: 0}
+  cameraDistortion: {fileID: 0}
+  hueEffect: {fileID: 0}
+--- !u!4 &885230027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885230025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.16043, y: 0, z: -1.06841}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &987516773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886686136751916567, guid: 540545836ecb363418f4d13da63995b2, type: 3}
+  m_PrefabInstance: {fileID: 1466508027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1192970412 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5394316764302231217, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
@@ -721,8 +776,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5886686136751916567, guid: 540545836ecb363418f4d13da63995b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1858135637}
   m_SourcePrefab: {fileID: 100100000, guid: 540545836ecb363418f4d13da63995b2, type: 3}
+--- !u!4 &1738547433 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2385479334788067892, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 3098465628967280542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1748967986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2783633496176353241, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
@@ -734,6 +797,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &1762725418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5375076984664823541, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 3098465628967280542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1762725425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762725418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdb1d14a74396c4c8aa5f3bf246dd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraSmearPlusHueEffect
+  red: {r: 1, g: 0, b: 0, a: 1}
+  green: {r: 0, g: 1, b: 0, a: 1}
+  overlayOpacity: 0.5
+  fadeDuration: 1
+  cameraTransform: {fileID: 1738547433}
+--- !u!114 &1858135637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987516773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ba63956584cd14cb176155e0fee855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  interactionText: {fileID: 0}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  interactMessage: Press E to Interact
+  textVerticalOffset: 1
+  enableByDistance: 1
+  maxVisibleDistance: 5
 --- !u!1 &2084223604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,7 +1142,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5375076984664823541, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1762725425}
   m_SourcePrefab: {fileID: 100100000, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1054,3 +1161,4 @@ SceneRoots:
   - {fileID: 942386967181521965}
   - {fileID: 755965270}
   - {fileID: 2084223608}
+  - {fileID: 885230027}

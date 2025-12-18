@@ -15,5 +15,5 @@ MonoBehaviour:
   levelName: Level 2
   sanityExtraction: 10
   sanitySound: {fileID: 0}
-  visualEffects: 030000000500000006000000
+  visualEffects: 0300000002000000
   actviated: 0
