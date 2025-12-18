@@ -1,0 +1,26 @@
+.cluelog-panel {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 350px;
+    max-height: 80%;
+    padding: 16px;
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+}
+
+.cluelog-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.cluelog-list {
+    flex-grow: 1;
+}
+
+.ClueEntry {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 4px;
+}

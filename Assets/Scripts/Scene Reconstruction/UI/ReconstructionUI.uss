@@ -1,0 +1,49 @@
+.reconstruction-root {
+    padding: 32px;
+    background-color: var(--bg-dark);
+    justify-content: space-between;
+}
+
+.reconstruction-instruction {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timeline {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.slot {
+    flex-grow: 1;
+    margin: 0 6px;
+    height: 80px;
+    background-color: rgba(255,255,255,0.1);
+    border: 2px dashed rgba(255,255,255,0.3);
+    border-radius: 6px;
+}
+
+.clue-pool {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.ClueCard {
+    width: 160px;
+    padding: 12px;
+    margin: 8px;
+    background-color: var(--panel-bg);
+    border-radius: 6px;
+    cursor: grab;
+    text-align: center;
+}
+
+.confirm-button {
+    align-self: center;
+    width: 200px;
+    height: 40px;
+}

@@ -1,0 +1,35 @@
+:root {
+    --bg-dark: rgba(0, 0, 0, 0.75);
+    --panel-bg: rgba(20, 20, 20, 0.95);
+    --text-main: #EAEAEA;
+    --text-muted: #AAAAAA;
+    --accent: #B03030;
+}
+
+Label {
+    color: var(--text-main);
+    unity-font-style: normal;
+    white-space: normal;
+}
+
+.hidden {
+    display: none;
+}
+
+.prompt-root {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.prompt-text {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: white;
+    -unity-text-outline-color: black;
+    -unity-text-outline-width: 2;
+    background-color: rgba(0,0,0,0.5);
+    padding: 12px 24px;
+    border-radius: 8px;
+}

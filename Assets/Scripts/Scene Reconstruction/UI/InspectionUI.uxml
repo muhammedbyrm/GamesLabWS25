@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Scene%20Reconstruction/UI/InspectionUI.uss?fileID=7433441132597879392&amp;guid=e4fe52b8f85a14e0393124823717365f&amp;type=3#InspectionUI" />
+    <Style src="project://database/Assets/Scripts/Scene%20Reconstruction/UI/GameUI.uss?fileID=7433441132597879392&amp;guid=ce6b056954c104dbaa854a267a71920c&amp;type=3#GameUI" />
+    <ui:VisualElement name="Root" class="root-full">
+        <ui:VisualElement name="Backdrop" class="backdrop" />
+        <ui:VisualElement name="Panel" class="inspection-panel" style="left: -20%; bottom: -70%; width: 80%; height: 10%;">
+            <ui:Label name="ClueTitle" text="Clue Title" class="inspection-title" />
+            <ui:Label name="MonologueText" text="Long monologue text goes here..." class="inspection-text" />
+            <ui:Label name="ContinueHint" text="Press K to continue" class="inspection-hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

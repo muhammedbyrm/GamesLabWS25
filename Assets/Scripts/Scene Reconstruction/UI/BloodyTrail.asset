@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4714e1fd2b2b474893d492c4d1a491b, type: 3}
+  m_Name: BloodyTrail
+  m_EditorClassIdentifier: Assembly-CSharp::ClueData
+  clueTitle: Blood trail
+  monologueText: "A trail of blood leads away from the chair\u2026 the victim moved
+    after the struggle. Following this path should take me to the next clue."
+  chronologicalOrder: 2
+  isRequiredForReconstruction: 1
+  shortSummary: Blood trail leading away from the chair
