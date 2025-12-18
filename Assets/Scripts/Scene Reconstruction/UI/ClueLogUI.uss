@@ -1,26 +1,51 @@
-.cluelog-panel {
+.thought-panel {
     position: absolute;
-    top: 10%;
-    right: 5%;
-    width: 350px;
-    max-height: 80%;
-    padding: 16px;
-    background-color: var(--panel-bg);
-    border-radius: 8px;
+    top: 5%;
+    right: 3%;
+    background-color: rgba(10, 10, 25, 0.85);
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: rgba(180, 50, 50, 0.3);
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
-.cluelog-title {
-    font-size: 18px;
-    margin-bottom: 12px;
+.thought-title {
+    font-size: 26px;
+    -unity-font-style: bold;
+    margin-bottom: 20px;
+    -unity-text-align: middle-center;
+    color: white;
 }
 
-.cluelog-list {
-    flex-grow: 1;
+.thought-list {
+    flex-direction: column-reverse; /* Newest on top */
+    align-items: flex-end;
 }
 
-.ClueEntry {
-    margin-bottom: 10px;
-    padding: 8px;
-    background-color: rgba(255,255,255,0.05);
-    border-radius: 4px;
+.ThoughtBubble {
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background-color: rgba(10, 10, 10, 0.6);
+    border-radius: 20px 20px 20px 4px; /* Speech bubble tail on left */
+    max-width: 340px;
+    opacity: 0; /* Start invisible for fade-in */
+    transition: opacity 0.8s ease-out;
+}
+
+.ThoughtBubble.visible {
+    opacity: 1;
+}
+
+.thought-bubble-title {
+    font-size: 10px;
+    -unity-font-style: bold;
+    margin-bottom: 1px;
+    color: var(--text-main);
+}
+
+.thought-bubble-summary {
+    font-size: 8px;
+    color: whitesmoke;
+    white-space: normal;
 }

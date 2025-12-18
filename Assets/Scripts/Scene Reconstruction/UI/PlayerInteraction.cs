@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Raycast")]
-    [SerializeField] private float maxDistance = 3f;
-    [SerializeField] private LayerMask clueLayer = 1 << 6; // Create Layer 6 "Clues"
+    [SerializeField] private float maxDistance = 4f;
+    [SerializeField] private LayerMask clueLayer;
 
     private ClueInspect currentClue;
     private Camera cam;
 
-    private void Start()
+    private void Awake()
     {
         cam = GetComponent<Camera>() ?? Camera.main;
     }
 
     private void Update()
     {
-        Raycast();
+        CheckLookAtClue();
 
         if (Input.GetKeyDown(KeyCode.E) && currentClue != null)
         {
@@ -24,27 +23,27 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void Raycast()
+    private void CheckLookAtClue()
     {
-        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)); // Middle screen
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, clueLayer))
         {
-            ClueInspect hitClue = hit.collider.GetComponent<ClueInspect>();
-            if (hitClue != null && hitClue != currentClue)
+            ClueInspect clue = hit.collider.GetComponent<ClueInspect>();
+            if (clue != null && clue != currentClue)
             {
-                // New clue
-                if (currentClue != null) currentClue.Highlight(false);
-                currentClue = hitClue;
-                currentClue.Highlight(true); // Outline glows!
+                // New clue in view
+                if (currentClue != null) currentClue.HideOutline();
+                currentClue = clue;
+                currentClue.ShowOutline();
             }
         }
         else
         {
-            // No hit
+            // Looking at nothing
             if (currentClue != null)
             {
-                currentClue.Highlight(false);
+                currentClue.HideOutline();
                 currentClue = null;
             }
         }

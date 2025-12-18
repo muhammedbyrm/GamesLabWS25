@@ -68,8 +68,8 @@ public class InspectionUIController : MonoBehaviour
         root.Focus();
 
         // Disable player movement/input
-        if (playerController != null)
-            playerController.SetInputEnabled(false);
+        //if (playerController != null)
+         //   playerController.SetInputEnabled(false);
 
         // Unlock cursor for UI interaction
         UnityEngine.Cursor.lockState = CursorLockMode.None;
@@ -89,8 +89,8 @@ public class InspectionUIController : MonoBehaviour
         isVisible = false;
 
         // Re-enable player controls
-        if (playerController != null)
-            playerController.SetInputEnabled(true);
+       // if (playerController != null)
+          //  playerController.SetInputEnabled(true);
 
         // Lock cursor back to first-person mode
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;

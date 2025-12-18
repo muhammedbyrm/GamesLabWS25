@@ -2,28 +2,36 @@ using UnityEngine;
 
 public class ClueInspect : MonoBehaviour
 {
-    [SerializeField] private ClueData clueData; // Drag asset
+    [SerializeField] private ClueData clueData;
 
     [Header("Outline")]
-    [SerializeField] private Outline outline; // Drag Outline component (self-reference)
+    [SerializeField] private Outline outline; // Drag your Outline component here!
 
     private ClueManager clueManager;
 
-    private void Start()
+    private void Awake()
     {
         clueManager = FindObjectOfType<ClueManager>();
-        if (outline != null) outline.SetOutline(false);
+
+        // Start with outline off
+        if (outline != null)
+            outline.enabled = false;
     }
 
-    // Called by raycast hit
-    public void Highlight(bool highlight)
+    public void ShowOutline()
     {
-        if (outline != null) outline.SetOutline(highlight);
+        if (outline != null)
+            outline.enabled = true;
     }
 
-    // Called on E press
+    public void HideOutline()
+    {
+        if (outline != null)
+            outline.enabled = false;
+    }
+
     public void Interact()
     {
         clueManager.InspectClue(clueData);
     }
-}   
+}

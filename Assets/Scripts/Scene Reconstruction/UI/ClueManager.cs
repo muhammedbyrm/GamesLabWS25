@@ -4,21 +4,27 @@ using System.Collections.Generic;
 public class ClueManager : MonoBehaviour
 {
     [SerializeField] private InspectionUIController inspectionUI;
-    [SerializeField] private List<ClueData> allRequiredClues = new(); // Drag all required here once
+    [SerializeField] private ClueLogController clueLogUI; // ← NEW: Drag ClueLogController here
+
+    [SerializeField] private List<ClueData> allRequiredClues = new();
     
     private List<ClueData> foundClues = new();
     public bool IsInspectionActive { get; private set; } = false;
-    public System.Action OnAllCluesFound; // Event for reconstruction unlock
+    public System.Action OnAllCluesFound;
 
     public void InspectClue(ClueData clue)
     {
-        if (foundClues.Contains(clue)) return; // Already inspected
+        // Allow re-inspection (as requested)
+        if (!foundClues.Contains(clue))
+        {
+            foundClues.Add(clue);
+            
+            clueLogUI?.UpdateClueLog(foundClues); // ← Update log on new clue
+            CheckCompletion();
+        }
 
-        foundClues.Add(clue);
         inspectionUI.Show(clue.clueTitle, clue.monologueText);
         IsInspectionActive = true;
-
-        CheckCompletion();
     }
 
     private void CheckCompletion()
@@ -31,7 +37,7 @@ public class ClueManager : MonoBehaviour
 
         if (foundRequired == allRequiredClues.Count)
         {
-            OnAllCluesFound?.Invoke(); // Fires reconstruction unlock
+            OnAllCluesFound?.Invoke();
             Debug.Log("ALL CLUES FOUND! Reconstruction ready.");
         }
     }
@@ -41,7 +47,5 @@ public class ClueManager : MonoBehaviour
         IsInspectionActive = false;
     }
 
-    // Public getters for UI (Clue Log, Reconstruction)
     public List<ClueData> GetFoundClues() => foundClues;
-    public bool HasAllClues() => foundClues.Count == allRequiredClues.Count;
 }
