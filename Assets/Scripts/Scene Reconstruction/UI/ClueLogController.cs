@@ -10,18 +10,27 @@ public class ClueLogController : MonoBehaviour
     private void Awake()
     {
         var uiDocument = GetComponent<UIDocument>();
-        root = uiDocument.rootVisualElement;
+        // Fix: Query for the element named "Root" inside your UXML
+        root = uiDocument.rootVisualElement.Q<VisualElement>("Root");
         thoughtList = root.Q<VisualElement>("ThoughtList");
 
-        root.AddToClassList("hidden");
+        // Ensure it starts hidden
+        if (root != null) root.AddToClassList("hidden");
+    }
+
+    public void HideLog()
+    {
+        root?.AddToClassList("hidden");
     }
 
     public void UpdateClueLog(List<ClueData> foundClues)
     {
+        if (root == null) return;
+        
         thoughtList.Clear();
-
         if (foundClues.Count == 0) return;
 
+        // Show the UI when clues are added
         root.RemoveFromClassList("hidden");
 
         foreach (var clue in foundClues)
@@ -39,7 +48,6 @@ public class ClueLogController : MonoBehaviour
             bubble.Add(summary);
             thoughtList.Add(bubble);
 
-            // Fade in with stagger
             int index = foundClues.IndexOf(clue);
             bubble.schedule.Execute(() => bubble.AddToClassList("visible")).StartingIn(index * 300);
         }

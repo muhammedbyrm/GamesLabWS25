@@ -1,4 +1,16 @@
+/* ADD THIS AT THE TOP */
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+:root {
+    --text-main: #FFFFFF;
+    --accent: #FF4B4B;
+}
+
 .thought-panel {
+    display: flex;
     position: absolute;
     top: 5%;
     right: 3%;
@@ -7,7 +19,7 @@
     border-width: 2px;
     border-color: rgba(180, 50, 50, 0.3);
     flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    padding: 20px;
 }
 
 .thought-title {
@@ -19,7 +31,7 @@
 }
 
 .thought-list {
-    flex-direction: column-reverse; /* Newest on top */
+    flex-direction: column-reverse;
     align-items: flex-end;
 }
 
@@ -27,9 +39,9 @@
     margin-bottom: 16px;
     padding: 16px 20px;
     background-color: rgba(10, 10, 10, 0.6);
-    border-radius: 20px 20px 20px 4px; /* Speech bubble tail on left */
+    border-radius: 20px 20px 20px 4px;
     max-width: 340px;
-    opacity: 0; /* Start invisible for fade-in */
+    opacity: 0;
     transition: opacity 0.8s ease-out;
 }
 
@@ -38,14 +50,14 @@
 }
 
 .thought-bubble-title {
-    font-size: 10px;
+    font-size: 14px;
     -unity-font-style: bold;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
     color: var(--text-main);
 }
 
 .thought-bubble-summary {
-    font-size: 8px;
-    color: whitesmoke;
+    font-size: 12px;
+    color: #cccccc;
     white-space: normal;
 }
