@@ -32,21 +32,56 @@ public class GameManager : MonoBehaviour
 
     public GameObject sphere;
     public GameObject cube;
-    public SanityManager sanityManager;
+    public FirstPersonControllerInteractable fpc;
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
-    [SerializeReference] private float pastStateDuration;
+    [SerializeField] private float pastStateDuration;
+
+    [SerializeField] private Transform flashlightPosition;
+    [SerializeField] private Transform flashlightJointPosition;
+    [SerializeField] private GameObject flashlight;
+    [SerializeField] private AudioClip flashlightSound_on;
+    [SerializeField] private AudioClip flashlightSound_off;
+    private bool hasFlashlight;
 
     void Start()
     {
         stateMachine = new StateMachine();
         stateMachine.ChangeState(new PresentState());
+        hasFlashlight = false;
     }
 
     void Update()
     {
         stateMachine.Update();
     }
+
+    public void interactFlashlight()
+    {
+        hasFlashlight = !hasFlashlight;
+
+        if (hasFlashlight)
+        {
+            flashlight.transform.GetChild(0).GetComponent<Light>().enabled = true;
+            SoundManager.Instance.PlaySoundClip(flashlightSound_on, fpc.transform, 1f);
+            flashlight.transform.parent = flashlightJointPosition;
+            flashlight.transform.localPosition = Vector3.zero;
+            flashlight.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+        else
+        {
+            flashlight.transform.GetChild(0).GetComponent<Light>().enabled = false;
+            SoundManager.Instance.PlaySoundClip(flashlightSound_off, fpc.transform, 2f);
+            flashlight.transform.parent = flashlightPosition;
+            flashlight.transform.localPosition = Vector3.zero;
+            flashlight.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+
+        flashlight.GetComponent<Flashlight>().toggleFlashlight();
+    }
+
+
+
 
     public void TimeJump()
     {

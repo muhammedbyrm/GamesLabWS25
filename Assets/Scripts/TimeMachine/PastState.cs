@@ -25,6 +25,7 @@ public class PastState : State
         GameManager.Instance.cube.SetActive(true);
 
         //Add Sanity effect here later
+        SanityManager.Instance.UpdateSanityEffects();
         //loop counter is in GameManager
     }
     public override void Update()

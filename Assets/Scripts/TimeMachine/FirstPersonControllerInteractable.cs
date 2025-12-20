@@ -519,7 +519,9 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
                 GameManager.Instance.stateMachine.ChangeState(new PastState());
-                SanityManager.Instance.UpdateSanityEffects();
+            }else if (hit.collider.gameObject.CompareTag("Flashlight"))
+            {
+                GameManager.Instance.interactFlashlight();
             }
         }
     }
