@@ -33,7 +33,7 @@ public class ClueManager : MonoBehaviour
     private IEnumerator DelayedOpenReconstruction()
     {
         // This handles the 3 second pause
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         
         reconstructionUI?.OpenReconstruction(foundClues);
         Debug.Log("Opening reconstruction timeline after 3 seconds.");

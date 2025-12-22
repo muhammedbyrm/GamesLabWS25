@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4714e1fd2b2b474893d492c4d1a491b, type: 3}
   m_Name: BloodSplatter
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
-  clueTitle: Blood splatter
+  clueTitle: Heavy bloodstains near the body.
   monologueText: "Blood\u2026 it\u2019s everywhere, but the pattern is strange. It
     seems to arc in a particular direction. Could it have come from a struggle? Maybe
     the victim didn\u2019t just fall where I found them."
   chronologicalOrder: 4
   isRequiredForReconstruction: 1
-  shortSummary: ' Blood splatter near the body'
+  shortSummary: "Blood spatter was observed near the victim\u2019s body."

@@ -10,6 +10,7 @@
     padding: 40px;              /* Safe margin from screen edges */
 }
 
+
 .backdrop {
     position: absolute;
     top: 0;
@@ -26,13 +27,14 @@
     min-height: 140px;          /* Minimum height */
     max-height: 40%;            /* Doesn't take too much vertical space */
     padding: 28px 32px;         /* Comfortable inner spacing */
-    background-color: rgba(15, 15, 25, 0.92);
+    background-image: url("Assets/speech3.png");
+    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     border-left-width: 4px;
-    border-left-color: var(--accent);
+    border-left-color: turquoise;
     flex-direction: column;
     align-items: flex-start;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
 .inspection-title {
@@ -40,7 +42,7 @@
     -unity-font-style: italic;
     margin-bottom: 10px;
     -unity-text-align: lower-left;
-    color: var(--text-muted);
+    color: whitesmoke;
     opacity: 0.85;
 }
 
@@ -49,7 +51,7 @@
     line-height: 1.45;
     -unity-text-align: lower-left;
     white-space: normal;
-    color: var(--text-main);
+    color: white;
     flex-grow: 1;
 }
 

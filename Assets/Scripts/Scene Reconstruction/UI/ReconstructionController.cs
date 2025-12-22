@@ -12,6 +12,8 @@ public class ReconstructionController : MonoBehaviour
 
     private List<VisualElement> slots = new();
     private List<ClueData> correctOrder;
+    
+    public bool isCorrect = false;
 
     [SerializeField] private ClueLogController clueLogUI;
     [SerializeField] private InspectionUIController inspectionUI; // <-- NEW REFERENCE
@@ -56,7 +58,7 @@ public class ReconstructionController : MonoBehaviour
     {
         var card = new Button();
         card.AddToClassList("ClueCard");
-        card.text = data.clueTitle;
+        card.text = data.shortSummary;
         card.userData = data;
         card.clicked += () => TryPlaceClue(card);
         return card;
@@ -88,7 +90,7 @@ public class ReconstructionController : MonoBehaviour
 
     private void OnConfirm()
     {
-        bool isCorrect = true;
+        isCorrect = true;
         for (int i = 0; i < slots.Count; i++)
         {
             var card = slots[i].childCount > 0 ? slots[i][0] : null;

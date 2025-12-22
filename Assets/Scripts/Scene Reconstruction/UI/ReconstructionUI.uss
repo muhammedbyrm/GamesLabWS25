@@ -1,7 +1,6 @@
 :root {
-    --accent: #FF4B4B;
+    --accent: turquoise;
     --bg-dark: rgba(10, 10, 20, 0.98);
-    --slot-bg: rgba(255, 255, 255, 0.05);
 }
 
 .hidden {
@@ -11,7 +10,7 @@
 
 .reconstruction-root {
     padding: 60px;
-    background-color: var(--bg-dark);
+    background-color: rgba(0, 0, 0, 0.95);
     transition: opacity 0.6s ease-in-out;
     width: 100%;
     height: 100%;
@@ -22,7 +21,7 @@
     -unity-font-style: bold;
     margin-bottom: 40px;
     -unity-text-align: middle-center;
-    color: var(--accent);
+    color: white;
 }
 
 .timeline {
@@ -35,10 +34,10 @@
 .slot {
     width: 200px;
     height: 140px;
-    background-color: var(--slot-bg);
+    background-color: black;
     border-radius: 8px;
     border-width: 2px;
-    border-color: rgba(255, 75, 75, 0.2);
+    border-color: turquoise;
     justify-content: center;
     align-items: center;
 }
@@ -54,21 +53,22 @@
 .ClueCard {
     width: 180px;
     height: 120px;
-    background-color: #222;
+    background-image: url("Assets/thoughtbubble.png");
+    -unity-background-scale-mode: scale-and-crop;
     border-radius: 4px;
     color: white;
     padding: 10px;
     white-space: normal;
     -unity-font-style: bold;
     border-width: 1px;
-    border-color: #444;
+    border-color: turquoise;
 }
 
 .confirm-button {
     width: 200px;
     height: 50px;
     align-self: center;
-    background-color: var(--accent);
+    background-color: steelblue;
     color: white;
     -unity-font-style: bold;
     border-radius: 4px;

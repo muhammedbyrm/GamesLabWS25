@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4714e1fd2b2b474893d492c4d1a491b, type: 3}
   m_Name: BodyBlood
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
-  clueTitle: Victim Body
+  clueTitle: "The victim\u2019s body lies here."
   monologueText: "The victim\u2026 lifeless, bruises on the arms\u2026 defensive
     wounds. A stab wound? If I want to understand the sequence, I need to look around
     carefully."
   chronologicalOrder: 5
   isRequiredForReconstruction: 1
-  shortSummary: Victim Body
+  shortSummary: 'Victim Body found. '

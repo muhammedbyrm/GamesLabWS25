@@ -10570,12 +10570,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClueManager
   inspectionUI: {fileID: 1079677590}
   clueLogUI: {fileID: 922550891}
+  reconstructionUI: {fileID: 1367009587}
   allRequiredClues:
-  - {fileID: 11400000, guid: 33cd9c67f27614448b452ea61fc0ce60, type: 2}
-  - {fileID: 11400000, guid: 636b2a4d9e7d5473cb39e2b669ab80b0, type: 2}
-  - {fileID: 11400000, guid: d434bc97edf0c47b4932c35bb4cdcd90, type: 2}
-  - {fileID: 11400000, guid: f997cd33b8e7d45d0bbeafc5a39798d0, type: 2}
   - {fileID: 11400000, guid: fc354dcca836f418cb8de2f9518745ff, type: 2}
+  - {fileID: 11400000, guid: f997cd33b8e7d45d0bbeafc5a39798d0, type: 2}
+  - {fileID: 11400000, guid: d434bc97edf0c47b4932c35bb4cdcd90, type: 2}
+  - {fileID: 11400000, guid: 636b2a4d9e7d5473cb39e2b669ab80b0, type: 2}
+  - {fileID: 11400000, guid: 33cd9c67f27614448b452ea61fc0ce60, type: 2}
 --- !u!4 &591422067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 499240, guid: ef77650fcc7dfd64a8d614922d90c382, type: 3}
@@ -11836,6 +11837,7 @@ Transform:
   - {fileID: 1079677589}
   - {fileID: 586814341}
   - {fileID: 922550890}
+  - {fileID: 1367009586}
   m_Father: {fileID: 64013178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &644609248
@@ -27813,6 +27815,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2318761744862857056, guid: 42f30c85f9e074e4eb17ea01048327d2, type: 3}
   m_PrefabInstance: {fileID: 1365706997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1367009585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367009586}
+  - component: {fileID: 1367009588}
+  - component: {fileID: 1367009587}
+  m_Layer: 0
+  m_Name: ReconstructionUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367009586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367009585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 641461770}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367009587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367009585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167599f2969b7450cbd8183d078de3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReconstructionController
+  clueLogUI: {fileID: 922550891}
+  inspectionUI: {fileID: 1079677590}
+--- !u!114 &1367009588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367009585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 204f24769265f5c4f8a93e6262e1d0de, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: cfb6c2d9a672b463ebc0afc1745d44d5, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1001 &1368444571
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4714e1fd2b2b474893d492c4d1a491b, type: 3}
   m_Name: MurderWeapon
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
-  clueTitle: Murder Weapon?
+  clueTitle: Murder Weapon
   monologueText: "The knife\u2026 stained, discarded, but not hidden well. This was
     the weapon that ended it all. Looking at the body, the splatter, the chair, and
     the trail\u2026 it all comes together."
   chronologicalOrder: 1
   isRequiredForReconstruction: 1
-  shortSummary: Murder Weapon
+  shortSummary: The weapon was dropped here after the stabbing.
