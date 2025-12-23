@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4714e1fd2b2b474893d492c4d1a491b, type: 3}
   m_Name: SignsOfStruggle
   m_EditorClassIdentifier: Assembly-CSharp::ClueData
-  clueTitle: Signs of a struggle
+  clueTitle: Signs of struggle
   monologueText: "The chair is overturned\u2026 signs of resistance. The victim fought
     back here, struggling to defend themselves after the first blow."
   chronologicalOrder: 3
   isRequiredForReconstruction: 1
-  shortSummary: Struggle point, she fought even with being wounded.
+  shortSummary: Struggle, she fought while being wounded.
