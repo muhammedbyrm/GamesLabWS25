@@ -131,7 +131,12 @@ public class ServerMessageUIManager : MonoBehaviour
 
         var mgr = FindFirstObjectByType<ServerNoteManager>();
         if (mgr != null)
+        {
             mgr.DeleteNote(selectedNote);
+
+            deleteIntro.text = "Note deleted.";
+            StartCoroutine(ResetAfterDelete());
+        }
     }
 
     IEnumerator ClearDeleteIntro()
@@ -147,5 +152,16 @@ public class ServerMessageUIManager : MonoBehaviour
         var memoryWall = FindFirstObjectByType<MemoryWallInteraction>();
         if (memoryWall != null)
             memoryWall.CloseUI();
+    }
+
+    IEnumerator ResetAfterDelete()
+    {
+        yield return new WaitForSeconds(2f);
+
+        deleteIntro.text = "";
+        selectedNote = null;
+
+        if (detailedMessagePanel != null)
+            detailedMessagePanel.style.display = DisplayStyle.None;
     }
 }
