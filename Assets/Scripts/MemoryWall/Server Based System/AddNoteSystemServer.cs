@@ -9,6 +9,9 @@ public class AddNoteSystemServer : MonoBehaviour
     public string playerName = "Player";
     public int currentLoop = 1;
 
+    [Header("Word Limit")]
+    public int maxWords = 10;
+
     VisualElement root;
 
     VisualElement panel;
@@ -25,6 +28,8 @@ public class AddNoteSystemServer : MonoBehaviour
 
     LoopDatabase loopData;
     LoopCategory currentWords;
+
+    List<string> currentWordsList = new List<string>();
 
     void OnEnable()
     {
@@ -54,8 +59,9 @@ public class AddNoteSystemServer : MonoBehaviour
     void LoadLoopWords()
     {
         TextAsset json = Resources.Load<TextAsset>("loop_words");
-        if (json == null)  
-            return; 
+        if (json == null)
+            return;
+
         loopData = JsonUtility.FromJson<LoopDatabase>(json.text);
     }
 
@@ -84,6 +90,7 @@ public class AddNoteSystemServer : MonoBehaviour
     {
         openBtn.clicked += () =>
         {
+            currentWordsList.Clear();
             previewText.text = "";
             panel.style.display = DisplayStyle.Flex;
             openBtn.style.display = DisplayStyle.None;
@@ -95,7 +102,7 @@ public class AddNoteSystemServer : MonoBehaviour
             openBtn.style.display = DisplayStyle.Flex;
         };
 
-        clearBtn.clicked += () => previewText.text = "";
+        clearBtn.clicked += RemoveLastWord;
 
         saveBtn.clicked += SaveNote;
 
@@ -137,13 +144,25 @@ public class AddNoteSystemServer : MonoBehaviour
 
     void AddWord(string w)
     {
-        previewText.text =
-            (previewText.text.Length == 0) ? w : previewText.text + " " + w;
+        if (currentWordsList.Count >= maxWords)
+            return;
+
+        currentWordsList.Add(w);
+        previewText.text = string.Join(" ", currentWordsList);
+    }
+
+    void RemoveLastWord()
+    {
+        if (currentWordsList.Count == 0)
+            return;
+
+        currentWordsList.RemoveAt(currentWordsList.Count - 1);
+        previewText.text = string.Join(" ", currentWordsList);
     }
 
     void SaveNote()
     {
-        if (previewText.text.Length == 0)
+        if (currentWordsList.Count == 0)
             return;
 
         var server = FindFirstObjectByType<ServerNoteManager>();
@@ -151,6 +170,8 @@ public class AddNoteSystemServer : MonoBehaviour
             server.CreateNote(previewText.text);
 
         introLabel.text = "Saved!";
+
+        currentWordsList.Clear();
         previewText.text = "";
 
         StartCoroutine(ResetIntro());

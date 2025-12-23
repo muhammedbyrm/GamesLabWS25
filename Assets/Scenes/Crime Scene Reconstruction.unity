@@ -3590,6 +3590,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'sharpImages.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 07f2c168e65ee2b4dbb5c465daa8fa0c, type: 3}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'sharpImages.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 0e6b17bfd7b068e40a1b83d984d14f05, type: 3}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'sharpImages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 6d1b8971050b0a841b295d4f8d0b1c31, type: 3}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'blurryImages.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 354e1ec7d7c596c49a6cc81e53b10046, type: 3}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'blurryImages.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 38059afdf3e7f6e4a8cd837118c7060f, type: 3}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: 'blurryImages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 48f1afb1e1f422743b914c91da25082e, type: 3}
     - target: {fileID: 8241187388099086869, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Name
       value: BiologyPuzzle
@@ -32219,6 +32243,7 @@ MonoBehaviour:
   ui: {fileID: 1222367088}
   playerName: Alex
   currentLoop: 1
+  maxWords: 10
 --- !u!114 &1588449164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40840,6 +40865,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Outline
+  interactionText: {fileID: 0}
+  outlineColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  outlineWidth: 2
+  interactMessage: Press E to Interact
+  textVerticalOffset: 1
+  enableByDistance: 1
+  maxVisibleDistance: 5
 --- !u!1001 &2026742970
 PrefabInstance:
   m_ObjectHideFlags: 0
