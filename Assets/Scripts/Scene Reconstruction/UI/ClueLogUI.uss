@@ -1,0 +1,94 @@
+/* HIDE ELEMENTS INITIALLY */
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* COLORS */
+:root {
+    --text-main: #FFFFFF;
+    --accent: #FF4B4B;
+}
+
+/* PANEL CONTAINER */
+.thought-panel {
+    display: flex;
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    background-image: url("Assets/PanelBG.png");
+    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(180, 50, 50, 0.3);
+    flex-direction: column;
+    padding: 20px;
+}
+/* BUBBLE VISIBLE */
+.ThoughtBubble.visible {
+    opacity: 1;
+}
+
+
+/* PANEL TITLE */
+.thought-title {
+    font-size: 26px;
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+    -unity-text-align: middle-left;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    -unity-text-overflow: ellipsis;
+}
+
+/* LIST OF BUBBLES */
+.thought-list {
+    display: flex;
+    flex-direction: column-reverse;
+    /* Anchor everything to the left side of the panel */
+    align-items: flex-start;
+}
+
+/* INDIVIDUAL BUBBLE */
+.ThoughtBubble {
+    display: flex;
+    flex-direction: column;
+    /* KEY FIX: Tells the bubble to ONLY be as wide as its content */
+    align-self: flex-start;
+    width: auto;
+
+    margin-bottom: 18px;
+    padding: 12px 20px;
+    max-width: 340px;
+    position: relative;
+
+    opacity: 0;
+    transition: opacity 1.8s ease-out;
+    background-image: url("Assets/thoughtbubble.png");
+
+    /* CHANGE TO STRETCH: ensures the bubble art grows with the text rows */
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.9);
+}
+
+.thought-bubble-title {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: var(--text-main);
+
+    /* Forces wrapping without forcing max-width */
+    white-space: normal;
+    width: auto;
+    margin-bottom: -7px;
+    
+}
+
+.thought-bubble-summary {
+    font-size: 10px;
+    color: #cccccc;
+    white-space: normal;
+
+    /* Ensures summary doesn't 'push' the bubble wider than the title does */
+    flex-shrink: 1;
+    width: auto;
+}

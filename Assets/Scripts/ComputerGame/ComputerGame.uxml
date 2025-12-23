@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/ComputerGame/BubbleSortPuzzle.uss?fileID=7433441132597879392&amp;guid=5d8206f5da1c347528da2367fc7ec429&amp;type=3#BubbleSortPuzzle" />
+    <ui:VisualElement name="BubbleRoot" class="terminal-bg puzzle-root">
+        <ui:Label name="Title" text="HACK TERMINAL: REASSEMBLE BUBBLE SORT" class="title" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+        <ui:Label name="Hint" text="Drag code blocks into slots to fix the leaked source..." class="hint" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+        <ui:VisualElement name="ContentWrapper" style="max-width: 800px; left: 25%;">
+            <ui:VisualElement name="CodeArea" class="code-area">
+                <ui:VisualElement name="slot-0" class="drop-slot indent-0 empty-slot" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+                <ui:VisualElement name="slot-1" class="drop-slot indent-1 empty-slot" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+                <ui:VisualElement name="slot-2" class="drop-slot indent-2 empty-slot" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+                <ui:VisualElement name="slot-3" class="drop-slot indent-3 empty-slot" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Pool" class="pool" />
+            <ui:VisualElement name="DemoArea" class="demo-area demo-hidden">
+                <ui:Label text="ARRAY: [4, 2, 1, 3]" name="Label" class="array-label" />
+                <ui:VisualElement name="BarsContainer" class="bars-container" />
+            </ui:VisualElement>
+            <ui:Label name="Status" class="status" />
+            <ui:Label name="Digit" text="?" class="digit digit-hidden" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

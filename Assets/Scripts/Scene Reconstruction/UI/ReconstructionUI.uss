@@ -1,0 +1,75 @@
+:root {
+    --accent: turquoise;
+    --bg-dark: rgba(10, 10, 20, 0.98);
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.reconstruction-root {
+    padding: 60px;
+    background-color: rgba(0, 0, 0, 0.95);
+    transition: opacity 0.6s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.reconstruction-instruction {
+    font-size: 28px;
+    -unity-font-style: bold;
+    margin-bottom: 40px;
+    -unity-text-align: middle-center;
+    color: white;
+}
+
+.timeline {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.slot {
+    width: 200px;
+    height: 140px;
+    background-color: black;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: turquoise;
+    justify-content: center;
+    align-items: center;
+}
+
+.clue-pool {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.ClueCard {
+    width: 180px;
+    height: 120px;
+    background-image: url("Assets/thoughtbubble.png");
+    -unity-background-scale-mode: scale-and-crop;
+    border-radius: 4px;
+    color: white;
+    padding: 10px;
+    white-space: normal;
+    -unity-font-style: bold;
+    border-width: 1px;
+    border-color: turquoise;
+}
+
+.confirm-button {
+    width: 200px;
+    height: 50px;
+    align-self: center;
+    background-color: steelblue;
+    color: white;
+    -unity-font-style: bold;
+    border-radius: 4px;
+}

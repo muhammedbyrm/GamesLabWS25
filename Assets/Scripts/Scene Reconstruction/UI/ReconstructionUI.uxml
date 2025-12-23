@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Scene%20Reconstruction/UI/ReconstructionUI.uss?fileID=7433441132597879392&amp;guid=881ca221c594c42e5af00b12b2714742&amp;type=3#ReconstructionUI" />
+    <ui:VisualElement name="Root" class="hidden root-full reconstruction-root">
+        <ui:Label name="InstructionText" text="Arrange the clues in the order they happened." class="reconstruction-instruction" />
+        <ui:VisualElement name="Timeline" class="timeline">
+            <ui:VisualElement class="slot" />
+            <ui:VisualElement class="slot" />
+            <ui:VisualElement class="slot" />
+            <ui:VisualElement class="slot" />
+            <ui:VisualElement class="slot" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CluePool" class="clue-pool" />
+        <ui:Button name="ConfirmButton" text="Confirm" class="confirm-button" />
+    </ui:VisualElement>
+</ui:UXML>
