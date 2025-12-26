@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraSmearPlusHueEffect : MonoBehaviour
+public class CameraSmearPlusHueEffect : MonoBehaviour, ISanityEffect
 {
     [Header("Overlay Settings")]
     public Color red = new Color(1f, 0f, 0f, 1f);

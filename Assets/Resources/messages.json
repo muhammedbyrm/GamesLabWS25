@@ -38,12 +38,6 @@
         {
             "sender": "Alex",
             "title": "Notes by Alex",
-            "fullMessage": "Hide",
-            "level": 1
-        },
-        {
-            "sender": "Alex",
-            "title": "Notes by Alex",
             "fullMessage": "Inspect",
             "level": 1
         },
@@ -58,5 +52,11 @@
             "title": "Note from Derek",
             "fullMessage": "Key in Storage",
             "level": 2
+        },
+        {
+            "sender": "Derek",
+            "title": "Note from Derek",
+            "fullMessage": "Check Hall Password",
+            "level": 1
         }
     ]

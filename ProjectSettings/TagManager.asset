@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Time Machine Button
   - Flashlight
+  - LaserPuzzle
+  - Mirror
+  - Splitter
+  - Receiver
   layers:
   - Default
   - TransparentFX

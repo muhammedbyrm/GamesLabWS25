@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: 
   levelName: Level 2
-  sanityExtraction: 10
   sanitySound: {fileID: 0}
-  visualEffects: 0300000002000000
+  visualEffects: 0300000001000000
   actviated: 0

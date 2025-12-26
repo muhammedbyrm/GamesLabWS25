@@ -4,7 +4,7 @@ using UnityEngine;
 public enum VisualEffectType
 {
     None,
-    ScreenBlur,
+    CameraDistorion,
     BloodStain,
     CameraSmearPlusHue
 }

@@ -5,8 +5,6 @@ public class Player : MonoBehaviour
     #region Player Stat
 
     public int sanity = 100;
-    // How much each time jump reduces sanity
-    public int sanityReduction = 10;
 
 
 

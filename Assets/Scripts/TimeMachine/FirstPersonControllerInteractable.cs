@@ -523,6 +523,15 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 GameManager.Instance.interactFlashlight();
             }
+            
+            if (interactable.CompareTag("LaserPuzzle"))
+            {
+                LaserPuzzleController controller = interactable.GetComponentInParent<LaserPuzzleController>();
+                if (controller != null)
+                {
+                    controller.ActivatePuzzle();
+                }
+            }
         }
     }
 
