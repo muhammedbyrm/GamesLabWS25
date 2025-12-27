@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip flashlightSound_off;
     private bool hasFlashlight;
 
+    [SerializeField] GameObject BR_Door;
+
     void Start()
     {
         stateMachine = new StateMachine();
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
         stateMachine.Update();
     }
 
-    public void interactFlashlight()
+    public void InteractFlashlight()
     {
         hasFlashlight = !hasFlashlight;
 
@@ -80,7 +82,17 @@ public class GameManager : MonoBehaviour
         flashlight.GetComponent<Flashlight>().toggleFlashlight();
     }
 
+    public void OpenBRDoor()
+    {
+        BR_Door.transform.GetChild(0).GetComponent<Animator>().SetTrigger("BR_Open");
+        BR_Door.transform.GetChild(1).GetComponent<Animator>().SetTrigger("BR_Open");
+    }
 
+    public void CloseBRDoor()
+    {
+        BR_Door.transform.GetChild(0).GetComponent<Animator>().SetTrigger("BR_Close");
+        BR_Door.transform.GetChild(1).GetComponent<Animator>().SetTrigger("BR_Close");
+    }
 
 
     public void TimeJump()

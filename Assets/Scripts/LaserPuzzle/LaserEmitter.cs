@@ -43,7 +43,7 @@ public class LaserEmitter : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
             
-            Debug.Log("Laser hit: " + hit.collider.name + " tagged: " + hit.collider.tag);
+            //Debug.Log("Laser hit: " + hit.collider.name + " tagged: " + hit.collider.tag);
             line.positionCount = 2;
             line.SetPosition(0, startPos);
             line.SetPosition(1, hit.point);

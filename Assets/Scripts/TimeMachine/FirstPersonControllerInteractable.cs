@@ -11,6 +11,8 @@ using UnityEngine.UI;
 using UnityEngine.Diagnostics;
 
 using TMPro;
+using NavKeypad;
+
 
 
 #if UNITY_EDITOR
@@ -141,7 +143,6 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     public KeyCode interactKey = KeyCode.E;
     public float maxInteractDistance = 1f;
     public LayerMask interactLayer;
-    public Player player;
 
     #endregion
     
@@ -519,18 +520,22 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
                 GameManager.Instance.stateMachine.ChangeState(new PastState());
-            }else if (hit.collider.gameObject.CompareTag("Flashlight"))
-            {
-                GameManager.Instance.interactFlashlight();
             }
-            
-            if (interactable.CompareTag("LaserPuzzle"))
+            else if (hit.collider.gameObject.CompareTag("Flashlight"))
+            {
+                GameManager.Instance.InteractFlashlight();
+            }
+            else if (interactable.CompareTag("LaserPuzzle"))
             {
                 LaserPuzzleController controller = interactable.GetComponentInParent<LaserPuzzleController>();
                 if (controller != null)
                 {
                     controller.ActivatePuzzle();
                 }
+            }
+            else if (interactable.CompareTag("NumPad"))
+            {
+                hit.collider.gameObject.GetComponent<KeypadButton>().PressButton();
             }
         }
     }
@@ -784,7 +789,6 @@ public class FirstPersonControllerInteractableEditor : Editor
             UnityEditorInternal.InternalEditorUtility.layers
         );
 
-        fpc.player = (Player)EditorGUILayout.ObjectField(new GUIContent("Player Object", "Player object to reference for interaction effects."), fpc.player, typeof(Player), true);
         #endregion
 
         #endregion
