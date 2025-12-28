@@ -49,6 +49,13 @@ namespace NavKeypad
             panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
         }
 
+        public void ResetKeypad()
+        {
+            accessWasGranted = false;
+            ClearInput();
+            panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
+        }
+
 
         //Gets value from pressedbutton
         public void AddInput(string input)

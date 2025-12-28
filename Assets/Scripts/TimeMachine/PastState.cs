@@ -21,8 +21,11 @@ public class PastState : State
         GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(true);
 
         //Preliminary setup for Past State
-        GameManager.Instance.sphere.SetActive(false);
-        GameManager.Instance.cube.SetActive(true);
+        GameManager.Instance.CloseBRDoor();
+        GameManager.Instance.activatePastObjects();
+        GameManager.Instance.ActivateKeypad();
+        //GameManager.Instance.sphere.SetActive(false);
+        //GameManager.Instance.cube.SetActive(true);
 
         //Add Sanity effect here later
         SanityManager.Instance.UpdateSanityEffects();
@@ -48,6 +51,7 @@ public class PastState : State
 
     public override void Exit()
     {
+        GameManager.Instance.deactivatePastObjects();
         pastStateTimerImage.fillAmount = 1f;
     }
 }

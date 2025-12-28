@@ -536,6 +536,9 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             else if (interactable.CompareTag("NumPad"))
             {
                 hit.collider.gameObject.GetComponent<KeypadButton>().PressButton();
+            }else if (interactable.CompareTag("Clue"))
+            {
+                hit.collider.gameObject.GetComponent<ClueInspect>().Interact();
             }
         }
     }

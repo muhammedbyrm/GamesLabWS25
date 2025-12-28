@@ -122,6 +122,8 @@ public class ReconstructionController : MonoBehaviour
                     "Everything makes sense now...\nI know what happened! I need to go back in time to prevent her death!"
                 );
             }
+
+            GameManager.Instance.FinishSceneReconstruction();
         }
         else
         {

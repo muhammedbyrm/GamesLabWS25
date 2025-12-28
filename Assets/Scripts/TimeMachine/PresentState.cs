@@ -13,8 +13,20 @@ public class PresentState : State
         GameManager.Instance.pastStateTimerImage.gameObject.SetActive(false);
         GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(false);
 
-        GameManager.Instance.sphere.SetActive(true);
-        GameManager.Instance.cube.SetActive(false);
+        //GameManager.Instance.sphere.SetActive(true);
+        //GameManager.Instance.cube.SetActive(false);
+
+        if (GameManager.Instance.GetLoopCount() == 0)
+        {
+            //GameManager.Instance.CloseBRDoor();
+            GameManager.Instance.deactivatePastObjects();
+        }
+        else
+        {
+            GameManager.Instance.OpenBRDoor();
+        }
+        GameManager.Instance.activatePresentObjects();
+        GameManager.Instance.DeactivateKeypad();
     }
     public override void Update()
     {
@@ -22,6 +34,7 @@ public class PresentState : State
 
     public override void Exit()
     {
+        GameManager.Instance.deactivatePresentObjects();
         GameManager.Instance.TimeJump();
     }
 }

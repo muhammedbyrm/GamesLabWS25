@@ -49,6 +49,9 @@ public class Outline : MonoBehaviour {
     private Camera mainCamera;
     private bool isVisible = false;
 
+    [SerializeField]
+    private float fontSize = 0.5f;
+
 
     void Awake() {
         
@@ -94,7 +97,7 @@ public class Outline : MonoBehaviour {
         // Configure text properties
         interactionText.text = interactMessage;
         interactionText.alignment = TextAlignmentOptions.Center;
-        interactionText.fontSize = 0.5f; 
+        interactionText.fontSize = fontSize; 
         interactionText.rectTransform.sizeDelta = new Vector2(3f, 0.5f);
 
         // Hide the text initially
@@ -135,8 +138,10 @@ public class Outline : MonoBehaviour {
                 }
             }
         }
-        
-        
+
+
+
+
         // Update outline visibility if the state changed
         if (shouldShowOutline != isVisible) {
             isVisible = shouldShowOutline;
