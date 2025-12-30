@@ -31262,8 +31262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddNoteSystemServer
   ui: {fileID: 1486128713}
-  playerName: Alex
-  currentLoop: 1
   maxWords: 10
 --- !u!114 &1422031948
 MonoBehaviour:
@@ -31291,9 +31289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ServerNoteManager
   api: {fileID: 1422031950}
-  noteSystem: {fileID: 0}
-  playerName: Player
-  currentLoop: 1
   allNotes: []
 --- !u!114 &1422031950
 MonoBehaviour:

@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 public class AddNoteSystemServer : MonoBehaviour
 {
     public UIDocument ui;
-    public string playerName = "Player";
-    public int currentLoop = 1;
+    int currentLoop; 
+    
 
     [Header("Word Limit")]
     public int maxWords = 10;
@@ -41,19 +41,14 @@ public class AddNoteSystemServer : MonoBehaviour
         while (ui == null || ui.rootVisualElement == null)
             yield return null;
 
+        currentLoop = GameManager.Instance.GetLoopCount();
+
         root = ui.rootVisualElement;
 
         LoadLoopWords();
         CacheUI();
         RegisterUI();
         SetLoop(currentLoop);
-
-        var server = FindFirstObjectByType<ServerNoteManager>();
-        if (server != null)
-        {
-            server.playerName = playerName;
-            server.currentLoop = currentLoop;
-        }
     }
 
     void LoadLoopWords()
@@ -103,7 +98,6 @@ public class AddNoteSystemServer : MonoBehaviour
         };
 
         clearBtn.clicked += RemoveLastWord;
-
         saveBtn.clicked += SaveNote;
 
         tabActions.clicked += () => ShowCategory("actions");

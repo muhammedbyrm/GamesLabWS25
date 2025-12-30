@@ -5,30 +5,14 @@ using System.Collections;
 public class ServerNoteManager : MonoBehaviour
 {
     public ServerNoteAPI api;
-    public AddNoteSystemServer noteSystem;
 
-    public string playerName = "";
-    public int currentLoop = 1;
+    string playerName;
 
     public List<ServerNoteEntry> allNotes = new List<ServerNoteEntry>();
 
     void OnEnable()
     {
-        StartCoroutine(Init());
-    }
-
-    IEnumerator Init()
-    {
-        while (noteSystem == null)
-            yield return null;
-
-        while (noteSystem.playerName == "Player") 
-            yield return null;
-
-        playerName = noteSystem.playerName;
-        currentLoop = noteSystem.currentLoop;
-
-
+        playerName = PlayerPrefs.GetString("PlayerNickname", "Player");
         RefreshNotes();
     }
 
@@ -40,9 +24,7 @@ public class ServerNoteManager : MonoBehaviour
     void OnNotesLoaded(List<ServerNoteEntry> notes)
     {
         if (notes == null)
-        {
             return;
-        }
 
         allNotes = notes;
 
@@ -53,6 +35,8 @@ public class ServerNoteManager : MonoBehaviour
 
     public void CreateNote(string text)
     {
+        int currentLoop = GameManager.Instance.GetLoopCount();
+
         ServerNoteEntry entry = new ServerNoteEntry
         {
             sender = playerName,

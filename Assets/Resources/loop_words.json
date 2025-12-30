@@ -1,7 +1,7 @@
 {
   "loops": [
     {
-      "loop": 1,
+      "loop": 0,
       "actions": [ "Check", "Look", "Inspect", "Hide", "Follow", "Search", "Reconstruct" ],
       "places": [ "Break Room", "Second Floor", "First Floor", "Laboratory", "Kitchen", "Table" ],
       "objects": [ "Key", "Password", "Hint","Wall", "Flash Light", "Microscope", "Door", "Scene", "Computer" ],
@@ -9,7 +9,7 @@
       "common": [ "the", "is", "of", "in", "on", "at", "to", "from", "with", "without", "before", "after","near", "next", "and", "or", "not" ]
     },
     {
-      "loop": 2,
+      "loop": 1,
       "actions": [ "Check", "Look", "Inspect", "Hide", "Follow", "Search", "Prevent" ],
       "places": [ "Break Room", "Second Floor", "First Floor", "Kitchen", "Table" ],
       "objects": [ "Key", "Box", "Password", "Hint","Wall", "Flash Light", "Microscope", "Door", "Murder" ],

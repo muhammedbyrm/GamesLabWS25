@@ -6,19 +6,17 @@ using System.Text;
 
 public class ServerNoteAPI : MonoBehaviour
 {
-    [Header("Supabase Settings")]
     public string projectUrl = "https://YOUR_PROJECT.supabase.co";
     public string anonKey = "YOUR_ANON_KEY";
 
-    private string NotesEndpoint => projectUrl + "/rest/v1/Notes";
+    string NotesEndpoint => projectUrl + "/rest/v1/Notes";
 
-    // GET NOTES
     public IEnumerator GetNotes(System.Action<List<ServerNoteEntry>> callback)
     {
         UnityWebRequest req = UnityWebRequest.Get(NotesEndpoint + "?select=*");
-
         req.SetRequestHeader("apikey", anonKey);
         req.SetRequestHeader("Authorization", "Bearer " + anonKey);
+        req.SetRequestHeader("Accept", "application/json");
 
         yield return req.SendWebRequest();
 
@@ -34,15 +32,12 @@ public class ServerNoteAPI : MonoBehaviour
         }
     }
 
-    // POST NOTE
     public IEnumerator AddNote(ServerNoteEntry entry, System.Action<bool> callback)
     {
         string jsonBody = "[" + JsonUtility.ToJson(entry) + "]";
-
         UnityWebRequest req = new UnityWebRequest(NotesEndpoint, "POST");
-        byte[] body = Encoding.UTF8.GetBytes(jsonBody);
 
-        req.uploadHandler = new UploadHandlerRaw(body);
+        req.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonBody));
         req.downloadHandler = new DownloadHandlerBuffer();
 
         req.SetRequestHeader("apikey", anonKey);
@@ -55,14 +50,12 @@ public class ServerNoteAPI : MonoBehaviour
         callback(req.result == UnityWebRequest.Result.Success);
     }
 
-    // delete note by sender
     public IEnumerator DeleteNote(ServerNoteEntry entry, System.Action<bool> callback)
     {
         string sender = UnityWebRequest.EscapeURL(entry.sender);
         string msg = UnityWebRequest.EscapeURL(entry.fullMessage);
 
         string url = $"{NotesEndpoint}?sender=eq.{sender}&fullMessage=eq.{msg}";
-
         UnityWebRequest req = UnityWebRequest.Delete(url);
 
         req.SetRequestHeader("apikey", anonKey);
@@ -71,12 +64,32 @@ public class ServerNoteAPI : MonoBehaviour
 
         yield return req.SendWebRequest();
 
-        bool ok = req.result == UnityWebRequest.Result.Success;
-        callback(ok);
+        callback(req.result == UnityWebRequest.Result.Success);
+    }
+
+    public IEnumerator CheckSenderExists(string senderLower, System.Action<bool> callback)
+    {
+        string sender = UnityWebRequest.EscapeURL(senderLower);
+        string url = NotesEndpoint + "?sender=ilike." + sender + "&select=sender";
+
+        UnityWebRequest req = UnityWebRequest.Get(url);
+        req.SetRequestHeader("apikey", anonKey);
+        req.SetRequestHeader("Authorization", "Bearer " + anonKey);
+        req.SetRequestHeader("Accept", "application/json");
+
+        yield return req.SendWebRequest();
+
+        if (req.result != UnityWebRequest.Result.Success)
+        {
+            callback(false);
+            yield break;
+        }
+
+        callback(req.downloadHandler.text != "[]");
     }
 
     [System.Serializable]
-    private class NotesWrapper
+    class NotesWrapper
     {
         public List<ServerNoteEntry> list;
     }

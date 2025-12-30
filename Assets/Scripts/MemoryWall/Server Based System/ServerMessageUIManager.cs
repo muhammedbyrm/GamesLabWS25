@@ -20,7 +20,7 @@ public class ServerMessageUIManager : MonoBehaviour
     ServerNoteEntry selectedNote;
 
     string playerName;
-    int currentLoop = 1;
+    int currentLoop;
 
     void OnEnable()
     {
@@ -31,6 +31,9 @@ public class ServerMessageUIManager : MonoBehaviour
     {
         while (uiDoc == null || uiDoc.rootVisualElement == null)
             yield return null;
+
+        playerName = PlayerPrefs.GetString("PlayerNickname", "Player");
+        currentLoop = GameManager.Instance.GetLoopCount();
 
         var root = uiDoc.rootVisualElement;
 
@@ -55,11 +58,6 @@ public class ServerMessageUIManager : MonoBehaviour
         if (closeBtn != null)
             closeBtn.clicked += CloseWindow;
 
-        var noteSys = FindFirstObjectByType<AddNoteSystemServer>();
-        if (noteSys != null)
-            playerName = noteSys.playerName;
-
-        // request data from server
         var manager = FindFirstObjectByType<ServerNoteManager>();
         if (manager != null)
             manager.RefreshNotes();
@@ -67,11 +65,16 @@ public class ServerMessageUIManager : MonoBehaviour
 
     public void RefreshWithServerNotes(List<ServerNoteEntry> notes)
     {
+        if (messageContainer == null)
+            return;
+
+        currentLoop = GameManager.Instance.GetLoopCount();
         messageContainer.Clear();
 
         foreach (var n in notes)
         {
-            if (n.level > currentLoop) continue;
+            if (n.level > currentLoop)
+                continue;
 
             Label item = new Label(n.title);
             item.AddToClassList("message-item");
@@ -133,7 +136,6 @@ public class ServerMessageUIManager : MonoBehaviour
         if (mgr != null)
         {
             mgr.DeleteNote(selectedNote);
-
             deleteIntro.text = "Note deleted.";
             StartCoroutine(ResetAfterDelete());
         }
