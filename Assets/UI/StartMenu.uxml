@@ -1,160 +1,27 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements"
-         xmlns:uie="UnityEditor.UIElements"
-         editor-extension-mode="False">
-
-    <ui:VisualElement name="main-menu-root"
-        style="flex-grow: 1;
-               align-items: center;
-               justify-content: center;
-               background-image: url(&quot;project://database/Assets/Images/StartMenu/new4.jpg?fileID=2800000&amp;guid=51eb4d0deed622349a96a693669871cd&amp;type=3#new4&quot;);">
-
-        <ui:VisualElement name="content-container"
-            style="align-items: center;
-                   justify-content: center;">
-
-            <ui:Label text="THE MEMORY CHAMBER"
-                name="game-title"
-                style="font-size: 64px;
-                       color: rgb(255,255,255);
-                       -unity-font-style: bold;
-                       -unity-text-align: upper-center;
-                       margin-bottom: 40px;
-                       padding-bottom: 10%;
-                       -unity-font-definition: url(&quot;project://database/Assets/Font/Nosifer-Regular.ttf?fileID=12800000&amp;guid=30e0a51b7bf96d74393bbe145ed30e15&amp;type=3#Nosifer-Regular&quot;);" />
-
-            <ui:VisualElement name="buttons-container"
-                style="align-items: center;
-                       justify-content: center;">
-
-                <ui:Button text="START"
-                    name="btn-start"
-                    class="menu-button"
-                    style="width: 400px;
-                           height: 60px;
-                           margin-bottom: 20px;
-                           font-size: 24px;
-                           -unity-font-style: bold;
-                           background-color: rgb(4,60,6);
-                           color: white;" />
-
-                <ui:Button text="INSTRUCTIONS"
-                    name="btn-instructions"
-                    class="menu-button"
-                    style="width: 400px;
-                           height: 60px;
-                           margin-bottom: 20px;
-                           font-size: 24px;
-                           -unity-font-style: bold;
-                           background-color: rgb(0,1,156);
-                           color: white;" />
-
-                <ui:Button text="EXIT"
-                    name="btn-exit"
-                    class="menu-button"
-                    style="width: 400px;
-                           height: 60px;
-                           font-size: 24px;
-                           -unity-font-style: bold;
-                           background-color: rgb(96,12,12);
-                           color: white;" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="main-menu-root" style="flex-grow: 1; align-items: center; justify-content: center; background-image: url(&quot;project://database/Assets/Images/StartMenu/new4.jpg?fileID=2800000&amp;guid=51eb4d0deed622349a96a693669871cd&amp;type=3#new4&quot;);">
+        <ui:VisualElement name="content-container" style="align-items: center; justify-content: center;">
+            <ui:Label text="THE MEMORY CHAMBER" name="game-title" style="font-size: 64px; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-text-align: upper-center; margin-bottom: 40px; padding-bottom: 10%; -unity-font-definition: url(&quot;project://database/Assets/Font/Nosifer-Regular.ttf?fileID=12800000&amp;guid=30e0a51b7bf96d74393bbe145ed30e15&amp;type=3#Nosifer-Regular&quot;);" />
+            <ui:VisualElement name="buttons-container" style="align-items: center; justify-content: center;">
+                <ui:Button text="START" name="btn-start" class="menu-button" style="width: 400px; height: 60px; margin-bottom: 20px; font-size: 24px; -unity-font-style: bold; background-color: rgb(4, 60, 6); color: white;" />
+                <ui:Button text="INSTRUCTIONS" name="btn-instructions" class="menu-button" style="width: 400px; height: 60px; margin-bottom: 20px; font-size: 24px; -unity-font-style: bold; background-color: rgb(0, 1, 156); color: white;" />
+                <ui:Button text="EXIT" name="btn-exit" class="menu-button" style="width: 400px; height: 60px; font-size: 24px; -unity-font-style: bold; background-color: rgb(96, 12, 12); color: white;" />
             </ui:VisualElement>
         </ui:VisualElement>
-
-        <ui:Label text="Developed by Team XY"
-            name="credits-footer"
-            style="font-size: 18px;
-                   color: rgba(255,255,255,0.6);
-                   -unity-text-align: lower-center;
-                   position: absolute;
-                   bottom: 30px;" />
-
-        <!-- ID POPUP -->
-        <ui:VisualElement name="id-popup"
-            style="position: absolute;
-                   width: 400px;
-                   height: 220px;
-                   background-color: rgba(0,0,0,0.85);
-                   border-radius: 8px;
-                   align-items: center;
-                   justify-content: center;
-                   display: none;">
-
-            <ui:Label text="ENTER YOUR NICKNAME"
-                style="font-size: 24px;
-                       color: white;
-                       margin-bottom: 20px;
-                       -unity-font-style: bold;" />
-
-            <ui:TextField name="player-id-field"
-                max-length="12"
-                style="width: 280px;
-                       height: 32px;
-                       margin-bottom: 15px;
-                       -unity-font-style: bold;" />
-
-            <ui:Label name="id-warning"
-                text="Please choose another ID"
-                style="font-size: 18px;
-                       color: rgb(220,80,80);
-                       margin-bottom: 10px;
-                       display: none;
-                       -unity-font-style: bold;" />
-
-            <ui:VisualElement
-                style="flex-direction: row;
-                       justify-content: space-between;
-                       width: 280px;">
-
-                <ui:Button text="CONFIRM"
-                    name="btn-confirm-id"
-                    style="width: 130px;
-                           height: 40px;
-                           background-color: rgb(20,90,20);
-                           color: white;
-                           -unity-font-style: bold;" />
-
-                <ui:Button text="CANCEL"
-                    name="btn-cancel-id"
-                    style="width: 130px;
-                           height: 40px;
-                           background-color: rgb(90,20,20);
-                           color: white;
-                           -unity-font-style: bold;" />
+        <ui:Label text="Developed by Team XY" name="credits-footer" style="font-size: 18px; color: rgba(255, 255, 255, 0.6); -unity-text-align: lower-center; position: absolute; bottom: 30px;" />
+        <ui:VisualElement name="id-popup" style="position: absolute; width: 400px; height: 220px; background-color: rgba(0, 0, 0, 0.85); border-radius: 8px; align-items: center; justify-content: center; display: none;">
+            <ui:Label text="ENTER YOUR PLAYER NAME" style="font-size: 24px; color: white; margin-bottom: 20px; -unity-font-style: bold;" />
+            <ui:TextField name="player-id-field" max-length="12" style="width: 280px; height: 32px; margin-bottom: 15px; -unity-font-style: bold;" />
+            <ui:Label name="id-warning" text="Please choose another name" style="font-size: 18px; color: rgb(220, 80, 80); margin-bottom: 10px; display: none; -unity-font-style: bold;" />
+            <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 280px;">
+                <ui:Button text="CONFIRM" name="btn-confirm-id" style="width: 130px; height: 40px; background-color: rgb(20, 90, 20); color: white; -unity-font-style: bold;" />
+                <ui:Button text="CANCEL" name="btn-cancel-id" style="width: 130px; height: 40px; background-color: rgb(90, 20, 20); color: white; -unity-font-style: bold;" />
             </ui:VisualElement>
         </ui:VisualElement>
-
-        <!-- INSTRUCTIONS POPUP -->
-        <ui:VisualElement name="instructions-popup"
-            style="position: absolute;
-                   width: 420px;
-                   height: 260px;
-                   background-color: rgba(0,0,0,0.85);
-                   border-radius: 8px;
-                   align-items: center;
-                   justify-content: center;
-                   display: none;">
-
-            <ui:Label text="INSTRUCTIONS"
-                style="font-size: 28px;
-                       color: white;
-                       margin-bottom: 20px;
-                       -unity-font-style: bold;" />
-
-            <ui:Label
-                text="• Use W A S D or Arrow Keys to move&#10;• Press E to inspect objects"
-                style="font-size: 18px;
-                       color: white;
-                       -unity-text-align: middle-center;
-                       margin-bottom: 20px;" />
-
-            <ui:Button text="CLOSE"
-                name="btn-close-instructions"
-                style="width: 140px;
-                       height: 40px;
-                       background-color: rgb(90,20,20);
-                       color: white;
-                       -unity-font-style: bold;" />
+        <ui:VisualElement name="instructions-popup" style="position: absolute; width: 420px; height: 260px; background-color: rgba(0, 0, 0, 0.85); border-radius: 8px; align-items: center; justify-content: center; display: none;">
+            <ui:Label text="INSTRUCTIONS" style="font-size: 28px; color: white; margin-bottom: 20px; -unity-font-style: bold;" />
+            <ui:Label text="• Use W A S D or Arrow Keys to move&#10;• Press E to inspect objects" style="font-size: 18px; color: white; -unity-text-align: middle-center; margin-bottom: 20px;" />
+            <ui:Button text="CLOSE" name="btn-close-instructions" style="width: 140px; height: 40px; background-color: rgb(90, 20, 20); color: white; -unity-font-style: bold;" />
         </ui:VisualElement>
-
     </ui:VisualElement>
 </ui:UXML>
