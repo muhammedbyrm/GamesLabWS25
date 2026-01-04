@@ -3,22 +3,18 @@
 public class MicroscopeInteraction : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject infoText;        
-    public GameObject microscopeUI;    
-    public GameObject microscope;  
+    public GameObject microscopeUI;
+    public GameObject microscope;
 
     [Header("Player References")]
     public GameObject crosshair;
-    public GameObject canvasHUD;        
+    public GameObject canvasHUD;
 
     private bool isPlayerInZone = false;
     private bool isUIOpen = false;
 
     void Start()
     {
-        if (infoText != null)
-            infoText.SetActive(false);
-
         if (microscopeUI != null)
             microscopeUI.SetActive(false);
 
@@ -44,9 +40,6 @@ public class MicroscopeInteraction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInZone = true;
-
-            if (infoText != null)
-                infoText.SetActive(true);
         }
     }
 
@@ -56,9 +49,6 @@ public class MicroscopeInteraction : MonoBehaviour
         {
             isPlayerInZone = false;
 
-            if (infoText != null)
-                infoText.SetActive(false);
-
             if (isUIOpen)
                 CloseMicroscope();
         }
@@ -67,9 +57,6 @@ public class MicroscopeInteraction : MonoBehaviour
     private void OpenMicroscope()
     {
         isUIOpen = true;
-
-        if (infoText != null)
-            infoText.SetActive(false);
 
         if (microscopeUI != null)
             microscopeUI.SetActive(true);
@@ -103,8 +90,5 @@ public class MicroscopeInteraction : MonoBehaviour
 
         if (canvasHUD != null)
             canvasHUD.SetActive(true);
-
-        if (isPlayerInZone && infoText != null)
-            infoText.SetActive(true);
     }
 }

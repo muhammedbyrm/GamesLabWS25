@@ -9,6 +9,10 @@ public class MemoryWallInteraction : MonoBehaviour
     public GameObject memoryWallUI;
     public GameObject noteSystemUI;
 
+    [Header("Unlock Colliders")]
+    [SerializeField] private InteractionUnlocker interactionUnlocker;
+    private bool interactionsUnlocked = false;
+
     [Header("Player Reference")]
     public MonoBehaviour playerController;
     public GameObject crosshair; 
@@ -82,6 +86,12 @@ public class MemoryWallInteraction : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if (!interactionsUnlocked && interactionUnlocker != null)
+        {
+            interactionsUnlocked = true;
+            interactionUnlocker.EnableInteractions();
+        }
     }
 
     public void CloseUI()

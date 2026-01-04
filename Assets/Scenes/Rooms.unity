@@ -20918,7 +20918,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -21794,6 +21794,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 486698, guid: ce9f6338cd38cc242ae7ba54eb5ca686, type: 3}
   m_PrefabInstance: {fileID: 1018652105}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1019085435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4281721863559056147, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+  m_PrefabInstance: {fileID: 1359718946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1019085439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019085435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe3e81992e84c24f84563991ba0ea9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionUnlocker
+  targetColliders:
+  - {fileID: 983733072}
+  - {fileID: 1807687662}
+  - {fileID: 1657520725}
+  - {fileID: 2045617245}
 --- !u!1001 &1022118079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24784,11 +24806,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Size.z
-      value: 6.2916393
+      value: 7.8683977
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Center.x
-      value: 0.000000037196997
+      value: 0.000000048077016
       objectReference: {fileID: 0}
     - target: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Center.y
@@ -24796,7 +24822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Center.z
-      value: -2.6457958
+      value: -3.43414
       objectReference: {fileID: 0}
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'sharpImages.Array.data[1]'
@@ -24822,6 +24848,14 @@ PrefabInstance:
       propertyPath: 'blurryImages.Array.data[3]'
       value: 
       objectReference: {fileID: 2800000, guid: 48f1afb1e1f422743b914c91da25082e, type: 3}
+    - target: {fileID: 8162822009992316383, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: canvasHUD
+      value: 
+      objectReference: {fileID: 1968615662}
+    - target: {fileID: 8162822009992316383, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 311945073}
     - target: {fileID: 8241187388099086869, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: m_Name
       value: BiologyPuzzle
@@ -24830,10 +24864,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8963043745149031146, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963043745149031146, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.39
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 606731094364508401, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1807687663}
   m_SourcePrefab: {fileID: 100100000, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
 --- !u!1001 &1166760616
 PrefabInstance:
@@ -24966,8 +25011,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6582954, guid: bddb1706eb9e38c4c8aad9e975af8fba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582954, guid: bddb1706eb9e38c4c8aad9e975af8fba, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29764,6 +29813,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 570889681}
+    - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      propertyPath: interactionUnlocker
+      value: 
+      objectReference: {fileID: 1019085439}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -29774,6 +29827,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3893797589548611172, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4281721863559056147, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019085439}
   m_SourcePrefab: {fileID: 100100000, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
 --- !u!4 &1359718947 stripped
 Transform:
@@ -35813,10 +35869,15 @@ MonoBehaviour:
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   interactMessage: Press E to Interact
-  textVerticalOffset: 1
+  textVerticalOffset: 0.6
   enableByDistance: 1
   maxVisibleDistance: 5
   fontSize: 0.5
+--- !u!65 &1657520725 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6582954, guid: bddb1706eb9e38c4c8aad9e975af8fba, type: 3}
+  m_PrefabInstance: {fileID: 1169433740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1657994692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38805,6 +38866,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5769129917905125718, guid: 3106a6f3c2fc2a547b55f8f47ff2e09c, type: 3}
   m_PrefabInstance: {fileID: 1800433439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807687659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 606731094364508401, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+  m_PrefabInstance: {fileID: 1164429523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1807687662 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+  m_PrefabInstance: {fileID: 1164429523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1807687663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807687659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ba63956584cd14cb176155e0fee855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  interactionText: {fileID: 0}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 1
+  interactMessage: Press E to Interact
+  textVerticalOffset: 0.5
+  enableByDistance: 1
+  maxVisibleDistance: 3
+  fontSize: 1
 --- !u!1001 &1816218370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42324,6 +42415,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7816704948318554922, guid: 8949b4a88fb989e4483115e02dfafc96, type: 3}
   m_PrefabInstance: {fileID: 1967623462}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1968615662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5129934166096819082, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 2545823303096371040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1970344667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42399,7 +42495,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1352945069584191303, guid: c5924c86f35da7a45bb57c148646cb20, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5143407340619218464, guid: c5924c86f35da7a45bb57c148646cb20, type: 3}
       propertyPath: m_Name
@@ -43783,6 +43879,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3845c7234a0ed4843ba4e38e2404f54d, type: 3}
+--- !u!65 &2045617245 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1352945069584191303, guid: c5924c86f35da7a45bb57c148646cb20, type: 3}
+  m_PrefabInstance: {fileID: 1973049390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2046755306
 PrefabInstance:
   m_ObjectHideFlags: 0
