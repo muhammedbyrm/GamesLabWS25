@@ -9915,6 +9915,11 @@ Transform:
   - {fileID: 1723168441}
   m_Father: {fileID: 478253242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &421429408 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1352945069584191303, guid: c5924c86f35da7a45bb57c148646cb20, type: 3}
+  m_PrefabInstance: {fileID: 1973049390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &421638198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25587,6 +25592,14 @@ PrefabInstance:
       value: -3.43414
       objectReference: {fileID: 0}
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1968615662}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+      propertyPath: canvasElement
+      value: 
+      objectReference: {fileID: 311945073}
+    - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'sharpImages.Array.data[1]'
       value: 
       objectReference: {fileID: 2800000, guid: 07f2c168e65ee2b4dbb5c465daa8fa0c, type: 3}
@@ -26126,6 +26139,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 469248, guid: 3845c7234a0ed4843ba4e38e2404f54d, type: 3}
   m_PrefabInstance: {fileID: 1210168060}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1211106709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4281721863559056147, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
+  m_PrefabInstance: {fileID: 1359718946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1211106711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211106709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe3e81992e84c24f84563991ba0ea9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionUnlocker
+  targetColliders:
+  - {fileID: 1657520724}
+  - {fileID: 983733072}
+  - {fileID: 1807687662}
+  - {fileID: 421429408}
 --- !u!114 &1218334205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29970,7 +30005,7 @@ PrefabInstance:
     - target: {fileID: 6086751911987463014, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       propertyPath: interactionUnlocker
       value: 
-      objectReference: {fileID: 1019085439}
+      objectReference: {fileID: 1211106711}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -29983,7 +30018,7 @@ PrefabInstance:
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 4281721863559056147, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1019085439}
+      addedObject: {fileID: 1211106711}
   m_SourcePrefab: {fileID: 100100000, guid: 0056f51e82d1326498b09f038f0d0d66, type: 3}
 --- !u!4 &1359718947 stripped
 Transform:
@@ -36101,6 +36136,11 @@ MonoBehaviour:
   enableByDistance: 1
   maxVisibleDistance: 5
   fontSize: 0.5
+--- !u!65 &1657520724 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6582954, guid: bddb1706eb9e38c4c8aad9e975af8fba, type: 3}
+  m_PrefabInstance: {fileID: 1169433740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1660415839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39042,6 +39082,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1519294539}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+--- !u!1 &1807687659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 606731094364508401, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+  m_PrefabInstance: {fileID: 1164429523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1807687662 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
+  m_PrefabInstance: {fileID: 1164429523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1807687663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807687659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ba63956584cd14cb176155e0fee855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  interactionText: {fileID: 0}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 1
+  interactMessage: Press E to Interact
+  textVerticalOffset: 0.5
+  enableByDistance: 1
+  maxVisibleDistance: 2
+  fontSize: 1
 --- !u!1001 &1815737728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39104,36 +39174,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5769129917905125718, guid: 3106a6f3c2fc2a547b55f8f47ff2e09c, type: 3}
   m_PrefabInstance: {fileID: 1815737728}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1807687659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 606731094364508401, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
-  m_PrefabInstance: {fileID: 1164429523}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1807687662 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 1409370029354912843, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
-  m_PrefabInstance: {fileID: 1164429523}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1807687663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807687659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ba63956584cd14cb176155e0fee855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  interactionText: {fileID: 0}
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 1
-  interactMessage: Press E to Interact
-  textVerticalOffset: 0.5
-  enableByDistance: 1
-  maxVisibleDistance: 3
-  fontSize: 1
 --- !u!1001 &1816218370
 PrefabInstance:
   m_ObjectHideFlags: 0

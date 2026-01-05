@@ -15,7 +15,7 @@ public class MemoryWallInteraction : MonoBehaviour
 
     [Header("Player Reference")]
     public MonoBehaviour playerController;
-    public GameObject crosshair; 
+    public GameObject crosshair;
 
     private bool isPlayerInZone = false;
     private bool isUIOpen = false;
