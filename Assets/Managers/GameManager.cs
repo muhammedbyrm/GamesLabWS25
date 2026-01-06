@@ -21,6 +21,7 @@ public class SceneReconstructionSettings
     public GameObject struggleSign;
     public GameObject bloodyTrail;
     public GameObject bloodyKnife;
+    public GameObject companion;
 
     [Space(10)]
     public GameObject pastChair;
@@ -192,6 +193,7 @@ public class GameManager : MonoBehaviour
         reconstructionSettings.bloodyKnife.SetActive(true);
         reconstructionSettings.struggleSign.SetActive(true);
         reconstructionSettings.bloodyTrail.SetActive(true);
+        reconstructionSettings.companion.SetActive(true);
     }
 
     public void deactivatePresentObjects()
@@ -201,6 +203,7 @@ public class GameManager : MonoBehaviour
         reconstructionSettings.bloodyKnife.SetActive(false);
         reconstructionSettings.struggleSign.SetActive(false);
         reconstructionSettings.bloodyTrail.SetActive(false);
+        reconstructionSettings.companion.SetActive(false);
     }
 
     public void activatePastObjects()
