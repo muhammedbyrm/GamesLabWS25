@@ -22,14 +22,12 @@ public class BubbleSortPuzzle : MonoBehaviour
     private Vector2 dragOffset;
     private bool isSolved = false;
 
-// Add this to your BubbleSortPuzzle.cs
     void Start()
     {
         if (uiDocument == null) uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
 
-        // FIND THE BACKGROUND ELEMENT AND APPLY THE VIDEO TEXTURE
-        VisualElement bg = root.Q<VisualElement>("BubbleRoot"); // Based on your UXML name
+        VisualElement bg = root.Q<VisualElement>("BubbleRoot");
         if (bg != null && videoRenderTexture != null)
         {
             bg.style.backgroundImage = Background.FromRenderTexture(videoRenderTexture);
@@ -43,18 +41,81 @@ public class BubbleSortPuzzle : MonoBehaviour
         if (digitLabel != null) digitLabel.text = revealDigit.ToString();
     }
 
+    void Update()
+    {
+        // Check for ESC key to close and reset the puzzle
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ResetAndClose();
+        }
+    }
+
     public void OpenPuzzle()
     {
-        root.style.display = DisplayStyle.Flex; // Show the UI [cite: 1]
-        UnityEngine.Cursor.lockState = CursorLockMode.None; // Unlock the mouse for dragging [cite: 18]
+        // Reset state just in case before opening
+        isSolved = false;
+        root.style.display = DisplayStyle.Flex;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
     }
 
     public void ClosePuzzle()
     {
-        root.style.display = DisplayStyle.None; // Hide the UI
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked; // Lock the mouse back for gameplay
+        // Ensure the root visual element is hidden
+        if (root != null) root.style.display = DisplayStyle.None;
+        
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+    }
+
+    private void ResetAndClose()
+    {
+        // 1. Stop all active coroutines (Typewriter, AnimateBubbleSort, SolveSequence)
+        StopAllCoroutines();
+
+        // 2. Hide UI and fix cursor
+        ClosePuzzle();
+
+        // 3. Move all blocks back to the pool and reset their visual state
+        foreach (var slot in slots)
+        {
+            if (slot != null && slot.childCount > 0)
+            {
+                VisualElement block = slot[0];
+                block.RemoveFromClassList("placed");
+                block.style.position = Position.Relative;
+                block.style.left = StyleKeyword.Null;
+                block.style.top = StyleKeyword.Null;
+                pool.Add(block);
+            }
+        }
+
+        // 4. Reset internal state and labels completely
+        isSolved = false;
+        
+        if (statusLabel != null) 
+        {
+            statusLabel.text = "";
+            statusLabel.style.opacity = 0;
+        }
+        
+        if (digitLabel != null) 
+        {
+            digitLabel.AddToClassList("digit-hidden");
+        }
+        
+        if (demoArea != null) 
+        {
+            demoArea.AddToClassList("demo-hidden");
+        }
+        
+        if (barsContainer != null) 
+        {
+            barsContainer.Clear();
+        }
+
+        // 5. Re-shuffle for a fresh start next time
+        ShuffleBlocks();
     }
 
     void CacheElements()
@@ -69,15 +130,11 @@ public class BubbleSortPuzzle : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             slots[i] = root.Q<VisualElement>($"slot-{i}");
-            
-            // Create code blocks dynamically
             var block = new VisualElement { name = $"block-{i}" };
             block.AddToClassList("code-block");
-            block.userData = i; // Store index for validation
-            
+            block.userData = i;
             var label = new Label(GetCodeForBlock(i));
             block.Add(label);
-            
             blocks[i] = block;
         }
     }
@@ -106,6 +163,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         pool.Clear();
         foreach (var block in blockList)
         {
+            block.style.position = Position.Relative;
+            block.style.left = StyleKeyword.Null;
+            block.style.top = StyleKeyword.Null;
             pool.Add(block);
         }
     }
@@ -117,35 +177,17 @@ public class BubbleSortPuzzle : MonoBehaviour
             block.RegisterCallback<PointerDownEvent>(evt => {
                 if (isSolved) return;
                 draggingBlock = block;
-                
-                // FIXED: Explicitly use Vector2 for offset calculation
                 dragOffset = (Vector2)evt.localPosition;
-                
                 block.AddToClassList("dragging");
                 block.BringToFront();
                 block.style.position = Position.Absolute;
                 block.CapturePointer(evt.pointerId);
             });
-            /*
-            block.RegisterCallback<PointerMoveEvent>(evt => {
-                if (draggingBlock != block || !block.HasPointerCapture(evt.pointerId)) return;
-                
-                // FIXED: Cast evt.position to Vector2 to avoid ambiguity error
-                Vector2 currentMousePos = (Vector2)evt.position;
-                Vector2 newPos = currentMousePos - dragOffset;
-                
-                block.style.left = newPos.x;
-                block.style.top = newPos.y;
-                UpdateDropFeedback(currentMousePos);
-            });*/
-            block.RegisterCallback<PointerMoveEvent>(evt => {
-                if (draggingBlock != block || !block.HasPointerCapture(evt.pointerId)) return;
 
-                // Get the change in mouse position relative to where we started dragging
-                // This ensures the block stays attached to the cursor correctly
+            block.RegisterCallback<PointerMoveEvent>(evt => {
+                if (draggingBlock != block || !block.HasPointerCapture(evt.pointerId)) return;
                 Vector2 currentMousePos = evt.localPosition;
                 Vector2 delta = currentMousePos - dragOffset;
-
                 block.style.left = block.resolvedStyle.left + delta.x;
                 block.style.top = block.resolvedStyle.top + delta.y;
             });
@@ -156,33 +198,7 @@ public class BubbleSortPuzzle : MonoBehaviour
                 DropBlock((Vector2)evt.position);
                 draggingBlock = null;
                 block.RemoveFromClassList("dragging");
-                ClearDropFeedback();
             });
-        }
-    }
-
-    void UpdateDropFeedback(Vector2 pointerPos)
-    {
-        ClearDropFeedback();
-        foreach (var slot in slots)
-        {
-            // Use worldBound.Contains for precise UI detection
-            if (slot.worldBound.Contains(pointerPos))
-            {
-                if (IsValidDrop(slot, draggingBlock))
-                    slot.AddToClassList("valid-hover");
-                else
-                    slot.AddToClassList("invalid-hover");
-            }
-        }
-    }
-
-    void ClearDropFeedback()
-    {
-        foreach (var slot in slots)
-        {
-            slot.RemoveFromClassList("valid-hover");
-            slot.RemoveFromClassList("invalid-hover");
         }
     }
 
@@ -208,7 +224,6 @@ public class BubbleSortPuzzle : MonoBehaviour
 
         if (targetSlot != null && IsValidDrop(targetSlot, draggingBlock))
         {
-            // Successfully placed
             draggingBlock.style.position = Position.Relative;
             draggingBlock.style.left = StyleKeyword.Null;
             draggingBlock.style.top = StyleKeyword.Null;
@@ -218,7 +233,6 @@ public class BubbleSortPuzzle : MonoBehaviour
         }
         else
         {
-            // Return to pool
             draggingBlock.style.position = Position.Relative;
             draggingBlock.style.left = StyleKeyword.Null;
             draggingBlock.style.top = StyleKeyword.Null;

@@ -427,6 +427,7 @@ MonoBehaviour:
   informationText: {fileID: 911749057236523916}
   memoryWallUI: {fileID: 0}
   noteSystemUI: {fileID: 0}
+  interactionUnlocker: {fileID: 0}
   playerController: {fileID: 0}
   crosshair: {fileID: 0}
 --- !u!1 &5729345403922686227

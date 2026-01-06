@@ -4469,6 +4469,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 4
+  fontSize: 0.5
 --- !u!1001 &210862377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12779,6 +12780,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 4
+  fontSize: 0.5
 --- !u!4 &685847550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 499240, guid: ef77650fcc7dfd64a8d614922d90c382, type: 3}
@@ -13326,6 +13328,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 4
+  fontSize: 0.5
 --- !u!1001 &702939944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32241,8 +32244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddNoteSystemServer
   ui: {fileID: 1222367088}
-  playerName: Alex
-  currentLoop: 1
   maxWords: 10
 --- !u!114 &1588449164
 MonoBehaviour:
@@ -32270,9 +32271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ServerNoteManager
   api: {fileID: 1588449166}
-  noteSystem: {fileID: 0}
-  playerName: Player
-  currentLoop: 1
   allNotes: []
 --- !u!114 &1588449166
 MonoBehaviour:
@@ -39967,6 +39965,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 4
+  fontSize: 0.5
 --- !u!1001 &1970344667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41736,6 +41735,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 4
+  fontSize: 0.5
 --- !u!114 &2064298915
 MonoBehaviour:
   m_ObjectHideFlags: 0
