@@ -1,5 +1,6 @@
 using NavKeypad;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -25,6 +26,15 @@ public class SceneReconstructionSettings
 
     [Space(10)]
     public GameObject pastChair;
+}
+
+[System.Serializable]
+public class MurderWeaponSettings
+{
+    public Transform knifePosition;
+    public Transform knifeJointPosition;
+    public Transform knifeDropLocation;
+    public GameObject knife;
 }
 
 public class GameManager : MonoBehaviour
@@ -56,8 +66,6 @@ public class GameManager : MonoBehaviour
     public StateMachine stateMachine { get; private set; }
     private int loopCount = 0;
 
-    public GameObject sphere;
-    public GameObject cube;
     public FirstPersonControllerInteractable fpc;
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
@@ -71,9 +79,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneReconstructionSettings reconstructionSettings;
     private bool hasReconstructedScene;
 
+    [Header("Murder Weapon Settings")]
+    [SerializeField] private MurderWeaponSettings murderWeaponSettings;
+    private bool hasDroppedMurderWeapon;
+    private bool hasMurderWeapon;
+
+
     [SerializeField] private GameObject br_Door;
     [SerializeField] private AudioClip br_Door_Open;
     [SerializeField] private Keypad keypad;
+    [SerializeField] private GameObject timeMachineButton;
 
 
     void Start()
@@ -82,6 +97,8 @@ public class GameManager : MonoBehaviour
         stateMachine.ChangeState(new PresentState());
         hasFlashlight = false;
         hasReconstructedScene = false;
+        hasDroppedMurderWeapon = false;
+        hasMurderWeapon = false ;
     }
 
     void Update()
@@ -112,7 +129,59 @@ public class GameManager : MonoBehaviour
 
         flashlightSettings.flashlight.GetComponent<Flashlight>().toggleFlashlight();
     }
+    public void PickUpMurderWeapon()
+    {
+        murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeJointPosition;
+        murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
+        murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        hasMurderWeapon = true;
+    }
 
+    public void DropMurderWeapon()
+    {
+        if (hasMurderWeapon)
+        {
+            if (!hasDroppedMurderWeapon)
+            {
+                hasDroppedMurderWeapon = true;
+                murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeDropLocation;
+                murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
+                murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                ActivateTMButton();
+                hasMurderWeapon = false;
+            }
+        }
+    }
+
+    public bool GetHasDroppedMurderWeapon()
+    {
+        return hasDroppedMurderWeapon;
+    }
+
+    public void ReturnMurderWeapon()
+    {
+        hasDroppedMurderWeapon = false;
+        murderWeaponSettings.knifePosition.GetComponent<Collider>().gameObject.SetActive(true);
+        murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifePosition;
+        murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
+        murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        hasMurderWeapon = false;
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void ActivateTMButton()
+    {
+        timeMachineButton.GetComponent<Collider>().enabled = true;
+    }
+
+    public void DeactivateTMButton()
+    {
+        timeMachineButton.GetComponent<Collider>().enabled = false;
+    }
     public void OpenBRDoor()
     {
         //Debug.Log("Open BR Door");
@@ -209,10 +278,12 @@ public class GameManager : MonoBehaviour
     public void activatePastObjects()
     {
         reconstructionSettings.pastChair.SetActive(true);
+        murderWeaponSettings.knifePosition.gameObject.SetActive(true);
     }
 
     public void deactivatePastObjects()
     {
         reconstructionSettings.pastChair.SetActive(false);
+        murderWeaponSettings.knifePosition.gameObject.SetActive(false);
     }
 }

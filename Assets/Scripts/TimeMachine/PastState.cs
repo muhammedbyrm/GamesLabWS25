@@ -24,8 +24,7 @@ public class PastState : State
         GameManager.Instance.CloseBRDoor();
         GameManager.Instance.activatePastObjects();
         GameManager.Instance.ActivateKeypad();
-        //GameManager.Instance.sphere.SetActive(false);
-        //GameManager.Instance.cube.SetActive(true);
+        GameManager.Instance.DeactivateTMButton();
 
         //Add Sanity effect here later
         SanityManager.Instance.UpdateSanityEffects();
@@ -51,6 +50,7 @@ public class PastState : State
 
     public override void Exit()
     {
+        GameManager.Instance.ReturnMurderWeapon();
         GameManager.Instance.deactivatePastObjects();
         pastStateTimerImage.fillAmount = 1f;
     }

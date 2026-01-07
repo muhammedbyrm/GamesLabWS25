@@ -518,8 +518,15 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Time Machine Button"))
             {
-                hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
-                GameManager.Instance.stateMachine.ChangeState(new PastState());
+                if (GameManager.Instance.GetHasDroppedMurderWeapon())
+                {
+                    GameManager.Instance.EndGame();
+                }
+                else 
+                {
+                    hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
+                    GameManager.Instance.stateMachine.ChangeState(new PastState());
+                }
             }
             else if (hit.collider.gameObject.CompareTag("Flashlight"))
             {
@@ -539,6 +546,16 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             }else if (interactable.CompareTag("Clue"))
             {
                 hit.collider.gameObject.GetComponent<ClueInspect>().Interact();
+            }
+            else if (interactable.CompareTag("Knife"))
+            {
+                Debug.Log("Picked up Knife");
+                GameManager.Instance.PickUpMurderWeapon();
+                hit.collider.gameObject.SetActive(false);
+            }
+            else if (interactable.CompareTag("Drop Knife"))
+            {
+                GameManager.Instance.DropMurderWeapon();
             }
         }
     }

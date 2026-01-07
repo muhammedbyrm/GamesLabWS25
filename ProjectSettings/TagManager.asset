@@ -12,6 +12,8 @@ TagManager:
   - Receiver
   - NumPad
   - Clue
+  - Knife
+  - Drop Knife
   layers:
   - Default
   - TransparentFX

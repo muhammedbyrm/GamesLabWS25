@@ -13,9 +13,6 @@ public class PresentState : State
         GameManager.Instance.pastStateTimerImage.gameObject.SetActive(false);
         GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(false);
 
-        //GameManager.Instance.sphere.SetActive(true);
-        //GameManager.Instance.cube.SetActive(false);
-
         if (GameManager.Instance.GetLoopCount() == 0)
         {
             //GameManager.Instance.CloseBRDoor();
@@ -27,6 +24,7 @@ public class PresentState : State
         }
         GameManager.Instance.activatePresentObjects();
         GameManager.Instance.DeactivateKeypad();
+        GameManager.Instance.ActivateTMButton();
     }
     public override void Update()
     {
