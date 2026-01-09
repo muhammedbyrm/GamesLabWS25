@@ -84,7 +84,12 @@ public class GameManager : MonoBehaviour
     private bool hasDroppedMurderWeapon;
     private bool hasMurderWeapon;
 
+    [Header("Fade Out UI")]
+    [SerializeField] private GameEndController gameEndController;
+    [SerializeField] private GameObject reticle;
+    [SerializeField] GameObject canvasHUD;
 
+    [Header("Elements")]
     [SerializeField] private GameObject br_Door;
     [SerializeField] private AudioClip br_Door_Open;
     [SerializeField] private Keypad keypad;
@@ -168,9 +173,23 @@ public class GameManager : MonoBehaviour
         hasMurderWeapon = false;
     }
 
+    
     public void EndGame()
     {
-        SceneManager.LoadScene("StartScene");
+        // end game animation will come there ...
+
+
+        //
+
+
+
+        if (reticle != null)
+            reticle.SetActive(false);
+
+        if (canvasHUD != null)
+            canvasHUD.SetActive(false);
+
+        gameEndController.StartFadeOut();
     }
 
     public void ActivateTMButton()

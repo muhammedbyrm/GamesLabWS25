@@ -14,6 +14,12 @@ public class MainMenuUI : MonoBehaviour
 
     ServerNoteAPI serverAPI;
 
+    void Start()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
+    }
+
     void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;

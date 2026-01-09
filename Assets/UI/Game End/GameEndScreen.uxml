@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Game%20End/GameEndStyles.uss?fileID=7433441132597879392&amp;guid=6845b04aff133c945bca6d7e5af311b4&amp;type=3#GameEndStyles" />
+    <ui:VisualElement name="FadePanel" class="fade-panel" />
+    <ui:VisualElement name="CreditsPanel" class="credits-panel hidden">
+        <ui:VisualElement name="CreditsScroller" class="credits-scroller">
+            <ui:Label text="CREDITS" class="credits-title" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label text="Jasmina Vulovic" class="credits-name" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label text="Aleksandar Arnaudov" class="credits-name" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label text="Louis Sajuk" class="credits-name" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label text="Muhammed Bayram" class="credits-name" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label class="credits-spacer" />
+            <ui:Label text="Thank You For Playing!" class="credits-thanks" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
