@@ -4717,6 +4717,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2616394863171825286, guid: 8934f512a6a9f714085a3d0dd88c1661, type: 3}
   m_PrefabInstance: {fileID: 194378617}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &195123091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 880269270086273303, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
+  m_PrefabInstance: {fileID: 2545823303096371040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &196662648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31897,6 +31902,7 @@ MonoBehaviour:
   objectsToDisable:
   - {fileID: 311945073}
   - {fileID: 1968615662}
+  - {fileID: 195123091}
 --- !u!65 &1397047328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31916,8 +31922,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9167752, y: 1.4977255, z: 1.6630411}
-  m_Center: {x: -0.14575016, y: 0.2488628, z: -0.32242563}
+  m_Size: {x: 2.9167752, y: 1.4977255, z: 1.1173682}
+  m_Center: {x: -0.14575018, y: 0.2488628, z: -0.049590234}
 --- !u!1001 &1405617605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34888,6 +34894,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 699611299}
     - target: {fileID: 309742976854290501, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
+      propertyPath: textShowDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 309742976854290501, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
       propertyPath: dialogueCanvas
       value: 
       objectReference: {fileID: 1018651172}
@@ -34957,7 +34967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013913266435973057, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4263311403483541972, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35025,7 +35035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8702444641677582760, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.715
+      value: -12.359
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6925119617359307210, guid: 86aab92ddf7c41541906eebb8af1e1f4, type: 3}
