@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject reticle;
     [SerializeField] GameObject canvasHUD;
 
+    [Header("Companion")]
+    [SerializeField] private GameObject companionRoot;
+
     [Header("Elements")]
     [SerializeField] private GameObject br_Door;
     [SerializeField] private AudioClip br_Door_Open;
@@ -180,7 +183,6 @@ public class GameManager : MonoBehaviour
 
 
         //
-
 
 
         if (reticle != null)
@@ -304,5 +306,31 @@ public class GameManager : MonoBehaviour
     {
         reconstructionSettings.pastChair.SetActive(false);
         murderWeaponSettings.knifePosition.gameObject.SetActive(false);
+    }
+
+    public void OnCompanionArrived()
+    {
+        Debug.Log("Companion arrived, starting dialogue.");
+
+        // 3 sec for speaking
+        Invoke(nameof(FinishFinalSequence), 3f);
+    }
+    public void StartFinalSequence()
+    {
+        Debug.Log("Final sequence started");
+
+        if (companionRoot != null)
+        {
+            companionRoot.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("compainRoot is NOT assigned in GameManager!");
+        }
+    }
+
+    private void FinishFinalSequence()
+    {
+        EndGame();
     }
 }

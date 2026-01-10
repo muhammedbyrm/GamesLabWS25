@@ -520,7 +520,18 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 if (GameManager.Instance.GetHasDroppedMurderWeapon())
                 {
-                    GameManager.Instance.EndGame();
+                    // Right now, time Machine and knife destruction events is not end of the game.
+                    // After destroying the Time Machine, the player must return/wait to the present. (may be we need to show PastState())
+                    // Then the player walks to the door and triggers a collider.
+                    // When the collider is triggered, the companion walks in, and speaks.
+                    // After the companion finishes speaking, the game ends.
+
+                    // time Machine and knife destruction evets ...
+
+                    GameManager.Instance.StartFinalSequence();
+
+
+                    // GameManager.Instance.EndGame();  // i will handle this in another script // after you saw it, you can delete it
                 }
                 else 
                 {
