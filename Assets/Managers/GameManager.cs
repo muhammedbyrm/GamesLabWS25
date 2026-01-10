@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject timeMachineButton;
 
 
+    [Header("Story Flags")]
+    public bool memoryWallMessageRead = false;
+    public bool ScienceMessageRead = false;
+
+
     void Start()
     {
         stateMachine = new StateMachine();

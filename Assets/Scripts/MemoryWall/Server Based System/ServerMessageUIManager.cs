@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -114,6 +114,18 @@ public class ServerMessageUIManager : MonoBehaviour
         detailedMessagePanel.style.display = DisplayStyle.Flex;
         senderLabel.text = "Written by: " + n.sender;
         fullMessageLabel.text = n.fullMessage;
+
+        string titleUpper = n.title.Trim().ToUpper();
+
+        if (titleUpper.Contains("BEFORE USING TIME MACHINE"))
+        {
+            GameManager.Instance.memoryWallMessageRead = true;
+        }
+
+        if (titleUpper.Contains("SCIENCE IS THE KEY"))
+        {
+            GameManager.Instance.ScienceMessageRead = true;
+        }
     }
 
     void OnDeleteNoteClicked()

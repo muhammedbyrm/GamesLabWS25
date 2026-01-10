@@ -533,9 +533,16 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
                     // GameManager.Instance.EndGame();  // i will handle this in another script // after you saw it, you can delete it
                 }
-                else 
+                else if (!GameManager.Instance.memoryWallMessageRead) 
                 {
-                    hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
+                    Debug.Log("Time Machine locked: Memory Wall message not read.");
+                }
+                else
+                {
+                    hit.collider.gameObject
+                        .GetComponent<TimeMachineButton>()
+                        .CloseTMDoor();
+
                     GameManager.Instance.stateMachine.ChangeState(new PastState());
                 }
             }
