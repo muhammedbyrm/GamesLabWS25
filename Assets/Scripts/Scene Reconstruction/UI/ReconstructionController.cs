@@ -119,7 +119,7 @@ public class ReconstructionController : MonoBehaviour
             {
                 inspectionUI.Show(
                     "REVELATION", 
-                    "Everything makes sense now...\nI know what happened! I need to go back in time to prevent her death!"
+                    "Everything makes sense now...\nI know what happened! I need to go back in time to prevent her death! But first, I must interact with the memory wall."
                 );
             }
 
