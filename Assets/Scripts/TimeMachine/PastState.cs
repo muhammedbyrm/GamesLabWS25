@@ -5,6 +5,7 @@ public class PastState : State
 {
     private float timeInState = 0f;
     private float loopTimer;
+    private bool jumpSequenceStarted = false;
 
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
@@ -36,22 +37,18 @@ public class PastState : State
         pastStateTimerImage.fillAmount = Mathf.Lerp(pastStateTimerImage.fillAmount, 1 - timeInState / loopTimer, Time.deltaTime * 10);
         pastStateTimerImage.color = Color.Lerp(Color.red, Color.green, 1 - timeInState / loopTimer);
 
-
-
-
-
-
         timeInState += Time.deltaTime;
-        if (timeInState >= loopTimer)
+        if (timeInState >= loopTimer && !jumpSequenceStarted)
         {
-            GameManager.Instance.stateMachine.ChangeState(new PresentState());
+            jumpSequenceStarted = true;
+            GameManager.Instance.StartPastToPresentSequence();
         }
     }
-
     public override void Exit()
     {
         GameManager.Instance.ReturnMurderWeapon();
         GameManager.Instance.deactivatePastObjects();
+        GameManager.Instance.MovePlayer();
         pastStateTimerImage.fillAmount = 1f;
     }
 }

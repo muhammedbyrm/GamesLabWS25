@@ -2,6 +2,7 @@ using NavKeypad;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 
 [System.Serializable]
@@ -61,12 +62,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         Debug.Log("Hello I am your personal GameManager!");
+
     }
     #endregion
     public StateMachine stateMachine { get; private set; }
     private int loopCount = 0;
 
     public FirstPersonControllerInteractable fpc;
+    public Transform playerResetLocation;
+    public AudioClip blackout;
+    public AudioClip cameraShake;
+    public Image blackscreen;
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
     [SerializeField] private float pastStateDuration;
@@ -104,6 +110,8 @@ public class GameManager : MonoBehaviour
     public bool ScienceMessageRead = false;
 
 
+
+
     void Start()
     {
         stateMachine = new StateMachine();
@@ -111,7 +119,8 @@ public class GameManager : MonoBehaviour
         hasFlashlight = false;
         hasReconstructedScene = false;
         hasDroppedMurderWeapon = false;
-        hasMurderWeapon = false ;
+        hasMurderWeapon = false;
+        blackscreen.color = new Color(0f, 0f, 0f, 0f);
     }
 
     void Update()
@@ -208,21 +217,25 @@ public class GameManager : MonoBehaviour
     {
         timeMachineButton.GetComponent<Collider>().enabled = false;
     }
-    public void OpenBRDoor()
+    public void OpenBRDoor(bool playsound)
     {
         //Debug.Log("Open BR Door");
-        if(
+        if (
         br_Door.transform.GetChild(0).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Opened") ||
-        br_Door.transform.GetChild(1).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Opened")){
+        br_Door.transform.GetChild(1).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Opened"))
+        {
 
-        }else
+        }
+        else
         {
 
             br_Door.transform.GetChild(0).GetComponent<Animator>().SetTrigger("BR_Open");
             br_Door.transform.GetChild(1).GetComponent<Animator>().SetTrigger("BR_Open");
         }
 
-        SoundManager.Instance.PlaySoundClip(br_Door_Open, br_Door.transform, 1f);
+        if (playsound == true) { 
+            SoundManager.Instance.PlaySoundClip(br_Door_Open, br_Door.transform, 1f);
+        }
 
         //BR_Door.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("BR_Open");
         //BR_Door.transform.GetChild(1).GetComponent<Animator>().ResetTrigger("BR_Open");
@@ -243,7 +256,7 @@ public class GameManager : MonoBehaviour
     public void FinishSceneReconstruction()
     {
         hasReconstructedScene = true;
-        OpenBRDoor();
+        OpenBRDoor(true);
     }
 
     public void TimeJump()
@@ -260,6 +273,84 @@ public class GameManager : MonoBehaviour
     {
         return pastStateDuration;
     }
+
+    #region blackout sequence
+    public void MovePlayer()
+    {
+        fpc.transform.position = playerResetLocation.position;
+        fpc.transform.rotation = playerResetLocation.rotation;
+    }
+
+    private void Blackout()
+    {
+        fpc.playerCanMove = false;
+        foreach (Light light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
+        {
+            light.enabled = false;
+        }
+        RenderSettings.ambientIntensity = 0f;
+        SoundManager.Instance.PlaySoundClip(blackout, fpc.transform, 1f);
+    }
+
+    private void CameraShake()
+    {
+        fpc.GetComponentInChildren<CameraShake>().Shake(5f, 1f);
+        SoundManager.Instance.PlaySoundClip(cameraShake, fpc.transform, 1f);
+    }
+
+    private void CameraFadeOut()
+    {
+        blackscreen.color = new Color(0f, 0f, 0f, 1f);
+    }
+    public void LightOn()
+    {
+        foreach (Light light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
+        {
+            light.enabled = true;
+        }
+        RenderSettings.ambientIntensity = 1f;
+    }
+
+    private IEnumerator CameraFadeIn()
+    {
+        float timer = 0f;
+        float alpha = 1f;
+        while(timer < 2f)
+        {
+            timer += Time.deltaTime;
+            alpha = Mathf.Lerp(alpha, 0f, timer / 2f);
+            blackscreen.color = new Color(0f, 0f, 0f, alpha);
+            yield return null;
+        }
+
+        fpc.playerCanMove = true;
+        blackscreen.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    private IEnumerator PastToPresent()
+    {
+        GameManager.Instance.Blackout();
+        yield return new WaitForSeconds(3f);
+
+        GameManager.Instance.CameraShake();
+        yield return new WaitForSeconds(5f);
+
+        GameManager.Instance.CameraFadeOut();
+        yield return new WaitForSeconds(2f);
+
+        GameManager.Instance.stateMachine.ChangeState(new PresentState());
+    }
+
+    public void StartFadeIn()
+    {
+        StartCoroutine(CameraFadeIn());
+    }
+
+    public void StartPastToPresentSequence()
+    {
+        StartCoroutine(PastToPresent());
+    }
+    #endregion blackout sequence
 
     public void ActivateKeypad()
     {

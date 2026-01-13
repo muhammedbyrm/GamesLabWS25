@@ -20,7 +20,9 @@ public class PresentState : State
         }
         else
         {
-            GameManager.Instance.OpenBRDoor();
+            GameManager.Instance.OpenBRDoor(false);
+            GameManager.Instance.LightOn();
+            GameManager.Instance.StartFadeIn();
         }
         GameManager.Instance.activatePresentObjects();
         GameManager.Instance.DeactivateKeypad();
