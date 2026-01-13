@@ -27,6 +27,8 @@ public class PastState : State
         GameManager.Instance.ActivateKeypad();
         GameManager.Instance.DeactivateTMButton();
 
+        SoundManager.Instance.PlayBGMChoose(2);
+
         //Add Sanity effect here later
         SanityManager.Instance.UpdateSanityEffects();
         //loop counter is in GameManager
@@ -49,6 +51,10 @@ public class PastState : State
         GameManager.Instance.ReturnMurderWeapon();
         GameManager.Instance.deactivatePastObjects();
         GameManager.Instance.MovePlayer();
+        if (GameManager.Instance.GetHasFlashlight())
+        {
+            GameManager.Instance.InteractFlashlight();
+        }
         pastStateTimerImage.fillAmount = 1f;
     }
 }

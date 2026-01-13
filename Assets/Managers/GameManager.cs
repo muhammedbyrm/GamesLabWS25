@@ -128,32 +128,47 @@ public class GameManager : MonoBehaviour
         stateMachine.Update();
     }
 
+    #region flashlight
     public void InteractFlashlight()
     {
         hasFlashlight = !hasFlashlight;
 
         if (hasFlashlight)
         {
+            flashlightSettings.flashlightPosition.GetComponent<Outline>().enabled = false;
             flashlightSettings.flashlight.transform.GetChild(0).GetComponent<Light>().enabled = true;
             SoundManager.Instance.PlaySoundClip(flashlightSettings.flashlightSound_on, fpc.transform, 1f);
-            flashlightSettings.flashlight.transform.parent = flashlightSettings.flashlightJointPosition;
+            flashlightSettings.flashlight.transform.SetParent(flashlightSettings.flashlightJointPosition, false);
+            flashlightSettings.flashlight.transform.localScale = Vector3.one;
             flashlightSettings.flashlight.transform.localPosition = Vector3.zero;
             flashlightSettings.flashlight.transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
         else
         {
+            flashlightSettings.flashlightPosition.GetComponent<Outline>().enabled = true;
             flashlightSettings.flashlight.transform.GetChild(0).GetComponent<Light>().enabled = false;
             SoundManager.Instance.PlaySoundClip(flashlightSettings.flashlightSound_off, fpc.transform, 2f);
-            flashlightSettings.flashlight.transform.parent = flashlightSettings.flashlightPosition;
+            flashlightSettings.flashlight.transform.SetParent(flashlightSettings.flashlightPosition, false);
+            flashlightSettings.flashlight.transform.localScale = Vector3.one;
             flashlightSettings.flashlight.transform.localPosition = Vector3.zero;
             flashlightSettings.flashlight.transform.localRotation = Quaternion.Euler(Vector3.zero);
         }
 
         flashlightSettings.flashlight.GetComponent<Flashlight>().toggleFlashlight();
     }
+
+    public bool GetHasFlashlight()
+    {
+        return hasFlashlight;
+    }
+    #endregion flashlight
+
+    #region murder Weapon
     public void PickUpMurderWeapon()
     {
-        murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeJointPosition;
+        murderWeaponSettings.knife.transform.SetParent(murderWeaponSettings.knifeJointPosition, false);
+        murderWeaponSettings.knife.transform.localScale = new Vector3(2.17f, 2.17f, 2.17f);
+        //murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeJointPosition;
         murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
         murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
         hasMurderWeapon = true;
@@ -166,7 +181,9 @@ public class GameManager : MonoBehaviour
             if (!hasDroppedMurderWeapon)
             {
                 hasDroppedMurderWeapon = true;
-                murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeDropLocation;
+                murderWeaponSettings.knife.transform.SetParent(murderWeaponSettings.knifeDropLocation, false);
+                murderWeaponSettings.knife.transform.localScale = new Vector3(2.17f, 2.17f, 2.17f);
+                //murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeDropLocation;
                 murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
                 murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 ActivateTMButton();
@@ -184,13 +201,15 @@ public class GameManager : MonoBehaviour
     {
         hasDroppedMurderWeapon = false;
         murderWeaponSettings.knifePosition.GetComponent<Collider>().gameObject.SetActive(true);
-        murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifePosition;
+        murderWeaponSettings.knife.transform.SetParent(murderWeaponSettings.knifePosition, false);
+        murderWeaponSettings.knife.transform.localScale = new Vector3(2.17f, 2.17f, 2.17f);
+        //murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifePosition;
         murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
         murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
         hasMurderWeapon = false;
     }
+    #endregion murder Weapon
 
-    
     public void EndGame()
     {
         // end game animation will come there ...
@@ -329,6 +348,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PastToPresent()
     {
+        SoundManager.Instance.PlayBGMChoose(4);
+
         GameManager.Instance.Blackout();
         yield return new WaitForSeconds(3f);
 

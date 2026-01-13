@@ -27,6 +27,8 @@ public class PresentState : State
         GameManager.Instance.activatePresentObjects();
         GameManager.Instance.DeactivateKeypad();
         GameManager.Instance.ActivateTMButton();
+
+        SoundManager.Instance.PlayBGMChoose(1);
     }
     public override void Update()
     {

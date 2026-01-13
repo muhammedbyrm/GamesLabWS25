@@ -33,14 +33,20 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource sound;
     [SerializeField] private float music_volume;
-    [SerializeField] private AudioClip background_music;
+    private AudioSource background_music_1;
+    private AudioSource background_music_2;
+    private AudioSource background_music_3;
+    [SerializeField] private AudioClip present_background_music;
+    [SerializeField] private AudioClip past_background_music;
+    [SerializeField] private AudioClip finish_background_music;
 
     [SerializeField] private float sound_volume;
 
 
     private void Start()
     {
-        //PlayBGM(background_music);
+        //PlayBGM(present_background_music);
+        SetUpBGM();
     }
     private void PlayBGM(AudioClip bgm)
     {
@@ -49,6 +55,54 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = music_volume;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    private void SetUpBGM()
+    {
+        background_music_1 = Instantiate(sound, Vector3.zero, Quaternion.identity);
+        background_music_1.clip = present_background_music;
+        background_music_1.volume = music_volume;
+        background_music_1.loop = true;
+
+        background_music_2 = Instantiate(sound, Vector3.zero, Quaternion.identity);
+        background_music_2.clip = past_background_music;
+        background_music_2.volume = music_volume;
+        background_music_2.loop = true;
+
+        background_music_3 = Instantiate(sound, Vector3.zero, Quaternion.identity);
+        background_music_3.clip = finish_background_music;
+        background_music_3.volume = music_volume;
+        background_music_3.loop = true;
+    }
+
+    public void PlayBGMChoose(int bgm)
+    {
+        switch (bgm)
+        {
+            case 1:
+                background_music_2.Stop();
+                background_music_3.Stop();
+                background_music_1.PlayDelayed(2f);
+                break;
+            case 2:
+                background_music_1.Stop();
+                background_music_3.Stop();
+                background_music_2.PlayDelayed(5f);
+                break;
+            case 3:
+                background_music_1.Stop();
+                background_music_2.Stop();
+                background_music_3.PlayDelayed(2f);
+                break;
+            case 4:
+                background_music_1.Stop();
+                background_music_2.Stop();
+                background_music_3.Stop();
+                break;
+            default:
+                Debug.Log("No such BGM");
+                break;
+        }
     }
 
     public void PlaySoundClip(AudioClip audioClip, Transform position, float volume)

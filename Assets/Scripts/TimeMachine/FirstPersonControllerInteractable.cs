@@ -12,6 +12,8 @@ using UnityEngine.Diagnostics;
 
 using TMPro;
 using NavKeypad;
+using Unity.VisualScripting;
+
 
 
 
@@ -145,6 +147,8 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     public LayerMask interactLayer;
 
     #endregion
+
+    private Collider flashlightCollider;
     
 
     private void Awake()
@@ -183,6 +187,8 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         {
             crosshairObject.gameObject.SetActive(false);
         }
+
+        flashlightCollider = GameObject.FindGameObjectWithTag("Flashlight Collider").GetComponent<Collider>();
 
         #region Sprint Bar
 
@@ -390,6 +396,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         {
             HeadBob();
         }
+
     }
 
     void FixedUpdate()
@@ -467,6 +474,15 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         }
 
         #endregion
+    }
+
+
+    private void OnTriggerExit(Collider flashlightCollider)
+    {
+        if (GameManager.Instance.GetHasFlashlight())
+        {
+            GameManager.Instance.InteractFlashlight();
+        }
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
