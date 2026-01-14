@@ -9340,6 +9340,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1194914179}
     - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
+      propertyPath: pastStateDuration
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
       propertyPath: timeMachineButton
       value: 
       objectReference: {fileID: 551518097}
