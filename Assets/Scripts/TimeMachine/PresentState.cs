@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class PresentState : State
 {
 
-
     public override void Enter()
     {
         Debug.Log("Entered Present State");
@@ -29,6 +28,8 @@ public class PresentState : State
         GameManager.Instance.ActivateTMButton();
 
         SoundManager.Instance.PlayBGMChoose(1);
+
+        InteractionUnlocker.Instance.DisableInteractions();
     }
     public override void Update()
     {

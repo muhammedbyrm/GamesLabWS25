@@ -8,49 +8,56 @@ public class MicroscopeInteraction : MonoBehaviour
 
     [Header("Player References")]
     public GameObject crosshair;
-    public GameObject canvasHUD;
+    public GameObject sprint;
+    public MonoBehaviour playerController;
 
-    private bool isPlayerInZone = false;
     private bool isUIOpen = false;
+    private Collider triggerCollider;
+    private bool wasSprintActive; 
 
     void Start()
     {
         if (microscopeUI != null)
             microscopeUI.SetActive(false);
-
         if (microscope != null)
             microscope.SetActive(false);
+
+        triggerCollider = GetComponent<Collider>();
     }
 
     void Update()
     {
-        if (isPlayerInZone && !isUIOpen && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !isUIOpen)
         {
-            OpenMicroscope();
+            if (IsPlayerInsideTrigger())
+            {
+                OpenMicroscope();
+            }
         }
 
-        if (isUIOpen && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isUIOpen)
         {
             CloseMicroscope();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private bool IsPlayerInsideTrigger()
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInZone = true;
-        }
+        if (triggerCollider == null)
+            return false;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return false;
+
+        return triggerCollider.bounds.Contains(player.transform.position);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && isUIOpen)
         {
-            isPlayerInZone = false;
-
-            if (isUIOpen)
-                CloseMicroscope();
+            CloseMicroscope();
         }
     }
 
@@ -64,15 +71,24 @@ public class MicroscopeInteraction : MonoBehaviour
         if (microscope != null)
             microscope.SetActive(true);
 
-        var selector = FindFirstObjectByType<MicroscopeImageSelector>();
-        if (selector != null)
-            selector.ResetToFirstImage();
-
         if (crosshair != null)
             crosshair.SetActive(false);
 
-        if (canvasHUD != null)
-            canvasHUD.SetActive(false);
+        if (sprint != null)
+        {
+            wasSprintActive = sprint.activeSelf;
+            sprint.SetActive(false);
+        }
+
+        if (playerController != null)
+            playerController.enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+
+        var selector = FindFirstObjectByType<MicroscopeImageSelector>();
+        if (selector != null)
+            selector.ResetToFirstImage();
     }
 
     private void CloseMicroscope()
@@ -81,14 +97,15 @@ public class MicroscopeInteraction : MonoBehaviour
 
         if (microscopeUI != null)
             microscopeUI.SetActive(false);
-
         if (microscope != null)
             microscope.SetActive(false);
-
         if (crosshair != null)
             crosshair.SetActive(true);
 
-        if (canvasHUD != null)
-            canvasHUD.SetActive(true);
+        if (sprint != null)
+            sprint.SetActive(wasSprintActive);
+
+        if (playerController != null)
+            playerController.enabled = true;
     }
 }

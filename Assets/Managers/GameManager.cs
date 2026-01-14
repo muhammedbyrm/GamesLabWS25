@@ -107,9 +107,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Story Flags")]
     public bool memoryWallMessageRead = false;
-    public bool ScienceMessageRead = false;
-
-
+    public bool memoryWallInteraction = false;
 
 
     void Start()

@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class InteractionUnlocker : MonoBehaviour
 {
+    public static InteractionUnlocker Instance { get; private set; }
+
     [SerializeField] private Collider[] targetColliders;
 
     private void Awake()
     {
-        foreach (var col in targetColliders)
-            col.enabled = false;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        DisableInteractions();
     }
 
     public void EnableInteractions()
@@ -15,4 +21,11 @@ public class InteractionUnlocker : MonoBehaviour
         foreach (var col in targetColliders)
             col.enabled = true;
     }
+
+    public void DisableInteractions()
+    {
+        foreach (var col in targetColliders)
+            col.enabled = false;
+    }
 }
+

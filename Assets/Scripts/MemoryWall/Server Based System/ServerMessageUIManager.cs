@@ -121,11 +121,6 @@ public class ServerMessageUIManager : MonoBehaviour
         {
             GameManager.Instance.memoryWallMessageRead = true;
         }
-
-        if (titleUpper.Contains("SCIENCE IS THE KEY"))
-        {
-            GameManager.Instance.ScienceMessageRead = true;
-        }
     }
 
     void OnDeleteNoteClicked()

@@ -9,8 +9,6 @@ public class PastState : State
 
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
-
-
     public override void Enter()
     {
         Debug.Log("Entered Past State");
@@ -32,6 +30,10 @@ public class PastState : State
         //Add Sanity effect here later
         SanityManager.Instance.UpdateSanityEffects();
         //loop counter is in GameManager
+
+        InteractionUnlocker.Instance.EnableInteractions();
+
+
     }
     public override void Update()
     {

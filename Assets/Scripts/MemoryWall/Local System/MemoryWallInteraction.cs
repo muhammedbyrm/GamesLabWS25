@@ -87,11 +87,8 @@ public class MemoryWallInteraction : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        if (!interactionsUnlocked && interactionUnlocker != null)
-        {
-            interactionsUnlocked = true;
-            interactionUnlocker.EnableInteractions();
-        }
+        if (!GameManager.Instance.memoryWallInteraction)
+            GameManager.Instance.memoryWallInteraction = true;
     }
 
     public void CloseUI()
