@@ -44,7 +44,7 @@ public class BubbleSortPuzzle : MonoBehaviour
     void Update()
     {
         // Check for ESC key to close and reset the puzzle
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ResetAndClose();
         }
