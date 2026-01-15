@@ -148,6 +148,18 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
     #endregion
 
+
+    #region Footsteps
+    public AudioSource footstepSource;
+    public AudioClip walkFootstep;
+    public AudioClip sprintFootstep;
+    public float walkStepInterval = 0.5f;
+    public float sprintStepInterval = 0.3f;
+
+    private float footstepTimer = 0f;
+
+    #endregion
+
     private Collider flashlightCollider;
     
 
@@ -389,6 +401,12 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         }
 
         #endregion
+
+        // walk sound
+        if (enableHeadBob)
+        {
+            PlayFootstepAudio();
+        }
 
         CheckGround();
 
@@ -645,6 +663,31 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
     }
+
+    private void PlayFootstepAudio()
+    {
+        if (!isWalking || !isGrounded || footstepSource == null)
+        {
+            footstepTimer = 0f;
+            return;
+        }
+
+        footstepTimer += Time.deltaTime;
+
+        float currentInterval = isSprinting ? sprintStepInterval : walkStepInterval;
+
+        if (footstepTimer >= currentInterval)
+        {
+            footstepTimer = 0f;
+
+            AudioClip currentClip = isSprinting ? sprintFootstep : walkFootstep;
+
+            if (currentClip != null)
+            {
+                footstepSource.PlayOneShot(currentClip);
+            }
+        }
+    }
 }
 
 
@@ -864,6 +907,58 @@ public class FirstPersonControllerInteractableEditor : Editor
         GUI.enabled = true;
 
         #endregion
+
+
+        #region Footsteps
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Footsteps", new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold,
+            fontSize = 13
+        });
+        EditorGUILayout.Space();
+
+        fpc.footstepSource = (AudioSource)EditorGUILayout.ObjectField(
+            new GUIContent("Footstep Source", "AudioSource used for footstep sounds."),
+            fpc.footstepSource,
+            typeof(AudioSource),
+            true
+        );
+
+        GUI.enabled = fpc.footstepSource != null;
+
+        fpc.walkFootstep = (AudioClip)EditorGUILayout.ObjectField(
+            new GUIContent("Walk Footstep", "Footstep sound while walking."),
+            fpc.walkFootstep,
+            typeof(AudioClip),
+            false
+        );
+        fpc.sprintFootstep = (AudioClip)EditorGUILayout.ObjectField(
+            new GUIContent("Sprint Footstep", "Footstep sound while sprinting."),
+            fpc.sprintFootstep,
+            typeof(AudioClip),
+            false
+        );
+        fpc.walkStepInterval = EditorGUILayout.Slider(
+            new GUIContent("Walk Step Interval", "Time between steps while walking."),
+            fpc.walkStepInterval,
+            0.1f,
+            1f
+        );
+        fpc.sprintStepInterval = EditorGUILayout.Slider(
+            new GUIContent("Sprint Step Interval", "Time between steps while sprinting."),
+            fpc.sprintStepInterval,
+            0.05f,
+            0.6f
+        );
+
+        GUI.enabled = true;
+
+        #endregion
+
 
         //Sets any changes from the prefab
         if (GUI.changed)

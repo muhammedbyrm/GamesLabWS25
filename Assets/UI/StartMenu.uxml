@@ -20,7 +20,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="instructions-popup" style="position: absolute; width: 420px; height: 260px; background-color: rgba(0, 0, 0, 0.85); border-radius: 8px; align-items: center; justify-content: center; display: none;">
             <ui:Label text="INSTRUCTIONS" style="font-size: 28px; color: white; margin-bottom: 20px; -unity-font-style: bold;" />
-            <ui:Label text="• Use W A S D or Arrow Keys to move&#10;• Press E to inspect objects" style="font-size: 18px; color: white; -unity-text-align: middle-center; margin-bottom: 20px;" />
+            <ui:Label text="• Use W A S D or Arrow Keys to move&#10;• Hold Shift for fast walking&#10;• Press E to inspect objects&#10;• Press Esc to exit UI" style="font-size: 18px; color: white; -unity-text-align: middle-center; margin-bottom: 20px;" />
             <ui:Button text="CLOSE" name="btn-close-instructions" style="width: 140px; height: 40px; background-color: rgb(90, 20, 20); color: white; -unity-font-style: bold;" />
         </ui:VisualElement>
     </ui:VisualElement>

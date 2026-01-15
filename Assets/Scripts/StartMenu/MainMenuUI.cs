@@ -67,6 +67,26 @@ public class MainMenuUI : MonoBehaviour
         };
 
         nicknameField.RegisterValueChangedCallback(FilterNicknameInput);
+
+        // Klavye kontrolleri (Enter / Esc)
+        nicknameField.RegisterCallback<KeyUpEvent>(OnKeyUp);
+    }
+
+    void OnKeyUp(KeyUpEvent evt)
+    {
+        if (idPopup.style.display != DisplayStyle.Flex)
+            return;
+
+        if (evt.keyCode == KeyCode.Return || evt.keyCode == KeyCode.KeypadEnter)
+        {
+            OnConfirmClicked();
+            evt.StopPropagation();
+        }
+        else if (evt.keyCode == KeyCode.Escape)
+        {
+            CloseIdPopup();
+            evt.StopPropagation();
+        }
     }
 
     void FilterNicknameInput(ChangeEvent<string> evt)
