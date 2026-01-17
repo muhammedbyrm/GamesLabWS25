@@ -961,6 +961,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &21240441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5156341722150704124, guid: d6710ce883210e5448fbc08dcce38e8a, type: 3}
+  m_PrefabInstance: {fileID: 1369864601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &23986486
 GameObject:
   m_ObjectHideFlags: 0
@@ -9547,6 +9552,10 @@ PrefabInstance:
       propertyPath: murderWeaponSettings.knifeDropLocation
       value: 
       objectReference: {fileID: 926279494}
+    - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
+      propertyPath: reconstructionSettings.livingCompanion
+      value: 
+      objectReference: {fileID: 21240441}
     - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
       propertyPath: murderWeaponSettings.knifeJointPosition
       value: 

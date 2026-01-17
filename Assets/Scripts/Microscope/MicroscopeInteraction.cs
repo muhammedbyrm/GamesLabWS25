@@ -32,12 +32,16 @@ public class MicroscopeInteraction : MonoBehaviour
             if (IsPlayerInsideTrigger())
             {
                 OpenMicroscope();
+
+                GameManager.Instance.SetIncrementPastTimer(false);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && isUIOpen)
         {
             CloseMicroscope();
+
+            GameManager.Instance.SetIncrementPastTimer(true);
         }
     }
 

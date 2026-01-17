@@ -57,6 +57,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         root.style.display = DisplayStyle.Flex;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
+
+        //stop past timer from incrementing
+        GameManager.Instance.SetIncrementPastTimer(false);
     }
 
     public void ClosePuzzle()
@@ -66,6 +69,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+
+        //start past timer again
+        GameManager.Instance.SetIncrementPastTimer(true);
     }
 
     private void ResetAndClose()

@@ -76,6 +76,9 @@ public class InspectionUIController : MonoBehaviour
         UnityEngine.Cursor.visible = true;
 
         Debug.Log("InspectionUI: Shown with title: " + title);
+
+        //stop past timer from incrementing
+        GameManager.Instance.SetIncrementPastTimer(false);
     }
 
     public void Hide()
@@ -97,6 +100,9 @@ public class InspectionUIController : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         
         FindObjectOfType<ClueManager>()?.EndInspection();
+
+        //start past timer again
+        GameManager.Instance.SetIncrementPastTimer(true);
     }
 
     private void HideImmediate()

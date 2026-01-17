@@ -32,11 +32,13 @@ public class MemoryWallInteraction : MonoBehaviour
         if (isPlayerInZone && !isUIOpen && Input.GetKeyDown(KeyCode.E))
         {
             OpenUI();
+            GameManager.Instance.SetIncrementPastTimer(false);
         }
 
         if (isUIOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseUI();
+            GameManager.Instance.SetIncrementPastTimer(true);
         }
     }
 
