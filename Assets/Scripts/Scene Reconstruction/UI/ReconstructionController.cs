@@ -17,6 +17,7 @@ public class ReconstructionController : MonoBehaviour
 
     [SerializeField] private ClueLogController clueLogUI;
     [SerializeField] private InspectionUIController inspectionUI; // <-- NEW REFERENCE
+    [SerializeField] private MonoBehaviour playerMovementScript;
 
     private void Awake()
     {
@@ -42,6 +43,8 @@ public class ReconstructionController : MonoBehaviour
         root.RemoveFromClassList("hidden");
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
+        
+        if (playerMovementScript != null) playerMovementScript.enabled = false;
 
         cluePool.Clear();
         foreach (var slot in slots) slot.Clear();
@@ -108,6 +111,7 @@ public class ReconstructionController : MonoBehaviour
 
             // 1. Hide the puzzle board
             root.AddToClassList("hidden");
+            if (playerMovementScript != null) playerMovementScript.enabled = true;
 
             if (clueLogUI != null)
             {

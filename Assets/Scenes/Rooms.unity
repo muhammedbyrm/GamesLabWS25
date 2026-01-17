@@ -21888,6 +21888,7 @@ MonoBehaviour:
   isCorrect: 0
   clueLogUI: {fileID: 1889506936}
   inspectionUI: {fileID: 1444134219}
+  playerMovementScript: {fileID: 570889681}
 --- !u!114 &947012629
 MonoBehaviour:
   m_ObjectHideFlags: 0

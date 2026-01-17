@@ -34,7 +34,13 @@ public class ClueManager : MonoBehaviour
     {
         // This handles the 3 second pause
         yield return new WaitForSeconds(5f);
-        
+        // FORCE CLOSE the inspection UI so it doesn't block the screen/input
+    if (inspectionUI != null)
+    {
+        // Assuming your InspectionUIController has a Hide or Close method
+        inspectionUI.Hide(); 
+        IsInspectionActive = false; 
+    }
         reconstructionUI?.OpenReconstruction(foundClues);
         Debug.Log("Opening reconstruction timeline after 3 seconds.");
     }
