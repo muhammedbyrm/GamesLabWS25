@@ -161,7 +161,9 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     #endregion
 
     private Collider flashlightCollider;
-    
+    private Collider memoryWallUICollider;
+    private bool hasMemoryWallMessageBeenRead = false;
+
 
     private void Awake()
     {
@@ -201,6 +203,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         }
 
         flashlightCollider = GameObject.FindGameObjectWithTag("Flashlight Collider").GetComponent<Collider>();
+        memoryWallUICollider = GameObject.FindGameObjectWithTag("Memory Wall Collider").GetComponent<Collider>();
 
         #region Sprint Bar
 
@@ -503,6 +506,18 @@ public class FirstPersonControllerInteractable : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other == memoryWallUICollider)
+        {
+            if (hasMemoryWallMessageBeenRead == false)
+            {
+                hasMemoryWallMessageBeenRead = true;
+                GameManager.Instance.UImemoryWall();
+            }
+        }
+    }
+
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()
     {
@@ -562,8 +577,11 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
                     // time Machine and knife destruction evets ...
 
-                    GameManager.Instance.StartFinalSequence();
-
+                    //GameManager.Instance.StartFinalSequence();
+                    GameManager.Instance.HasDestroyedMurderWeapon(); 
+                    hit.collider.gameObject
+                        .GetComponent<TimeMachineButton>()
+                        .CloseTMDoor();
 
                     // GameManager.Instance.EndGame();  // i will handle this in another script // after you saw it, you can delete it
                 }

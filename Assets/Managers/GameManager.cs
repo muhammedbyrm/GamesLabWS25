@@ -27,6 +27,7 @@ public class SceneReconstructionSettings
 
     [Space(10)]
     public GameObject pastChair;
+    public GameObject livingCompanion;
 }
 
 [System.Serializable]
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     private int loopCount = 0;
 
     public FirstPersonControllerInteractable fpc;
+    public ReconstructionController reconstructionController;
     public Transform playerResetLocation;
     public AudioClip blackout;
     public AudioClip cameraShake;
@@ -109,6 +111,10 @@ public class GameManager : MonoBehaviour
     public bool memoryWallMessageRead = false;
     public bool memoryWallInteraction = false;
 
+    private bool murderWeaponUIHasBeenRead = false;
+    private bool incremenentPastTimer = true;
+
+    private bool hasDestroyedKnife = false;
 
     void Start()
     {
@@ -164,6 +170,12 @@ public class GameManager : MonoBehaviour
     #region murder Weapon
     public void PickUpMurderWeapon()
     {
+        if(murderWeaponUIHasBeenRead == false)
+        {
+            murderWeaponUIHasBeenRead = true;
+            UIpickUpMurderWeapon();
+        }
+
         murderWeaponSettings.knife.transform.SetParent(murderWeaponSettings.knifeJointPosition, false);
         murderWeaponSettings.knife.transform.localScale = new Vector3(2.17f, 2.17f, 2.17f);
         //murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeJointPosition;
@@ -208,6 +220,50 @@ public class GameManager : MonoBehaviour
     }
     #endregion murder Weapon
 
+    #region UI
+    public void UImemoryWall()
+    {
+        reconstructionController.BeforeMemoryWallUI();
+    }
+
+    public void UIstartGame()
+    {
+        reconstructionController.StartGameUI();
+    }
+
+    public void UIopenBRDoor()
+    {
+        reconstructionController.OpeningDoorUI();
+    }
+
+    public void UIpickUpMurderWeapon()
+    {
+        reconstructionController.MurderWeaponUI();
+    }
+
+    public void UIAfterFirstTimeJump()
+    {
+        reconstructionController.AfterFirstTimeJump();
+    }
+    public void UIAfterSecondTimeJump()
+    {
+        reconstructionController.AfterSecondTimeJump();
+    }
+    public void UIAfterThirdTimeJump()
+    {
+        reconstructionController.AfterThirdTimeJump();
+    }
+    #endregion UI
+
+    public bool getIncrementPastTimer()
+    {
+        return incremenentPastTimer;
+    }
+
+    public void SetIncrementPastTimer(bool incrementPastTimer)
+    {
+        this.incremenentPastTimer = incrementPastTimer;
+    }
     public void EndGame()
     {
         // end game animation will come there ...
@@ -391,14 +447,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region state switch objects
     public void activatePresentObjects()
     {
+        if (GetHasDestroyedMurderWeapon()){
+            StartFinalSequence();
+            DeactivateTMButton();
+        }
+        else{ 
         reconstructionSettings.bodyBlood.SetActive(true);
         reconstructionSettings.bloodSplatter.SetActive(true);
         reconstructionSettings.bloodyKnife.SetActive(true);
         reconstructionSettings.struggleSign.SetActive(true);
         reconstructionSettings.bloodyTrail.SetActive(true);
         reconstructionSettings.companion.SetActive(true);
+        }
     }
 
     public void deactivatePresentObjects()
@@ -415,13 +478,16 @@ public class GameManager : MonoBehaviour
     {
         reconstructionSettings.pastChair.SetActive(true);
         murderWeaponSettings.knifePosition.gameObject.SetActive(true);
+        reconstructionSettings.livingCompanion.SetActive(true);
     }
 
     public void deactivatePastObjects()
     {
         reconstructionSettings.pastChair.SetActive(false);
         murderWeaponSettings.knifePosition.gameObject.SetActive(false);
+        reconstructionSettings.livingCompanion.SetActive(false);
     }
+    #endregion state switch objects
 
     public void OnCompanionArrived()
     {
@@ -444,6 +510,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void HasDestroyedMurderWeapon()
+    {
+         hasDestroyedKnife = true;
+         StartCoroutine(jumpToPresent());
+    }
+
+    private IEnumerator jumpToPresent()
+    {
+        SoundManager.Instance.PlayBGMChoose(4);
+        yield return new WaitForSeconds(7f);
+
+        GameManager.Instance.Blackout();
+        yield return new WaitForSeconds(3f);
+
+        GameManager.Instance.CameraShake();
+        yield return new WaitForSeconds(5f);
+
+        GameManager.Instance.CameraFadeOut();
+        yield return new WaitForSeconds(2f);
+
+        GameManager.Instance.stateMachine.ChangeState(new PresentState());
+    }
+
+    public bool GetHasDestroyedMurderWeapon()
+    {
+        return hasDestroyedKnife;
+    }
     private void FinishFinalSequence()
     {
         EndGame();

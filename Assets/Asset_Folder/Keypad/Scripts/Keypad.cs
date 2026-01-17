@@ -42,6 +42,7 @@ namespace NavKeypad
         private string currentInput;
         private bool displayingResult = false;
         private bool accessWasGranted = false;
+        private bool hasOpenDoorUIBeenReadied = false;
 
         private void Awake()
         {
@@ -132,6 +133,12 @@ namespace NavKeypad
             onAccessGranted?.Invoke();
             panelMesh.material.SetVector("_EmissionColor", screenGrantedColor * screenIntensity);
             audioSource.PlayOneShot(accessGrantedSfx);
+
+            if(hasOpenDoorUIBeenReadied == false)
+            {
+                hasOpenDoorUIBeenReadied = true;
+                GameManager.Instance.UIopenBRDoor();
+            }
         }
 
     }

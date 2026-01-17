@@ -16,6 +16,7 @@ public class PresentState : State
         {
             //GameManager.Instance.CloseBRDoor();
             GameManager.Instance.deactivatePastObjects();
+            GameManager.Instance.UIstartGame();
         }
         else
         {
@@ -23,11 +24,32 @@ public class PresentState : State
             GameManager.Instance.LightOn();
             GameManager.Instance.StartFadeIn();
         }
+
+        if(GameManager.Instance.GetLoopCount() == 1)
+        {
+            GameManager.Instance.UIAfterFirstTimeJump();
+        }
+        else if(GameManager.Instance.GetLoopCount() == 2)
+        {
+            GameManager.Instance.UIAfterSecondTimeJump();
+        }
+        else if(GameManager.Instance.GetLoopCount() == 3)
+        {
+            GameManager.Instance.UIAfterThirdTimeJump();
+        }
+
         GameManager.Instance.activatePresentObjects();
         GameManager.Instance.DeactivateKeypad();
         GameManager.Instance.ActivateTMButton();
 
-        SoundManager.Instance.PlayBGMChoose(1);
+        if (GameManager.Instance.GetHasDestroyedMurderWeapon())
+        {
+            SoundManager.Instance.PlayBGMChoose(3);
+        }
+        else
+        {
+            SoundManager.Instance.PlayBGMChoose(1);
+        }
 
         InteractionUnlocker.Instance.DisableInteractions();
     }

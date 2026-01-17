@@ -12,7 +12,7 @@ public class ReconstructionController : MonoBehaviour
 
     private List<VisualElement> slots = new();
     private List<ClueData> correctOrder;
-    
+
     public bool isCorrect = false;
 
     [SerializeField] private ClueLogController clueLogUI;
@@ -82,7 +82,7 @@ public class ReconstructionController : MonoBehaviour
         {
             var card = slot[0];
             card.RemoveFromHierarchy();
-            card.style.width = 180; 
+            card.style.width = 180;
             card.style.height = 120;
             cluePool.Add(card);
         }
@@ -105,10 +105,10 @@ public class ReconstructionController : MonoBehaviour
         {
             // SUCCESS SEQUENCE
             Debug.Log("Reconstruction Successful!");
-            
+
             // 1. Hide the puzzle board
             root.AddToClassList("hidden");
-            
+
             if (clueLogUI != null)
             {
                 clueLogUI.HideLog();
@@ -118,7 +118,7 @@ public class ReconstructionController : MonoBehaviour
             if (inspectionUI != null)
             {
                 inspectionUI.Show(
-                    "REVELATION", 
+                    "REVELATION",
                     "Everything makes sense now...\nI know what happened! I need to go back in time to prevent her death! But first, I must interact with the memory wall."
                 );
             }
@@ -129,5 +129,66 @@ public class ReconstructionController : MonoBehaviour
         {
             Debug.Log("The order is still unclear. Try again.");
         }
+    }
+
+    public void StartGameUI()
+    {
+        //in present state & gmanager
+        inspectionUI.Show(
+                    "AMNESIA",
+                    "What happened? I think there was a blackout but I'm not sure...is that Alice? Is she...? Is she dead?"
+        );
+    }
+
+    public void BeforeMemoryWallUI()
+    {
+        //in fpc & gmanager
+        inspectionUI.Show(
+                    "FOCUS",
+                    "I need to take a look at the Memory Wall.\nIt can hold informations forever. There must be some explanations behind what happened."
+        );
+    }
+
+    public void OpeningDoorUI()
+    {
+        //in keypad & gmanager
+        inspectionUI.Show(
+                    "FINALLY",
+                    "Yes, I got the code right. And I can see Alice is alive.\nA knife was used to kill her, it has to be in this room. I need to find it first, then..."
+        );
+    }
+
+    public void MurderWeaponUI()
+    {
+        //in gmanager
+        inspectionUI.Show(
+                    "THE KNIFE",
+                    "This weapon is the one Alice will get stabbed with. To save her I need to get rid of it, maybe I can get it out of this timeline."
+        );
+    }
+
+    public void AfterFirstTimeJump()
+    {
+        //in present state & gmanager
+        inspectionUI.Show(
+                    "MY HEAD HURTS",
+                    "What happened? The lights went out and now my head feels kind of strange. I have to check up on Alice!"
+        );
+    }
+    public void AfterSecondTimeJump()
+    {
+        //in present state & gmanager
+        inspectionUI.Show(
+                    "MY HEAD HURTS",
+                    "Uggghh...We never tested the Time Machine much before. This truly is a live experiment, but I have to do this for Alice"
+        );
+    }
+    public void AfterThirdTimeJump()
+    {
+        //in present state & gmanager
+        inspectionUI.Show(
+                    "MY HEAD HURTS",
+                    "No...this is not right...something needs to change...and my head feels like it's gonna explode..."
+        );
     }
 }

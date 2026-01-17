@@ -15,6 +15,7 @@ TagManager:
   - Knife
   - Drop Knife
   - Flashlight Collider
+  - Memory Wall Collider
   layers:
   - Default
   - TransparentFX

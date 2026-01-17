@@ -11,6 +11,7 @@ public class PastState : State
     public Image pastStateTimerImageBG;
     public override void Enter()
     {
+        
         Debug.Log("Entered Past State");
         loopTimer = GameManager.Instance.GetPastStateDuration();
         //GameManager.Instance.pastStateTimerImage.SetEnabled(true);
@@ -32,16 +33,28 @@ public class PastState : State
         //loop counter is in GameManager
 
         InteractionUnlocker.Instance.EnableInteractions();
-
+        
 
     }
     public override void Update()
     {
-        //pastStateTimerImage.fillAmount = 1 - timeInState / loopTimer;
-        pastStateTimerImage.fillAmount = Mathf.Lerp(pastStateTimerImage.fillAmount, 1 - timeInState / loopTimer, Time.deltaTime * 10);
-        pastStateTimerImage.color = Color.Lerp(Color.red, Color.green, 1 - timeInState / loopTimer);
+        if (GameManager.Instance.GetHasDestroyedMurderWeapon())
+        {
+            GameManager.Instance.pastStateTimerImage.gameObject.SetActive(false);
+            GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(false);
+        }
+        else
+        {
+            pastStateTimerImage.fillAmount = Mathf.Lerp(pastStateTimerImage.fillAmount, 1 - timeInState / loopTimer, Time.deltaTime * 10);
+            pastStateTimerImage.color = Color.Lerp(Color.red, Color.green, 1 - timeInState / loopTimer);
+        }
 
-        timeInState += Time.deltaTime;
+        //increment timer only when allowed
+        if(GameManager.Instance.getIncrementPastTimer())
+        {
+            timeInState += Time.deltaTime;
+        }
+
         if (timeInState >= loopTimer && !jumpSequenceStarted)
         {
             jumpSequenceStarted = true;
