@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     public Image blackscreen;
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
+    public GameObject loopCounterText;
     [SerializeField] private float pastStateDuration;
 
     [Header("Flashlight Settings")]
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
     private bool incremenentPastTimer = true;
 
     private bool hasDestroyedKnife = false;
+    private bool isInThePast = false;
 
     void Start()
     {
@@ -130,6 +132,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
+    }
+
+    public void SetIsInThePast(bool inThePast)
+    {
+        this.isInThePast = inThePast;
+    }
+
+    public bool GetIsInThePast()
+    {
+        return isInThePast;
     }
 
     #region flashlight
@@ -253,6 +265,14 @@ public class GameManager : MonoBehaviour
     {
         reconstructionController.AfterThirdTimeJump();
     }
+
+    public void SetPastStateTimerVisible(bool visible)
+    {
+
+        pastStateTimerImage.gameObject.SetActive(visible);
+        pastStateTimerImageBG.gameObject.SetActive(visible);
+        loopCounterText.SetActive(visible);
+    }
     #endregion UI
 
     public bool getIncrementPastTimer()
@@ -262,6 +282,7 @@ public class GameManager : MonoBehaviour
 
     public void SetIncrementPastTimer(bool incrementPastTimer)
     {
+        Debug.Log("Increment Past Timer has Changed To: " + incrementPastTimer);
         this.incremenentPastTimer = incrementPastTimer;
     }
     public void EndGame()

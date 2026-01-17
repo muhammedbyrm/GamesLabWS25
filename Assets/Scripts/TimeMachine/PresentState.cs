@@ -9,8 +9,9 @@ public class PresentState : State
     {
         Debug.Log("Entered Present State");
 
-        GameManager.Instance.pastStateTimerImage.gameObject.SetActive(false);
-        GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(false);
+
+        GameManager.Instance.SetPastStateTimerVisible(false);
+        GameManager.Instance.SetIsInThePast(false);
 
         if (GameManager.Instance.GetLoopCount() == 0)
         {

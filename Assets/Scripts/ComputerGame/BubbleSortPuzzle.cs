@@ -60,6 +60,7 @@ public class BubbleSortPuzzle : MonoBehaviour
 
         //stop past timer from incrementing
         GameManager.Instance.SetIncrementPastTimer(false);
+        GameManager.Instance.SetPastStateTimerVisible(false);
     }
 
     public void ClosePuzzle()
@@ -72,6 +73,7 @@ public class BubbleSortPuzzle : MonoBehaviour
 
         //start past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
+        GameManager.Instance.SetPastStateTimerVisible(true);
     }
 
     private void ResetAndClose()

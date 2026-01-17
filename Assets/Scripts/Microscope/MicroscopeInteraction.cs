@@ -34,6 +34,7 @@ public class MicroscopeInteraction : MonoBehaviour
                 OpenMicroscope();
 
                 GameManager.Instance.SetIncrementPastTimer(false);
+                GameManager.Instance.SetPastStateTimerVisible(false);
             }
         }
 
@@ -42,6 +43,7 @@ public class MicroscopeInteraction : MonoBehaviour
             CloseMicroscope();
 
             GameManager.Instance.SetIncrementPastTimer(true);
+            GameManager.Instance.SetPastStateTimerVisible(true);
         }
     }
 

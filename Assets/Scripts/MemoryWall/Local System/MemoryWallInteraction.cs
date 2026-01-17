@@ -32,13 +32,11 @@ public class MemoryWallInteraction : MonoBehaviour
         if (isPlayerInZone && !isUIOpen && Input.GetKeyDown(KeyCode.E))
         {
             OpenUI();
-            GameManager.Instance.SetIncrementPastTimer(false);
         }
 
         if (isUIOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseUI();
-            GameManager.Instance.SetIncrementPastTimer(true);
         }
     }
 
@@ -69,6 +67,9 @@ public class MemoryWallInteraction : MonoBehaviour
 
     private void OpenUI()
     {
+        GameManager.Instance.SetIncrementPastTimer(false);
+        GameManager.Instance.SetPastStateTimerVisible(false);
+
         isUIOpen = true;
 
         if (informationText != null)
@@ -95,6 +96,10 @@ public class MemoryWallInteraction : MonoBehaviour
 
     public void CloseUI()
     {
+        GameManager.Instance.SetIncrementPastTimer(true);
+        if(GameManager.Instance.GetIsInThePast())
+            GameManager.Instance.SetPastStateTimerVisible(true);
+
         isUIOpen = false;
 
         if (memoryWallUI != null)

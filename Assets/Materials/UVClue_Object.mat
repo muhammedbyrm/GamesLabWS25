@@ -139,6 +139,6 @@ Material:
     - _LichtDirection: {r: 0, g: 0, b: 0, a: 0}
     - _LichtPosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _UVColor: {r: 4, g: 0, b: 3.309804, a: 1}
+    - _UVColor: {r: 0.003676507, g: 0.5520116, b: 0.730461, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

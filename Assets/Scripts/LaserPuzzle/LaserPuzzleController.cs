@@ -75,6 +75,7 @@ public class LaserPuzzleController : MonoBehaviour
 
         //stops past timer from incrementing
         GameManager.Instance.SetIncrementPastTimer(false);
+        GameManager.Instance.SetPastStateTimerVisible(false);
 
         // Disable player movement (using your project's component)
         PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -199,6 +200,7 @@ public class LaserPuzzleController : MonoBehaviour
 
         //starts past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
+        GameManager.Instance.SetPastStateTimerVisible(true);
 
         puzzleCamera.enabled = false;
         mainCamera.enabled = true;

@@ -498,11 +498,14 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider flashlightCollider)
+    private void OnTriggerExit(Collider other)
     {
-        if (GameManager.Instance.GetHasFlashlight())
+        if (other == flashlightCollider)
         {
-            GameManager.Instance.InteractFlashlight();
+            if (GameManager.Instance.GetHasFlashlight())
+            {
+                GameManager.Instance.InteractFlashlight();
+            }
         }
     }
 

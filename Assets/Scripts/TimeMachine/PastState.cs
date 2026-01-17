@@ -9,6 +9,9 @@ public class PastState : State
 
     public Image pastStateTimerImage;
     public Image pastStateTimerImageBG;
+    private RectTransform pastStateTimerRect;
+    private Color TMColor = new Color(8f / 255f, 218f / 255f, 238f / 255f);
+    private float UIStartWidth;
     public override void Enter()
     {
         
@@ -17,8 +20,11 @@ public class PastState : State
         //GameManager.Instance.pastStateTimerImage.SetEnabled(true);
         pastStateTimerImage = GameManager.Instance.pastStateTimerImage;
         pastStateTimerImageBG = GameManager.Instance.pastStateTimerImageBG;
-        GameManager.Instance.pastStateTimerImage.gameObject.SetActive(true);
-        GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(true);
+        pastStateTimerRect = pastStateTimerImage.GetComponent<RectTransform>();
+        UIStartWidth = pastStateTimerRect.sizeDelta.x;
+
+        GameManager.Instance.SetPastStateTimerVisible(true);
+        GameManager.Instance.SetIsInThePast(true);
 
         //Preliminary setup for Past State
         GameManager.Instance.CloseBRDoor();
@@ -38,27 +44,33 @@ public class PastState : State
     }
     public override void Update()
     {
+
+        //Debug.Log("Past State Timer: " + timeInState.ToString("F2") + " / " + loopTimer.ToString("F2"));
+
+        //increment timer only when allowed
+        if (GameManager.Instance.getIncrementPastTimer())
+        {
+            timeInState += Time.deltaTime;
+        }
+        float progress = Mathf.Clamp01(timeInState / loopTimer);
+        float t = 1f - progress;
+
         if (GameManager.Instance.GetHasDestroyedMurderWeapon())
         {
-            GameManager.Instance.pastStateTimerImage.gameObject.SetActive(false);
-            GameManager.Instance.pastStateTimerImageBG.gameObject.SetActive(false);
+            GameManager.Instance.SetPastStateTimerVisible(false);
         }
         else
         {
-            pastStateTimerImage.fillAmount = Mathf.Lerp(pastStateTimerImage.fillAmount, 1 - timeInState / loopTimer, Time.deltaTime * 10);
-            pastStateTimerImage.color = Color.Lerp(Color.red, Color.green, 1 - timeInState / loopTimer);
-        }
-
-        //increment timer only when allowed
-        if(GameManager.Instance.getIncrementPastTimer())
-        {
-            timeInState += Time.deltaTime;
+            pastStateTimerRect.sizeDelta = new Vector2(UIStartWidth * t, pastStateTimerRect.sizeDelta.y);
+            //pastStateTimerImage.fillAmount = Mathf.Lerp(pastStateTimerImage.fillAmount, 1 - timeInState / loopTimer, Time.deltaTime * 10);
+            pastStateTimerImage.color = Color.Lerp(TMColor, Color.red, timeInState / loopTimer);
         }
 
         if (timeInState >= loopTimer && !jumpSequenceStarted)
         {
             jumpSequenceStarted = true;
             GameManager.Instance.StartPastToPresentSequence();
+            GameManager.Instance.SetPastStateTimerVisible(false);
         }
     }
     public override void Exit()
@@ -70,6 +82,8 @@ public class PastState : State
         {
             GameManager.Instance.InteractFlashlight();
         }
-        pastStateTimerImage.fillAmount = 1f;
+        pastStateTimerRect.sizeDelta = new Vector2(UIStartWidth, pastStateTimerRect.sizeDelta.y);
+        pastStateTimerImage.color = TMColor;
+        //pastStateTimerImage.fillAmount = 1f;
     }
 }
