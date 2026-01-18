@@ -38,6 +38,8 @@ public class ReconstructionController : MonoBehaviour
         root.AddToClassList("hidden");
     }
 
+    
+
     public void OpenReconstruction(List<ClueData> foundClues)
     {
         root.RemoveFromClassList("hidden");

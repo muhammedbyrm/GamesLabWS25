@@ -31,6 +31,13 @@ public class InspectionUIController : MonoBehaviour
 
         HideImmediate();
     }
+    
+    
+    // added a setter the laser puzzle uses
+    public void setIsVisible(bool value)
+    {
+        isVisible = value;
+    }
 
     private void Update()
     {

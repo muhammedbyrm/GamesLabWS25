@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class LaserEmitter : MonoBehaviour
 {
     [Header("Laser Settings")]
+    public bool isEnabled = false; 
     public int maxBounces = 10;
     public float maxDistance = 100f;
     public Material laserMaterial;
@@ -15,14 +16,18 @@ public class LaserEmitter : MonoBehaviour
 
     void Update()
     {
-        // Reset the pool count for this frame
         activeLines = 0;
         
-        // Start the recursive laser casting
-        CastLaser(transform.position, transform.forward, maxBounces);
-        
+        if (!isEnabled)
+        {
+            foreach (var line in laserPool) line.enabled = false;
+            return;
+        }
 
-        // Turn off any unused line renderers from the pool
+        // Start the laser slightly in front of the emitter to avoid self-collision
+        CastLaser(transform.position + (transform.forward * 0.01f), transform.forward, maxBounces);
+
+        // Clean up unused lines in the pool
         for (int i = activeLines; i < laserPool.Count; i++)
         {
             laserPool[i].enabled = false;
@@ -35,33 +40,25 @@ public class LaserEmitter : MonoBehaviour
 
         LineRenderer line = GetOrCreateLine();
         line.enabled = true;
-    
-        // Create the ray
+        
         Ray ray = new Ray(startPos, direction);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
-            
-            //Debug.Log("Laser hit: " + hit.collider.name + " tagged: " + hit.collider.tag);
-            line.positionCount = 2;
             line.SetPosition(0, startPos);
             line.SetPosition(1, hit.point);
 
             if (hit.collider.CompareTag("Mirror"))
             {
-                Vector3 mirrorForward = hit.collider.transform.forward;
-                Vector3 nextStart = hit.point + mirrorForward * 0.1f; 
-                CastLaser(nextStart, mirrorForward, bouncesLeft - 1);
-                
+                // Reflection: Mirrors use their BLUE axis (Forward) for the bounce
+                CastLaser(hit.point, hit.collider.transform.forward, bouncesLeft - 1);
             }
             else if (hit.collider.CompareTag("Splitter"))
             {
-                Vector3 rightDir = hit.collider.transform.right;
-                Vector3 leftDir = -hit.collider.transform.right;
-
-                CastLaser(hit.point + rightDir * 0.1f, rightDir, bouncesLeft - 1);
-                CastLaser(hit.point + leftDir * 0.1f, leftDir, bouncesLeft - 1);
+                // Splitting: Splitters use their RED axis (Right/-Right)
+                CastLaser(hit.point, hit.collider.transform.right, bouncesLeft - 1);
+                CastLaser(hit.point, -hit.collider.transform.right, bouncesLeft - 1);
             }
             else if (hit.collider.CompareTag("Receiver"))
             {
@@ -70,31 +67,31 @@ public class LaserEmitter : MonoBehaviour
         }
         else
         {
-            line.positionCount = 2;
             line.SetPosition(0, startPos);
             line.SetPosition(1, startPos + direction * maxDistance);
         }
     }
+
     LineRenderer GetOrCreateLine()
     {
         if (activeLines < laserPool.Count)
         {
-            return laserPool[activeLines++];
+            LineRenderer existingLine = laserPool[activeLines++];
+            existingLine.positionCount = 2; // Ensure it has points
+            return existingLine;
         }
-
-        // Create a new LineRenderer if the pool is too small
+        
         GameObject lineObj = new GameObject("LaserLine_" + laserPool.Count);
         lineObj.transform.SetParent(this.transform);
         LineRenderer lr = lineObj.AddComponent<LineRenderer>();
         
-        // Setup visual properties
         lr.material = laserMaterial;
         lr.startWidth = laserWidth;
         lr.endWidth = laserWidth;
         lr.startColor = laserColor;
         lr.endColor = laserColor;
-        lr.positionCount = 0;
-
+        lr.positionCount = 2;
+        
         laserPool.Add(lr);
         activeLines++;
         return lr;
