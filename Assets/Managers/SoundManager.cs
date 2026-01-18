@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -28,6 +28,8 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
 
         Debug.Log("Hello I am your personal SoundManager!");
+
+        SetUpBGM();  
     }
     #endregion
 
@@ -43,11 +45,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float sound_volume;
 
 
-    private void Start()
-    {
-        //PlayBGM(present_background_music);
-        SetUpBGM();
-    }
     private void PlayBGM(AudioClip bgm)
     {
         AudioSource audioSource = Instantiate(sound, Vector3.zero, Quaternion.identity);
@@ -59,6 +56,18 @@ public class SoundManager : MonoBehaviour
 
     private void SetUpBGM()
     {
+        if (sound == null)
+        {
+            Debug.LogError("SoundManager: Audio Source did not found");
+            return;
+        }
+
+        if (present_background_music == null || past_background_music == null || finish_background_music == null)
+        {
+            Debug.LogError("SoundManager: some files are missing");
+            return;
+        }
+
         background_music_1 = Instantiate(sound, Vector3.zero, Quaternion.identity);
         background_music_1.clip = present_background_music;
         background_music_1.volume = music_volume;
@@ -77,6 +86,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGMChoose(int bgm)
     {
+        if (background_music_1 == null || background_music_2 == null || background_music_3 == null)
+        {
+            Debug.LogError("SoundManager: Background musics are not created yet!");
+            return;
+        }
+
         switch (bgm)
         {
             case 1:
@@ -137,4 +152,3 @@ public class SoundManager : MonoBehaviour
         Destroy(audioSource.gameObject, maximumLength);
     }
 }
-
