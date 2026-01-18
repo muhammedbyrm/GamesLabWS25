@@ -23,10 +23,11 @@ public class PresentState : State
         {
             GameManager.Instance.OpenBRDoor(false);
             GameManager.Instance.LightOn();
-            GameManager.Instance.StartFadeIn();
         }
 
-        if(GameManager.Instance.GetLoopCount() == 1)
+        GameManager.Instance.StartFadeIn();
+
+        if (GameManager.Instance.GetLoopCount() == 1)
         {
             GameManager.Instance.UIAfterFirstTimeJump();
         }
