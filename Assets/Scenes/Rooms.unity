@@ -7787,7 +7787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenComputerGame
   puzzleScript: {fileID: 296456304}
-  outline: {fileID: 552760155}
+  outline: {fileID: 0}
 --- !u!1 &311945073 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1510866254447108051, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
@@ -17333,6 +17333,10 @@ PrefabInstance:
       propertyPath: inspectionUI
       value: 
       objectReference: {fileID: 1444134219}
+    - target: {fileID: 4950789001329013731, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6272017951930967696, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
       propertyPath: m_Name
       value: LaserPuzzleF 1
@@ -17341,6 +17345,30 @@ PrefabInstance:
       propertyPath: inspectionUI
       value: 
       objectReference: {fileID: 1444134219}
+    - target: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.35193902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_Size.z
+      value: 0.75801134
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_Center.x
+      value: -0.010008846
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_Center.z
+      value: 0.24299276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474489665187999371, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9086887589836878122, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.739214
@@ -17384,7 +17412,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3305806054133652251, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1298966066}
   m_SourcePrefab: {fileID: 100100000, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
 --- !u!4 &765298731 stripped
 Transform:
@@ -27933,7 +27964,7 @@ MonoBehaviour:
   - {fileID: 1839038217}
   - {fileID: 983733072}
   - {fileID: 1807687662}
-  - {fileID: 0}
+  - {fileID: 1298966062}
 --- !u!114 &1218334205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30554,6 +30585,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1602409579054300598, guid: 4f13e2e193b7411478434edd7b149917, type: 3}
   m_PrefabInstance: {fileID: 1294345082}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1298966060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3305806054133652251, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+  m_PrefabInstance: {fileID: 765298730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1298966062 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7445850007350062590, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+  m_PrefabInstance: {fileID: 765298730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1298966066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298966060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ba63956584cd14cb176155e0fee855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  interactionText: {fileID: 0}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  interactMessage: Press left click to Interact
+  textVerticalOffset: 0.5
+  enableByDistance: 1
+  maxVisibleDistance: 4
+  fontSize: 1
 --- !u!1001 &1299649268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42789,7 +42850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OpenComputerGame
   puzzleScript: {fileID: 296456304}
-  outline: {fileID: 1839038216}
+  outline: {fileID: 0}
 --- !u!114 &1839038216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48658,7 +48719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalRotation.x
@@ -48666,11 +48727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -48678,7 +48739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 5965368913327057987, guid: 2be9c58a12cfbfb44a08d401a86cdb21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
