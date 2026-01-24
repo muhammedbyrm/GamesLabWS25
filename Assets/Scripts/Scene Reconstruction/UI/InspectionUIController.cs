@@ -42,7 +42,7 @@ public class InspectionUIController : MonoBehaviour
     private void Update()
     {
         // Primary and most reliable way to close: raw input check
-        if (isVisible && Input.GetKeyDown(KeyCode.K))
+        if (isVisible && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("InspectionUI: Escape pressed — closing UI");
             Hide();
@@ -54,7 +54,7 @@ public class InspectionUIController : MonoBehaviour
     {
         if (!isVisible) return;
 
-        if (evt.keyCode == KeyCode.K)
+        if (evt.keyCode == KeyCode.Q)
         {
             Debug.Log("InspectionUI: Escape detected via UI event — closing UI");
             Hide();
@@ -111,6 +111,7 @@ public class InspectionUIController : MonoBehaviour
         //start past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
     }
+    
 
     private void HideImmediate()
     {

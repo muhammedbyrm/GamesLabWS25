@@ -1,5 +1,6 @@
 using UnityEngine;
 using SojaExiles;
+using TMPro;
 
 public class LaserPuzzleController : MonoBehaviour
 {
@@ -26,8 +27,9 @@ public class LaserPuzzleController : MonoBehaviour
     public GameObject digitRevealObject;
     
     [Header("Puzzle Description UI")]
-    [SerializeField] private InspectionUIController inspectionUI; // <-- Drag the obj from BREAKROOM/UI/InspectionControllerUI from the Hierarchy
-
+    public GameObject instructionPanel; 
+    public TextMeshProUGUI instructionText;
+    
     private PlacementType currentSelection = PlacementType.Mirror;
     private Camera mainCamera;
     private bool isInteracting = false;
@@ -46,6 +48,8 @@ public class LaserPuzzleController : MonoBehaviour
 
         // Ensure laser starts OFF
         if (emitter != null) emitter.isEnabled = false;
+        if (instructionPanel != null) 
+            instructionPanel.SetActive(false);
     }
 
     void Update()
@@ -99,6 +103,19 @@ public class LaserPuzzleController : MonoBehaviour
 
         // Turn ON the laser
         if (emitter != null) emitter.isEnabled = true;
+        
+        // Display Instruction pannel
+        if (instructionPanel != null)
+        {
+            instructionPanel.SetActive(true);
+            instructionText.text = "<b>MISSION:</b> Direct Laser Beam to power both Receivers\n" +
+                                   "<b>[1 / 2]</b> Select Mirror / Splitter Block\n" +
+                                   "<b>[L-Click]</b> Place or Rotate Block\n" +
+                                   "<b>[R-Click]</b> Remove Block\n" +
+                                   "<b>[ESC]</b> Exit Terminal";
+            instructionText.alignment = TextAlignmentOptions.Center;
+        }
+        
     }
 
     void HandlePlacementInput(bool isLeftClick)
@@ -163,6 +180,10 @@ public class LaserPuzzleController : MonoBehaviour
 
         PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         if (pm != null) pm.enabled = true;
+        
+        // Hide instructions
+        if (instructionPanel != null)
+            instructionPanel.SetActive(false);
     }
 
     void CheckWinCondition()
@@ -179,18 +200,14 @@ public class LaserPuzzleController : MonoBehaviour
     void OnPuzzleSolved()
     {
         if (digitRevealObject != null) digitRevealObject.SetActive(true);
-        if (inspectionUI != null)
+        
+        if (instructionText != null)
         {
-            inspectionUI.Show(
-                "Digit Reveal",
-                "1"
-                );
             
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("InspectionUI: Escape pressed — closing UI");
-                inspectionUI.setIsVisible(false);
-            }
+            instructionText.text = "<color=green>PUZZLE SOLVED</color>\n\nDigit Reveal: <size=120%>1</size>";
+        
+            instructionText.alignment = TextAlignmentOptions.Center;
         }
+        
     }
 }

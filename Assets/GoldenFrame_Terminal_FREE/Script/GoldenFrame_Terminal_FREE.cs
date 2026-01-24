@@ -14,10 +14,7 @@ public class GoldenFrame_Terminal_FREE : MonoBehaviour
     [Header("Floating UI")]
     public GameObject interactionUI; 
     public float interactionDistance = 3f;
-
-    [Header("Puzzle Description UI")]
-    [SerializeField] private InspectionUIController inspectionUI; // <-- Drag the obj from BREAKROOM/UI/InspectionControllerUI from the Hierarchy
-
+    
     private bool isOn = false;
     private Transform playerTransform;
 
@@ -86,23 +83,7 @@ public class GoldenFrame_Terminal_FREE : MonoBehaviour
         // Start Puzzle
         if (puzzleController != null)
         {
-            if (inspectionUI != null)
-            {
-                inspectionUI.Show(
-                    "Puzzle Description", 
-                    "Hit all receivers with the laser beam to reveal the digit. \n Press 1 to select a mirror to deflect the beam. Press 2 to select a splitter to duplicate the beam. \n Press Left Click to place selected object on the table and press the placed object to rotate the beam. \n Right click the object to delete it."
-                );
-                
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    Debug.Log("InspectionUI: Escape pressed — closing UI");
-                    inspectionUI.setIsVisible(false);
-                }
-            }
-            
-            
             puzzleController.ActivatePuzzle();
-            // Force UI off immediately when entering puzzle
             if (interactionUI != null) interactionUI.SetActive(false);
         }
     }
