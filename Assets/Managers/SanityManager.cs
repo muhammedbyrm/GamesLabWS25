@@ -13,8 +13,8 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int decreaseLevel = 3; 
     
     [Header("Effect Timing")]
-    private const float MIN_EFFECT_WAIT_TIME = 8f; 
-    private const float MAX_EFFECT_WAIT_TIME = 12f;
+    private const float MIN_EFFECT_WAIT_TIME = 4f; 
+    private const float MAX_EFFECT_WAIT_TIME = 4f;
     private const float RANDOM_EFFECT_CHANCE = 0.8f;
 
     private int time_travel_attempts = 0;
@@ -41,6 +41,8 @@ public class SanityManager : MonoBehaviour
         // Add new effects HERE
         effectLookup[VisualEffectType.CameraDistorion] = GetComponent<CameraDistortion>();
         effectLookup[VisualEffectType.CameraSmearPlusHue] = GetComponent<CameraSmearPlusHueEffect>();
+        effectLookup[VisualEffectType.FOVPulse] = GetComponent<SanityFOVPulse>();
+        effectLookup[VisualEffectType.BlurEffect] = GetComponent<SanityBlurEffect>();
 
     }
     
@@ -91,11 +93,12 @@ public class SanityManager : MonoBehaviour
             if (Random.value <= RANDOM_EFFECT_CHANCE)
             {
                 // Pick a random effect from the current level's allowed list
-                VisualEffectType randomType = allowedEffects[Random.Range(0, allowedEffects.Length)];
+                //VisualEffectType randomType = allowedEffects[Random.Range(0, allowedEffects.Length)];
                 // testing the camera distortion
-                //VisualEffectType randomType = VisualEffectType.CameraDistorion;
+                VisualEffectType randomType = VisualEffectType.BlurEffect;
                 if (effectLookup.TryGetValue(randomType, out ISanityEffect effect))
                 {
+                    Debug.Log("Applied effect: " + randomType.ToString());
                     effect?.TriggerEffect();
                 }
             }

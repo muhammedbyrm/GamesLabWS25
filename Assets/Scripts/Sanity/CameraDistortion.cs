@@ -79,6 +79,7 @@ public class CameraDistortion : MonoBehaviour, ISanityEffect
             }
 
             // Smoother "Perlin" Drift
+            
             float noiseX = (Mathf.PerlinNoise(Time.time * 0.5f, 0f) - 0.5f) * 2f;
             float noiseY = (Mathf.PerlinNoise(0f, Time.time * 0.5f) - 0.5f) * 2f;
             

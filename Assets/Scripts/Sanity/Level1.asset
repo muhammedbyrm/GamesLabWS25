@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   levelName: Level 1
-  sanityExtraction: 10
   sanitySound: {fileID: 8300000, guid: 506d2f38021270d41b7eb0f222af5161, type: 3}
-  visualEffects: 03000000
+  visualEffects: 04000000
   actviated: 0

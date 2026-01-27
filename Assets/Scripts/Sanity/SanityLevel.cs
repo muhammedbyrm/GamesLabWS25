@@ -6,7 +6,9 @@ public enum VisualEffectType
     None,
     CameraDistorion,
     BloodStain,
-    CameraSmearPlusHue
+    CameraSmearPlusHue,
+    FOVPulse,
+    BlurEffect
 }
 
 [CreateAssetMenu(fileName = "SanityEffect", menuName = "Scriptable Objects/SanityEffect")]

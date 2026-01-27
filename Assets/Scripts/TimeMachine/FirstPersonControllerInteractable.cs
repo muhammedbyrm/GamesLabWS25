@@ -145,7 +145,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
     public KeyCode interactKey = KeyCode.E;
     public float maxInteractDistance = 1f;
     public LayerMask interactLayer;
-
+    public bool IsInteractingWithKeypad = false;
     #endregion
 
 
@@ -403,6 +403,14 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             Interact();
         }
 
+        if (IsInteractingWithKeypad)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Interact();
+            }
+        }
+
         #endregion
 
         // walk sound
@@ -615,6 +623,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             }
             else if (interactable.CompareTag("NumPad"))
             {
+                Debug.Log("Interacting with numpad");
                 hit.collider.gameObject.GetComponent<KeypadButton>().PressButton();
             }else if (interactable.CompareTag("Clue"))
             {
