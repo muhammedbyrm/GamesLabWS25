@@ -56,7 +56,11 @@ public class LaserPuzzleController : MonoBehaviour
     {
         if (!isInteracting) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape)) ExitPuzzle();
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitPuzzle();
+            GameManager.Instance.escConsumedThisFrame = true;
+        }
 
         // Selection logic
         if (Input.GetKeyDown(KeyCode.Alpha1)) currentSelection = PlacementType.Mirror;
@@ -84,6 +88,9 @@ public class LaserPuzzleController : MonoBehaviour
         //stops past timer from incrementing
         GameManager.Instance.SetIncrementPastTimer(false);
         GameManager.Instance.SetPastStateTimerVisible(false);
+
+        // set UIOpen flag
+        GameManager.Instance.isUIOpen = true;
 
         // Disable player movement (using your project's component)
         canPlace = false; // Reset placement block
@@ -169,6 +176,9 @@ public class LaserPuzzleController : MonoBehaviour
         //starts past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
         GameManager.Instance.SetPastStateTimerVisible(true);
+
+        // set UIOpen flag
+        GameManager.Instance.isUIOpen = false;
 
         puzzleCamera.enabled = false;
         mainCamera.enabled = true;

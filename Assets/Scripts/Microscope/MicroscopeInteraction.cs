@@ -42,6 +42,8 @@ public class MicroscopeInteraction : MonoBehaviour
         {
             CloseMicroscope();
 
+            GameManager.Instance.escConsumedThisFrame = true;
+
             GameManager.Instance.SetIncrementPastTimer(true);
             GameManager.Instance.SetPastStateTimerVisible(true);
         }
@@ -89,6 +91,8 @@ public class MicroscopeInteraction : MonoBehaviour
         if (playerController != null)
             playerController.enabled = false;
 
+        GameManager.Instance.isUIOpen = true;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;
 
@@ -113,5 +117,7 @@ public class MicroscopeInteraction : MonoBehaviour
 
         if (playerController != null)
             playerController.enabled = true;
+
+        GameManager.Instance.isUIOpen = false;
     }
 }

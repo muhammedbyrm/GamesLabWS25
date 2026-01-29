@@ -112,11 +112,17 @@ public class GameManager : MonoBehaviour
     public bool memoryWallMessageRead = false;
     public bool memoryWallInteraction = false;
 
+    [Header("Pause Menu Flags")]
+    public bool isUIOpen = false;
+    public bool escConsumedThisFrame = false;
+
+
     private bool murderWeaponUIHasBeenRead = false;
     private bool incremenentPastTimer = true;
 
     private bool hasDestroyedKnife = false;
     private bool isInThePast = false;
+
 
     void Start()
     {

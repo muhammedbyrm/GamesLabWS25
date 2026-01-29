@@ -19,6 +19,19 @@ public class ReconstructionController : MonoBehaviour
     [SerializeField] private InspectionUIController inspectionUI; // <-- NEW REFERENCE
     [SerializeField] private MonoBehaviour playerMovementScript;
 
+
+    // Consume ESC so Pause cannot open while Reconstruction UI is active
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !root.ClassListContains("hidden"))
+        {
+            GameManager.Instance.escConsumedThisFrame = true;
+        }
+    }
+
+
+
+
     private void Awake()
     {
         var uiDoc = GetComponent<UIDocument>();
@@ -45,7 +58,10 @@ public class ReconstructionController : MonoBehaviour
         root.RemoveFromClassList("hidden");
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
-        
+
+        // set OpenUI flag 
+        GameManager.Instance.isUIOpen = true;
+
         if (playerMovementScript != null) playerMovementScript.enabled = false;
 
         cluePool.Clear();
@@ -114,6 +130,9 @@ public class ReconstructionController : MonoBehaviour
             // 1. Hide the puzzle board
             root.AddToClassList("hidden");
             if (playerMovementScript != null) playerMovementScript.enabled = true;
+
+            // set UIOpen flag
+            GameManager.Instance.isUIOpen = false;
 
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;

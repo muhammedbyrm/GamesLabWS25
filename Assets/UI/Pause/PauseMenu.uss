@@ -1,0 +1,56 @@
+/* Ekranı karartan arka plan */
+.overlay {
+    position: absolute; /* ← ÖNEMLİ */
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Ortadaki panel */
+.panel {
+    width: 320px;
+    padding: 24px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    align-items: stretch;
+}
+
+/* Başlık */
+.title {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: white;
+    margin-bottom: 16px;
+    -unity-text-align: middle-center;
+}
+
+/* Genel buton stili */
+Button {
+    height: 42px;
+    margin-top: 10px;
+    background-color: #3a3a3a;
+    color: white;
+    border-radius: 8px;
+    -unity-font-size: 14px;
+    border-width: 0;
+}
+
+/* Hover efekti */
+Button:hover {
+    background-color: #5a8dee;
+}
+
+/* Exit biraz daha "tehlikeli" görünsün */
+Button#exitBtn {
+    background-color: #7a2e2e;
+}
+
+Button#exitBtn:hover {
+    background-color: #b23b3b;
+}

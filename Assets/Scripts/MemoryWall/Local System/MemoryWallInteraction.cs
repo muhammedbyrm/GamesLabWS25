@@ -37,6 +37,7 @@ public class MemoryWallInteraction : MonoBehaviour
         if (isUIOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseUI();
+            GameManager.Instance.escConsumedThisFrame = true;
         }
     }
 
@@ -87,6 +88,8 @@ public class MemoryWallInteraction : MonoBehaviour
         if (crosshair != null)
             crosshair.SetActive(false);
 
+        GameManager.Instance.isUIOpen = true;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -113,6 +116,8 @@ public class MemoryWallInteraction : MonoBehaviour
 
         if (crosshair != null)
             crosshair.SetActive(true);
+
+        GameManager.Instance.isUIOpen = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

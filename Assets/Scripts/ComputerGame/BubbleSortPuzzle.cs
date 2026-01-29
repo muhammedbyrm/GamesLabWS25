@@ -48,6 +48,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && isVisible)
         {
             ResetAndClose();
+
+            // for pause menu // esc key is used for this ui
+            GameManager.Instance.escConsumedThisFrame = true;
         }
     }
 
@@ -64,6 +67,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         //stop past timer from incrementing
         GameManager.Instance.SetIncrementPastTimer(false);
         GameManager.Instance.SetPastStateTimerVisible(false);
+
+        // set UIOpen flag
+        GameManager.Instance.isUIOpen = true;
     }
 
     public void ClosePuzzle()
@@ -79,6 +85,9 @@ public class BubbleSortPuzzle : MonoBehaviour
         //start past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
         GameManager.Instance.SetPastStateTimerVisible(true);
+
+        // set UIOpen flag
+        GameManager.Instance.isUIOpen = false;
     }
 
     private void ResetAndClose()
