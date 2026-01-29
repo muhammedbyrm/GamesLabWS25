@@ -115,6 +115,9 @@ public class ReconstructionController : MonoBehaviour
             root.AddToClassList("hidden");
             if (playerMovementScript != null) playerMovementScript.enabled = true;
 
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+
             if (clueLogUI != null)
             {
                 clueLogUI.HideLog();

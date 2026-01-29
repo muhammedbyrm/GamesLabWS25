@@ -79,8 +79,8 @@ public class InspectionUIController : MonoBehaviour
          //   playerController.SetInputEnabled(false);
 
         // Unlock cursor for UI interaction
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
-        UnityEngine.Cursor.visible = true;
+        //UnityEngine.Cursor.lockState = CursorLockMode.None;
+        //UnityEngine.Cursor.visible = true;
 
         Debug.Log("InspectionUI: Shown with title: " + title);
 
@@ -104,8 +104,8 @@ public class InspectionUIController : MonoBehaviour
           //  playerController.SetInputEnabled(true);
 
         // Lock cursor back to first-person mode
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
+        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        //UnityEngine.Cursor.visible = false;
         
         FindObjectOfType<ClueManager>()?.EndInspection();
 
