@@ -21,6 +21,7 @@ public class BubbleSortPuzzle : MonoBehaviour
     private VisualElement draggingBlock;
     private Vector2 dragOffset;
     private bool isSolved = false;
+    private bool isVisible = false;
 
     void Start()
     {
@@ -44,7 +45,7 @@ public class BubbleSortPuzzle : MonoBehaviour
     void Update()
     {
         // Check for ESC key to close and reset the puzzle
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isVisible)
         {
             ResetAndClose();
         }
@@ -58,6 +59,8 @@ public class BubbleSortPuzzle : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
 
+        isVisible = true;
+
         //stop past timer from incrementing
         GameManager.Instance.SetIncrementPastTimer(false);
         GameManager.Instance.SetPastStateTimerVisible(false);
@@ -70,6 +73,8 @@ public class BubbleSortPuzzle : MonoBehaviour
         
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+
+        isVisible = false;
 
         //start past timer again
         GameManager.Instance.SetIncrementPastTimer(true);
