@@ -85,6 +85,7 @@ public class InspectionUIController : MonoBehaviour
         Debug.Log("InspectionUI: Shown with title: " + title);
 
         //stop past timer from incrementing
+        playerController.playerCanMove = false;
         GameManager.Instance.SetIncrementPastTimer(false);
     }
 
@@ -109,6 +110,7 @@ public class InspectionUIController : MonoBehaviour
         FindObjectOfType<ClueManager>()?.EndInspection();
 
         //start past timer again
+        playerController.playerCanMove = true;
         GameManager.Instance.SetIncrementPastTimer(true);
     }
     
