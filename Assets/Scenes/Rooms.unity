@@ -5501,6 +5501,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 172918842}
     m_Modifications:
+    - target: {fileID: -1751883903222477615, guid: b762b04c7fe35704cbdbf1806a638bf1, type: 3}
+      propertyPath: m_Size.y
+      value: 2.7727382
+      objectReference: {fileID: 0}
+    - target: {fileID: -1751883903222477615, guid: b762b04c7fe35704cbdbf1806a638bf1, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3863691
+      objectReference: {fileID: 0}
     - target: {fileID: 1573117774132190, guid: b762b04c7fe35704cbdbf1806a638bf1, type: 3}
       propertyPath: m_Name
       value: Lamp_Floor_Apt_02
@@ -10707,7 +10715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6997143343640256349, guid: 2b773f238e4b12f408ff90446f474457, type: 3}
       propertyPath: music_volume
-      value: 0.03
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6997143343640256349, guid: 2b773f238e4b12f408ff90446f474457, type: 3}
       propertyPath: past_background_music
@@ -27971,7 +27979,7 @@ PrefabInstance:
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'sharpImages.Array.data[0]'
       value: 
-      objectReference: {fileID: 2800000, guid: 078d15054a78a284188e751a317d375a, type: 3}
+      objectReference: {fileID: 2800000, guid: 69b96ef484fcba645a5f8a49b2103948, type: 3}
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'sharpImages.Array.data[1]'
       value: 
@@ -27987,7 +27995,7 @@ PrefabInstance:
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'blurryImages.Array.data[0]'
       value: 
-      objectReference: {fileID: 2800000, guid: b4ea63c202caeb54f914b2c2d444e6f1, type: 3}
+      objectReference: {fileID: 2800000, guid: 532a381cd34598746a8e12ac66590f54, type: 3}
     - target: {fileID: 7860204751268921530, guid: 612f9a9b0fd0f734491c55378cb071c5, type: 3}
       propertyPath: 'blurryImages.Array.data[1]'
       value: 

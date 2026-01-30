@@ -693,23 +693,24 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
     }
-
     private void PlayFootstepAudio()
     {
-        if (!isWalking || !isGrounded || footstepSource == null)
+        if (!isWalking || !isGrounded || footstepSource == null || !playerCanMove)
         {
             footstepTimer = 0f;
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop(); // Sesi durdur
+            }
             return;
         }
 
         footstepTimer += Time.deltaTime;
-
         float currentInterval = isSprinting ? sprintStepInterval : walkStepInterval;
 
         if (footstepTimer >= currentInterval)
         {
             footstepTimer = 0f;
-
             AudioClip currentClip = isSprinting ? sprintFootstep : walkFootstep;
 
             if (currentClip != null)
