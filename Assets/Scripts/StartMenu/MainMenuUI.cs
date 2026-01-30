@@ -143,20 +143,29 @@ public class MainMenuUI : MonoBehaviour
             return;
         }
 
-        StartCoroutine(
-            serverAPI.CheckSenderExists(nickname, exists =>
+        StartCoroutine(CheckInternet(hasInternet =>
+        {
+            if (!hasInternet)
             {
-                if (exists)
+                ShowWarning("Please check your internet connection");
+                return;
+            }
+
+            StartCoroutine(
+                serverAPI.CheckSenderExists(nickname, exists =>
                 {
-                    ShowWarning("Please choose another nickname");
-                }
-                else
-                {
-                    PlayerPrefs.SetString("PlayerNickname", nickname);
-                    SceneManager.LoadScene("Rooms");
-                }
-            })
-        );
+                    if (exists)
+                    {
+                        ShowWarning("Please choose another nickname");
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("PlayerNickname", nickname);
+                        SceneManager.LoadScene("Rooms");
+                    }
+                })
+            );
+        }));
     }
 
     bool ValidateNickname(string nickname, out string error)
@@ -191,5 +200,22 @@ public class MainMenuUI : MonoBehaviour
     {
         warningLabel.text = message;
         warningLabel.style.display = DisplayStyle.Flex;
+    }
+
+    IEnumerator CheckInternet(System.Action<bool> callback)
+    {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            callback(false);
+            yield break;
+        }
+
+        using (var request = UnityEngine.Networking.UnityWebRequest.Head("https://www.google.com"))
+        {
+            request.timeout = 5;
+            yield return request.SendWebRequest();
+
+            callback(request.result == UnityEngine.Networking.UnityWebRequest.Result.Success);
+        }
     }
 }
