@@ -17,10 +17,18 @@ public class ServerMessageUIManager : MonoBehaviour
     Button deleteNoteButton;
     Label deleteIntro;
 
+    Label clickInfoLabel;
+
     ServerNoteEntry selectedNote;
 
     string playerName;
     int currentLoop;
+
+    const string NormalClickInfoText =
+        "Single click for selection, double click for opening the note";
+
+    const string NoInternetText =
+        "Please check your internet connection";
 
     void OnEnable()
     {
@@ -50,6 +58,9 @@ public class ServerMessageUIManager : MonoBehaviour
         fullMessageLabel = root.Q<Label>("FullMessage");
         deleteIntro = root.Q<Label>("DeleteIntro");
 
+        clickInfoLabel = root.Q<Label>("ClickInfoMessage");
+        UpdateClickInfoMessage();
+
         deleteNoteButton = root.Q<Button>("DeleteNote");
         if (deleteNoteButton != null)
             deleteNoteButton.clicked += OnDeleteNoteClicked;
@@ -61,6 +72,28 @@ public class ServerMessageUIManager : MonoBehaviour
         var manager = FindFirstObjectByType<ServerNoteManager>();
         if (manager != null)
             manager.RefreshNotes();
+    }
+
+    void UpdateClickInfoMessage()
+    {
+        if (clickInfoLabel == null)
+            return;
+
+        bool hasInternet =
+            Application.internetReachability != NetworkReachability.NotReachable;
+
+        if (hasInternet)
+        {
+            clickInfoLabel.text = NormalClickInfoText;
+            clickInfoLabel.RemoveFromClassList("no-internet");
+            clickInfoLabel.AddToClassList("normal");
+        }
+        else
+        {
+            clickInfoLabel.text = NoInternetText;
+            clickInfoLabel.RemoveFromClassList("normal");
+            clickInfoLabel.AddToClassList("no-internet");
+        }
     }
 
     public void RefreshWithServerNotes(List<ServerNoteEntry> notes)

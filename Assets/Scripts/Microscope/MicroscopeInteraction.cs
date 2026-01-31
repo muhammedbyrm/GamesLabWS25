@@ -118,6 +118,9 @@ public class MicroscopeInteraction : MonoBehaviour
         if (playerController != null)
             playerController.enabled = true;
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         GameManager.Instance.isUIOpen = false;
     }
 }

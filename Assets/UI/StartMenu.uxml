@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/StartMenu.uss?fileID=7433441132597879392&amp;guid=d2e0aa170945a5442a12c07768836151&amp;type=3#StartMenu" />
     <ui:VisualElement name="main-menu-root" style="flex-grow: 1; align-items: center; justify-content: center; background-image: url(&quot;project://database/Assets/Images/StartMenu/new4.jpg?fileID=2800000&amp;guid=51eb4d0deed622349a96a693669871cd&amp;type=3#new4&quot;);">
         <ui:VisualElement name="content-container" style="align-items: center; justify-content: center;">
             <ui:Label text="THE MEMORY CHAMBER" name="game-title" style="font-size: 64px; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-text-align: upper-center; margin-bottom: 40px; padding-bottom: 10%; -unity-font-definition: url(&quot;project://database/Assets/Font/Nosifer-Regular.ttf?fileID=12800000&amp;guid=30e0a51b7bf96d74393bbe145ed30e15&amp;type=3#Nosifer-Regular&quot;);" />

@@ -1,50 +1,49 @@
 #game-title {
     letter-spacing: 4px;
-    text-shadow: 0 3px 16px rgba(0,0,0,0.85);
+    color: white;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.85);
+    -unity-text-outline-width: 2px;
 }
 
 .menu-button {
-    border-radius: 14px;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.45);
-
-    transition-property: background-color, box-shadow, transform;
-    transition-duration: 0.18s;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    transition-duration: 0.2s;
 }
 
 .menu-button:hover {
-    box-shadow: 0 14px 36px rgba(0,0,0,0.55);
-    transform: scale(1.04);
+    scale: 1.04 1.04;
 }
 
 .menu-button:active {
-    transform: scale(0.97);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    scale: 0.97 0.97;
 }
-
 
 #btn-start {
     background-color: rgba(120, 220, 140, 0.9);
-    color: #0f2a18;
+    color: rgb(15, 42, 24);
 }
 
 #btn-start:hover {
     background-color: rgba(140, 235, 160, 0.95);
 }
 
-
 #btn-instructions {
     background-color: rgba(120, 170, 255, 0.9);
-    color: #0f1f3a;
+    color: rgb(15, 31, 58);
 }
 
 #btn-instructions:hover {
     background-color: rgba(150, 195, 255, 0.95);
 }
 
-
 #btn-exit {
     background-color: rgba(255, 110, 110, 0.88);
-    color: #2a0000;
+    color: rgb(42, 0, 0);
 }
 
 #btn-exit:hover {
@@ -52,5 +51,6 @@
 }
 
 #credits-footer {
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    color: rgba(255, 255, 255, 0.6);
+    -unity-text-align: lower-center;
 }
