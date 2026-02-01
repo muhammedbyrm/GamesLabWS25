@@ -3,6 +3,7 @@
     <ui:VisualElement name="Root" class="hidden root-full" style="height: 722px; width: 389px; left: 0; top: 0;">
         <ui:VisualElement class="thought-panel" style="left: 0;">
             <ui:Label text="Clues Collected" class="thought-title" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
+            <ui:Label name="ClueCounter" text="0/0" class="thought-bubble-summary" style="margin-bottom: 10px; color: rgb(255, 75, 75); -unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;); font-size: 14px;" />
             <ui:VisualElement name="ThoughtList" class="thought-list" style="-unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
         </ui:VisualElement>
     </ui:VisualElement>

@@ -6,6 +6,7 @@
     {
         private VisualElement root;
         private VisualElement thoughtList;
+private Label clueCounter; // Reference to the counter text
 
         private void Awake()
         {
@@ -13,7 +14,7 @@
             // Fix: Query for the element named "Root" inside your UXML
             root = uiDocument.rootVisualElement.Q<VisualElement>("Root");
             thoughtList = root.Q<VisualElement>("ThoughtList");
-
+clueCounter = root.Q<Label>("ClueCounter"); // Link to the UXML label
             // Ensure it starts hidden
             if (root != null) root.AddToClassList("hidden");
         }
@@ -28,6 +29,7 @@
             if (root == null) return;
             
             thoughtList.Clear();
+if (clueCounter != null) clueCounter.text = $"{foundClues.Count}/{5} Found";
             if (foundClues.Count == 0) return;
 
             // Show the UI when clues are added

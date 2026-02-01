@@ -212,15 +212,48 @@ public class BubbleSortPuzzle : MonoBehaviour
                 Vector2 delta = currentMousePos - dragOffset;
                 block.style.left = block.resolvedStyle.left + delta.x;
                 block.style.top = block.resolvedStyle.top + delta.y;
+                HandleHover(evt.position);
             });
 
             block.RegisterCallback<PointerUpEvent>(evt => {
                 if (draggingBlock != block) return;
                 block.ReleasePointer(evt.pointerId);
+                ClearHoverHighlights();
                 DropBlock((Vector2)evt.position);
                 draggingBlock = null;
                 block.RemoveFromClassList("dragging");
             });
+        }
+    }
+    private void HandleHover(Vector2 pointerPos)
+    {
+        // First, clear previous highlights so they don't "stick"
+        ClearHoverHighlights();
+
+        foreach (var slot in slots)
+        {
+            if (slot.worldBound.Contains(pointerPos))
+            {
+                // Use your existing logic to check if this block belongs in this slot
+                if (IsValidDrop(slot, draggingBlock))
+                {
+                    slot.AddToClassList("valid-hover");
+                }
+                else
+                {
+                    slot.AddToClassList("invalid-hover");
+                }
+                break; // Stop after finding the current slot
+            }
+        }
+    }
+
+    private void ClearHoverHighlights()
+    {
+        foreach (var slot in slots)
+        {
+            slot.RemoveFromClassList("valid-hover");
+            slot.RemoveFromClassList("invalid-hover");
         }
     }
 
