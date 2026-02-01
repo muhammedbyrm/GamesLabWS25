@@ -30,6 +30,8 @@ public class SceneReconstructionSettings
     [Space(10)]
     public GameObject pastChair;
     public GameObject livingCompanion;
+    public GameObject walkingCompanion;
+    
 }
 
 [System.Serializable]
@@ -523,6 +525,7 @@ public class GameManager : MonoBehaviour
         reconstructionSettings.pastChair.SetActive(true);
         murderWeaponSettings.knifePosition.gameObject.SetActive(true);
         reconstructionSettings.livingCompanion.SetActive(true);
+        reconstructionSettings.walkingCompanion.SetActive(true);
     }
 
     public void deactivatePastObjects()
@@ -530,6 +533,7 @@ public class GameManager : MonoBehaviour
         reconstructionSettings.pastChair.SetActive(false);
         murderWeaponSettings.knifePosition.gameObject.SetActive(false);
         reconstructionSettings.livingCompanion.SetActive(false);
+        reconstructionSettings.walkingCompanion.SetActive(false);
     }
     #endregion state switch objects
 

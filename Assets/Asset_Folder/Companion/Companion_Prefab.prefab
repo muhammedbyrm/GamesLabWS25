@@ -153,16 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce5e14fbaf97954d9715ecc99dd7810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshPlaceholderAI
-  player: {fileID: 0}
-  followPlayer: 0
-  followPath: 1
-  followDistance: 6
-  stoppingDistance: 3
   waypoints:
   - {fileID: 2608421866095236697}
   - {fileID: 3662127042929434681}
-  waypointThreshold: 0.7
-  waitTimeAtWaypoint: 2
+  waitTime: 3
 --- !u!114 &6641886435082941688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +176,7 @@ MonoBehaviour:
   textVerticalOffset: 1
   enableByDistance: 1
   maxVisibleDistance: 5
+  fontSize: 0.5
 --- !u!1 &4766318200978660611
 GameObject:
   m_ObjectHideFlags: 0

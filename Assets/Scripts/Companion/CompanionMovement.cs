@@ -1,135 +1,87 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class NavMeshPlaceholderAI : MonoBehaviour
+public class CompanionMovement : MonoBehaviour
 {
-    [Header("References")] public Transform player;
-    private Animator anim;
-    private Outline outline;
-
-    [Header("Behavior Toggles")] public bool followPlayer = true;
-    public bool followPath = true;
-
-    [Header("Follow Player")] public float followDistance = 6f;
-    public float stoppingDistance = 1.5f;
-
-    [Header("Path Settings")] public Transform[] waypoints;
-    public float waypointThreshold = 0.5f;
-    public float waitTimeAtWaypoint = 2f;
-
+    [Header("Movement Settings")]
+    public Transform[] waypoints;
+    public float waitTime = 3f;
+    
     private NavMeshAgent agent;
-    private int waypointIndex;
-    private float waitTimer;
-    private bool isWaiting;
+    private Animator childAnim; 
+    private int currentWaypointIndex = 0;
+    private bool isWaiting = false;
 
-    void Awake()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        outline = GetComponent<Outline>();
-        anim = GetComponentInChildren<Animator>();
+        childAnim = GetComponentInChildren<Animator>();
+
+        // Optimized settings for smooth humanoid movement
+        agent.acceleration = 30f;      // Smooth startup
+        agent.angularSpeed = 400f;     // Natural turning radius
+        agent.stoppingDistance = 0.5f; // Leeway to prevent jitter at target
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
+        if (waypoints.Length > 0)
+        {
+            SetNextDestination();
+        }
     }
 
     void Update()
     {
-        HandleInteraction();
-        UpdateAnimation();
-
-        // 1. HEIGHT FIX (Always keep this first or last)
-        if (anim != null) anim.transform.localPosition = new Vector3(0, -0.93f, 0);
-
-        // 2. ROTATION
-        if (player != null && (PlayerInRange() || isWaiting))
-        {
-            SmoothRotateTowards(player.position);
+        // 1. Pause Logic
+        if (Time.timeScale == 0) 
+        { 
+            agent.isStopped = true; 
+            return; 
         }
 
-        // 3. WAYPOINT WAITING (Move this HIGHER in priority)
-        if (isWaiting)
+        // 2. Arrival Check
+        // !agent.pathPending ensures we don't skip logic while the NavMesh calculates
+        if (!isWaiting && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Force velocity to 0 so Animator switches to Idle
-            agent.velocity = Vector3.zero; 
+            StartCoroutine(WaitAndLoopRoutine());
+        }
+
+        // 3. Smooth Animation Transition
+        if (childAnim != null)
+        {
+            float targetSpeed = agent.velocity.magnitude;
+            float currentSpeed = childAnim.GetFloat("Speed");
+            
+            // This prevents "teleporting" animations by smoothing the float value
+            childAnim.SetFloat("Speed", Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * 5f));
+        }
+    }
+
+    IEnumerator WaitAndLoopRoutine()
+    {
+        isWaiting = true;
         
-            waitTimer += Time.deltaTime;
-            if (waitTimer >= waitTimeAtWaypoint)
-            {
-                isWaiting = false;
-                waitTimer = 0f;
-                waypointIndex = (waypointIndex + 1) % waypoints.Length;
-            }
-            return; // Don't let followPlayer run while we are waiting
-        }
+        // Stop the physical movement
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
 
-        // 4. FOLLOW PLAYER
-        if (followPlayer && player != null && PlayerInRange())
-        {
-            agent.stoppingDistance = stoppingDistance;
-            agent.SetDestination(player.position);
+        yield return new WaitForSeconds(waitTime);
+
+        // 4. Sequential Looping Logic
+        // This moves from 0 to 1 to 2... then back to 0
+        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         
-            // If we reach the player, the agent naturally slows down
-            return;
-        }
-
-        // 5. PATROL PATH
-        if (followPath && waypoints.Length > 0)
-        {
-            agent.stoppingDistance = 0.1f;
-            PatrolPath();
-        }
+        SetNextDestination();
+        
+        agent.isStopped = false;
+        isWaiting = false;
     }
 
-    void PatrolPath()
+    void SetNextDestination()
     {
-        // Simplified: Just set the destination
-        agent.SetDestination(waypoints[waypointIndex].position);
-
-        if (!agent.pathPending && agent.remainingDistance <= waypointThreshold)
+        if (waypoints.Length > 0 && waypoints[currentWaypointIndex] != null)
         {
-            isWaiting = true;
-            waitTimer = 0f;
-            agent.ResetPath(); 
+            agent.SetDestination(waypoints[currentWaypointIndex].position);
         }
     }
-
-    void UpdateAnimation()
-    {
-        if (anim != null)
-        {
-            // Tells the animator how fast we are walking
-            float speed = agent.velocity.magnitude;
-            Debug.Log("Agent velocity magnitude is: "+ speed);
-            anim.SetFloat("Speed", speed);
-        }
-    }
-
-    void HandleInteraction()
-    {
-        if (player == null) return;
-        float interactRange = (outline != null) ? outline.maxVisibleDistance : 2f;
-
-        if (Vector3.Distance(transform.position, player.position) <= interactRange)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Interacted with companion");
-            }
-        }
-    }
-
-    bool PlayerInRange() => Vector3.Distance(transform.position, player.position) <= followDistance;
-    
-
-    void SmoothRotateTowards(Vector3 targetPosition)
-    {
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        direction.y = 0; 
-
-        if (direction != Vector3.zero)
-        {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            // Change '5f' to a higher number for faster turning
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-        }
-    }
-
 }
