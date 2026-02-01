@@ -110,19 +110,9 @@ public class LaserPuzzleController : MonoBehaviour
 
         // Turn ON the laser
         if (emitter != null) emitter.isEnabled = true;
-        
-        // Display Instruction pannel
-        if (instructionPanel != null)
-        {
-            instructionPanel.SetActive(true);
-            instructionText.text = "<b>MISSION:</b> Direct Laser Beam to power both Receivers\n" +
-                                   "<b>[1 / 2]</b> Select Mirror / Splitter Block\n" +
-                                   "<b>[L-Click]</b> Place or Rotate Block\n" +
-                                   "<b>[R-Click]</b> Remove Block\n" +
-                                   "<b>[ESC]</b> Exit Terminal";
-            instructionText.alignment = TextAlignmentOptions.Center;
-        }
-        
+
+        UpdateUIState();
+
     }
 
     void HandlePlacementInput(bool isLeftClick)
@@ -165,6 +155,39 @@ public class LaserPuzzleController : MonoBehaviour
             GameObject newItem = Instantiate(toSpawn, spawnPosition, Quaternion.identity, this.transform);
             newItem.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
+    }
+    
+    public void ResetPuzzle()
+    { 
+        puzzleSolved = false;
+    
+        // Clear out placed objects
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = transform.GetChild(i);
+        
+            // Only destroy objects the player placed (Mirrors and Splitters)
+            if (child.CompareTag("Mirror") || child.CompareTag("Splitter"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        // Reset UI and Reveal Objects
+        if (digitRevealObject != null) 
+            digitRevealObject.SetActive(false);
+
+        if (instructionPanel != null && isInteracting)
+        {
+            // Refresh text if the player is currently looking at the terminal
+            instructionText.text = "<b>MISSION:</b> Direct Laser Beam to power both Receivers\n" +
+                                   "<b>[1 / 2]</b> Select Mirror / Splitter Block\n" +
+                                   "<b>[L-Click]</b> Place or Rotate Block\n" +
+                                   "<b>[R-Click]</b> Remove Block\n" +
+                                   "<b>[ESC]</b> Exit Terminal";
+        }
+
+        Debug.Log("Laser Puzzle has been reset.");
     }
 
     public void ExitPuzzle()
@@ -210,14 +233,29 @@ public class LaserPuzzleController : MonoBehaviour
     void OnPuzzleSolved()
     {
         if (digitRevealObject != null) digitRevealObject.SetActive(true);
-        
-        if (instructionText != null)
+
+        UpdateUIState();
+
+    }
+
+    private void UpdateUIState()
+    {
+        if (instructionPanel == null) return;
+
+        instructionPanel.SetActive(true);
+
+        if (puzzleSolved)
         {
-            
             instructionText.text = "<color=green>PUZZLE SOLVED</color>\n\nDigit Reveal: <size=120%>1</size>";
-        
-            instructionText.alignment = TextAlignmentOptions.Center;
         }
-        
+        else
+        {
+            instructionText.text = "<b>MISSION:</b> Direct Laser Beam to power both Receivers\n" +
+                                   "<b>[1 / 2]</b> Select Mirror / Splitter Block\n" +
+                                   "<b>[L-Click]</b> Place or Rotate Block\n" +
+                                   "<b>[R-Click]</b> Remove Block\n" +
+                                   "<b>[ESC]</b> Exit Terminal";
+        }
+        instructionText.alignment = TextAlignmentOptions.Center;
     }
 }

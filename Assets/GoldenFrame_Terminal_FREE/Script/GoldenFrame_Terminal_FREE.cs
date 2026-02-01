@@ -111,4 +111,13 @@ public class GoldenFrame_Terminal_FREE : MonoBehaviour
         if (textMesh != null) textMesh.SetActive(false);
         isOn = false;
     }
+    
+    public void ForceResetTerminal()
+    {
+        TurnOffComputer();
+        if (puzzleController != null)
+        {
+            puzzleController.ResetPuzzle();
+        }
+    }
 }

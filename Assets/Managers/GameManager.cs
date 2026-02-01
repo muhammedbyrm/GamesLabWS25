@@ -15,6 +15,8 @@ public class FlashlightSettings
     public AudioClip flashlightSound_off;
 }
 
+
+
 [System.Serializable]
 public class SceneReconstructionSettings
 {
@@ -83,7 +85,11 @@ public class GameManager : MonoBehaviour
     [Header("Flashlight Settings")]
     [SerializeField] private FlashlightSettings flashlightSettings;
     private bool hasFlashlight;
-
+    
+    [Header("Laser Puzzle Settings")]
+    public LaserPuzzleController laserPuzzle; 
+    public GoldenFrame_Terminal_FREE terminalScript;
+    
     [Header("Scene Reconstruction Settings")]
     [SerializeField] private SceneReconstructionSettings reconstructionSettings;
     private bool hasReconstructedScene;
@@ -149,6 +155,17 @@ public class GameManager : MonoBehaviour
     {
         return isInThePast;
     }
+    
+    #region laserPuzzle
+    public void ResetTerminalVisuals()
+    {
+        if(terminalScript != null)
+        {
+            // This turns off the emissive material and text mesh
+            terminalScript.ForceResetTerminal(); 
+        }
+    }
+    #endregion
 
     #region flashlight
     public void InteractFlashlight()

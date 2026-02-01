@@ -16,6 +16,11 @@ public class PastState : State
     {
         
         Debug.Log("Entered Past State");
+        
+        
+        
+        GameManager.Instance.laserPuzzle.ResetPuzzle();
+        GameManager.Instance.ResetTerminalVisuals();
         loopTimer = GameManager.Instance.GetPastStateDuration();
         //GameManager.Instance.pastStateTimerImage.SetEnabled(true);
         pastStateTimerImage = GameManager.Instance.pastStateTimerImage;
@@ -75,6 +80,11 @@ public class PastState : State
     }
     public override void Exit()
     {
+        
+        
+        
+        GameManager.Instance.laserPuzzle.ResetPuzzle();
+        GameManager.Instance.ResetTerminalVisuals();
         GameManager.Instance.ReturnMurderWeapon();
         GameManager.Instance.deactivatePastObjects();
         GameManager.Instance.MovePlayer();

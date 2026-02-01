@@ -3370,6 +3370,7 @@ GameObject:
   - component: {fileID: 126506440}
   - component: {fileID: 126506439}
   - component: {fileID: 126506444}
+  - component: {fileID: 126506445}
   m_Layer: 0
   m_Name: SanityManager
   m_TagString: Untagged
@@ -3407,6 +3408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraDistortiion
   camTransform: {fileID: 2017335374}
+  shakeAmount: 0.05
 --- !u!114 &126506441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3471,6 +3473,22 @@ MonoBehaviour:
   duration: 4
   pulseSpeed: 1.75
   pulseAmount: 15
+--- !u!114 &126506445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126506438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b319debf7cbb4234faf045ccdcb3d355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanityBlurEffect
+  holdDuration: 2
+  transitionTime: 2
+  blurFocusDistance: 0.1
+  intensityFocalLength: 100
 --- !u!1 &127569586
 GameObject:
   m_ObjectHideFlags: 0
@@ -9920,6 +9938,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 666c8e5a606abce4c95207686b2c45b7, type: 3}
     - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
+      propertyPath: laserPuzzle
+      value: 
+      objectReference: {fileID: 1254113265}
+    - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
       propertyPath: br_Door_Open
       value: 
       objectReference: {fileID: 8300000, guid: a90dd9b577bf78f4a8dd99beca4724ae, type: 3}
@@ -9927,6 +9949,10 @@ PrefabInstance:
       propertyPath: companionRoot
       value: 
       objectReference: {fileID: 1077711407}
+    - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
+      propertyPath: terminalScript
+      value: 
+      objectReference: {fileID: 1298966068}
     - target: {fileID: 4206795455007399692, guid: 3ac07bb897863764eac51762d94f990f, type: 3}
       propertyPath: loopCounterText
       value: 
@@ -29837,6 +29863,17 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1254113265 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6364121843660229093, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+  m_PrefabInstance: {fileID: 765298730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6048092767e533d47aaf681e6051681d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserPuzzleController
 --- !u!1001 &1255238018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31196,6 +31233,17 @@ MonoBehaviour:
   enableByDistance: 1
   maxVisibleDistance: 4
   fontSize: 1
+--- !u!114 &1298966068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 50460683487981091, guid: 83c81bb9b55754244b7ced18cb74597b, type: 3}
+  m_PrefabInstance: {fileID: 765298730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298966060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643f0949c0b00ca42aba7ebdcf434368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1299649268
 PrefabInstance:
   m_ObjectHideFlags: 0
