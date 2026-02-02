@@ -162,7 +162,9 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
     private Collider flashlightCollider;
     private Collider memoryWallUICollider;
+    private Collider BRDoorUICollider;
     private bool hasMemoryWallMessageBeenRead = false;
+    private bool hasBRDoorMessageBeenRead = false;
 
 
     private void Awake()
@@ -204,6 +206,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
         flashlightCollider = GameObject.FindGameObjectWithTag("Flashlight Collider").GetComponent<Collider>();
         memoryWallUICollider = GameObject.FindGameObjectWithTag("Memory Wall Collider").GetComponent<Collider>();
+        BRDoorUICollider = GameObject.FindGameObjectWithTag("UI_BR_Door_Collider").GetComponent<Collider>();
 
         #region Sprint Bar
 
@@ -526,6 +529,13 @@ public class FirstPersonControllerInteractable : MonoBehaviour
                 hasMemoryWallMessageBeenRead = true;
                 GameManager.Instance.UImemoryWall();
             }
+        }else if (other == BRDoorUICollider && GameManager.Instance.GetIsInThePast())
+        {
+            if (hasBRDoorMessageBeenRead == false)
+            {
+                hasBRDoorMessageBeenRead = true;
+                GameManager.Instance.UIclosedBRDoor();
+            }
         }
     }
 
@@ -578,6 +588,29 @@ public class FirstPersonControllerInteractable : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Time Machine Button"))
             {
+                if (!GameManager.Instance.memoryWallMessageRead)
+                {
+                    Debug.Log("Time Machine locked: Memory Wall message not read.");
+                }
+                else if (hit.collider.gameObject.GetComponent<TMButton>().getValue() == 0)
+                {
+                    hit.collider.gameObject.GetComponent<TMButton>().PressButton();
+                    GameManager.Instance.stateMachine.ChangeState(new PastState());
+                }
+                else if (hit.collider.gameObject.GetComponent<TMButton>().getValue() == 1)
+                {
+                    if (GameManager.Instance.GetHasDroppedMurderWeapon())
+                    {
+                        GameManager.Instance.HasDestroyedMurderWeapon();
+                        hit.collider.gameObject.GetComponent<TMButton>().CloseTMDoor();
+                    }
+                    else
+                    {
+                        hit.collider.gameObject.GetComponent<TMButton>().CloseTMDoor();
+                    }
+                }
+
+                /*
                 if (GameManager.Instance.GetHasDroppedMurderWeapon())
                 {
                     // Right now, time Machine and knife destruction events is not end of the game.
@@ -589,25 +622,21 @@ public class FirstPersonControllerInteractable : MonoBehaviour
                     // time Machine and knife destruction evets ...
 
                     //GameManager.Instance.StartFinalSequence();
-                    GameManager.Instance.HasDestroyedMurderWeapon(); 
-                    hit.collider.gameObject
-                        .GetComponent<TimeMachineButton>()
-                        .CloseTMDoor();
-
-                    // GameManager.Instance.EndGame();  // i will handle this in another script // after you saw it, you can delete it
+                    GameManager.Instance.HasDestroyedMurderWeapon();
+                    hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
                 }
-                else if (!GameManager.Instance.memoryWallMessageRead) 
+                else if (!GameManager.Instance.memoryWallMessageRead)
                 {
                     Debug.Log("Time Machine locked: Memory Wall message not read.");
                 }
                 else
                 {
-                    hit.collider.gameObject
-                        .GetComponent<TimeMachineButton>()
-                        .CloseTMDoor();
+                    hit.collider.gameObject.GetComponent<TMButton>().PressButton();
+                    //hit.collider.gameObject.GetComponent<TimeMachineButton>().CloseTMDoor();
 
                     GameManager.Instance.stateMachine.ChangeState(new PastState());
                 }
+                */
             }
             else if (hit.collider.gameObject.CompareTag("Flashlight"))
             {
@@ -625,7 +654,8 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 Debug.Log("Interacting with numpad");
                 hit.collider.gameObject.GetComponent<KeypadButton>().PressButton();
-            }else if (interactable.CompareTag("Clue"))
+            }
+            else if (interactable.CompareTag("Clue"))
             {
                 hit.collider.gameObject.GetComponent<ClueInspect>().Interact();
             }
@@ -638,6 +668,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             else if (interactable.CompareTag("Drop Knife"))
             {
                 GameManager.Instance.DropMurderWeapon();
+                hit.collider.isTrigger = false;
             }
         }
     }

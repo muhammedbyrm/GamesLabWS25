@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     public FirstPersonControllerInteractable fpc;
     public ReconstructionController reconstructionController;
     public Transform playerResetLocation;
+    public Transform playerAfterKnifeDropLocation;
     public AudioClip blackout;
     public AudioClip cameraShake;
     public Image blackscreen;
@@ -123,6 +124,13 @@ public class GameManager : MonoBehaviour
     [Header("Pause Menu Flags")]
     public bool isUIOpen = false;
     public bool escConsumedThisFrame = false;
+
+
+    [Header("Puzzle Lights")]
+    [SerializeField] private Light biologyLight;
+    [SerializeField] private Light flashlightLight;
+    [SerializeField] private Light laserLight;
+    [SerializeField] private Light computerLight;
 
 
     private bool murderWeaponUIHasBeenRead = false;
@@ -233,8 +241,9 @@ public class GameManager : MonoBehaviour
                 //murderWeaponSettings.knife.transform.parent = murderWeaponSettings.knifeDropLocation;
                 murderWeaponSettings.knife.transform.localPosition = Vector3.zero;
                 murderWeaponSettings.knife.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                ActivateTMButton();
+                //ActivateTMButton();
                 hasMurderWeapon = false;
+                MovePlayerAfterKnifeDrop();
             }
         }
     }
@@ -262,10 +271,18 @@ public class GameManager : MonoBehaviour
     {
         reconstructionController.BeforeMemoryWallUI();
     }
-
+    public void UIAfterMemoryWall()
+    {
+        reconstructionController.AfterMemoryWallUI();
+    }
     public void UIstartGame()
     {
         reconstructionController.StartGameUI();
+    }
+
+    public void UIclosedBRDoor()
+    {
+        reconstructionController.ClosedDoorUI();
     }
 
     public void UIopenBRDoor()
@@ -289,6 +306,10 @@ public class GameManager : MonoBehaviour
     public void UIAfterThirdTimeJump()
     {
         reconstructionController.AfterThirdTimeJump();
+    }
+    public void UIAfterFinishingGame()
+    {
+        reconstructionController.AfterFinishingGame();
     }
 
     public void SetPastStateTimerVisible(bool visible)
@@ -398,6 +419,11 @@ public class GameManager : MonoBehaviour
     {
         fpc.transform.position = playerResetLocation.position;
         fpc.transform.rotation = playerResetLocation.rotation;
+    }
+    public void MovePlayerAfterKnifeDrop()
+    {
+        fpc.transform.position = playerAfterKnifeDropLocation.position;
+        fpc.transform.rotation = playerAfterKnifeDropLocation.rotation;
     }
 
     private void Blackout()
@@ -524,7 +550,7 @@ public class GameManager : MonoBehaviour
     {
         reconstructionSettings.pastChair.SetActive(true);
         murderWeaponSettings.knifePosition.gameObject.SetActive(true);
-        reconstructionSettings.livingCompanion.SetActive(true);
+        //reconstructionSettings.livingCompanion.SetActive(true);
         reconstructionSettings.walkingCompanion.SetActive(true);
     }
 
@@ -588,5 +614,13 @@ public class GameManager : MonoBehaviour
     private void FinishFinalSequence()
     {
         EndGame();
+    }
+
+    public void SetPuzzleLights(bool activated)
+    {
+        biologyLight.enabled = activated;
+        flashlightLight.enabled = activated;
+        laserLight.enabled = activated;
+        computerLight.enabled = activated;
     }
 }

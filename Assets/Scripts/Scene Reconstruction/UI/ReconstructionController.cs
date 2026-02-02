@@ -177,6 +177,24 @@ public class ReconstructionController : MonoBehaviour
         );
     }
 
+    public void AfterMemoryWallUI()
+    {
+        //in memorywall & gmanager
+        inspectionUI.Show(
+                    "GOAL",
+                    "I got an idea. I will use our Time Machine to jump back in time and save Alice.\nOnce I'm in the past I just need to get rid of the knife and she will not be killed!"
+        );
+    }
+
+    public void ClosedDoorUI()
+    {
+        //in fpc & gmanager
+        inspectionUI.Show(
+                    "DAMN",
+                    "I know Alice and the Murder Weapon are behind this door. But it's locked and...I must have forgotten the correct code\nI have to look around, we always have clues scattered around for our hidden door code!"
+        );
+    }
+
     public void OpeningDoorUI()
     {
         //in keypad & gmanager
@@ -217,6 +235,14 @@ public class ReconstructionController : MonoBehaviour
         inspectionUI.Show(
                     "MY HEAD HURTS",
                     "No...this is not right...something needs to change...and my head feels like it's gonna explode..."
+        );
+    }
+    public void AfterFinishingGame()
+    {
+        //in present state & gmanager
+        inspectionUI.Show(
+                    "ALICE?",
+                    "I must have done it! The knife never could have been used now and Alice must live...right?"
         );
     }
 }

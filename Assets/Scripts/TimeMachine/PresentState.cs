@@ -1,4 +1,5 @@
 using System.Threading;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,11 @@ public class PresentState : State
 
         GameManager.Instance.StartFadeIn();
 
-        if (GameManager.Instance.GetLoopCount() == 1)
+        if (GameManager.Instance.GetHasDestroyedMurderWeapon())
+        {
+            GameManager.Instance.UIAfterFinishingGame();
+        }
+        else if (GameManager.Instance.GetLoopCount() == 1)
         {
             GameManager.Instance.UIAfterFirstTimeJump();
         }
@@ -42,7 +47,6 @@ public class PresentState : State
 
         GameManager.Instance.activatePresentObjects();
         GameManager.Instance.DeactivateKeypad();
-        GameManager.Instance.ActivateTMButton();
 
         if (GameManager.Instance.GetHasDestroyedMurderWeapon())
         {
@@ -51,9 +55,13 @@ public class PresentState : State
         else
         {
             SoundManager.Instance.PlayBGMChoose(1);
+            GameManager.Instance.ActivateTMButton();
         }
 
         InteractionUnlocker.Instance.DisableInteractions();
+
+        GameObject.FindGameObjectWithTag("Drop Knife").GetComponent<Collider>().isTrigger = true;
+        GameManager.Instance.SetPuzzleLights(false);
     }
     public override void Update()
     {

@@ -44,7 +44,8 @@ public class PastState : State
         //loop counter is in GameManager
 
         InteractionUnlocker.Instance.EnableInteractions();
-        
+        GameManager.Instance.SetPuzzleLights(true);
+
 
     }
     public override void Update()

@@ -19,6 +19,7 @@ public class MemoryWallInteraction : MonoBehaviour
 
     private bool isPlayerInZone = false;
     private bool isUIOpen = false;
+    private bool hasOpenedOnce = false;
 
     void Start()
     {
@@ -124,5 +125,12 @@ public class MemoryWallInteraction : MonoBehaviour
 
         if (isPlayerInZone && informationText != null)
             informationText.SetActive(true);
+
+
+        if (!hasOpenedOnce && GameManager.Instance.memoryWallMessageRead)
+        {
+            hasOpenedOnce = true;
+            GameManager.Instance.UIAfterMemoryWall();
+        }
     }
 }

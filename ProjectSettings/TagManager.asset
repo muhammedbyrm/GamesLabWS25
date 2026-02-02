@@ -16,6 +16,7 @@ TagManager:
   - Drop Knife
   - Flashlight Collider
   - Memory Wall Collider
+  - UI_BR_Door_Collider
   layers:
   - Default
   - TransparentFX
