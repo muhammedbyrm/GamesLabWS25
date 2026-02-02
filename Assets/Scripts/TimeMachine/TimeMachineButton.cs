@@ -15,7 +15,7 @@ public class TimeMachineButton : MonoBehaviour
 
     public void CloseTMDoor()
     {
-        buttonCollider.enabled = false;
+        //buttonCollider.enabled = false;
         tmParticles.Play();
         PlayDoorCloseSound();
 
@@ -30,7 +30,7 @@ public class TimeMachineButton : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        buttonCollider.enabled = true;
+        //buttonCollider.enabled = true;
         PlayDoorOpenSound();
     }
 
