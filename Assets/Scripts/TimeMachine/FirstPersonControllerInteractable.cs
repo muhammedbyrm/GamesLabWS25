@@ -668,7 +668,13 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             else if (interactable.CompareTag("Drop Knife"))
             {
                 GameManager.Instance.DropMurderWeapon();
-                hit.collider.isTrigger = false;
+                if (GameManager.Instance.GetHasDestroyedMurderWeapon()){
+                    hit.collider.isTrigger = false;
+                }
+            }
+            else if (interactable.CompareTag("Computer Puzzle"))
+            {
+                hit.collider.GetComponent<BubbleSortPuzzle>().OpenPuzzle();
             }
         }
     }

@@ -17,6 +17,7 @@ TagManager:
   - Flashlight Collider
   - Memory Wall Collider
   - UI_BR_Door_Collider
+  - Computer Puzzle
   layers:
   - Default
   - TransparentFX

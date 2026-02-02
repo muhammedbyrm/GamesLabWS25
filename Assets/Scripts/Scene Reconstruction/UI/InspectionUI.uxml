@@ -6,7 +6,7 @@
         <ui:VisualElement name="Panel" class="inspection-panel" style="left: -20%; bottom: -70%; width: 80%; height: 10%;">
             <ui:Label name="ClueTitle" text="Clue Title" class="inspection-title" style="top: -37%; -unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;); left: 3%;" />
             <ui:Label name="MonologueText" text="Long monologue text goes here..." class="inspection-text" style="left: 3%; top: -45%; -unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;);" />
-            <ui:Label name="ContinueHint" text="Press Q to continue" class="inspection-hint" style="left: auto; bottom: -5%; -unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;); color: rgb(0, 0, 0);" />
+            <ui:Label name="ContinueHint" text="Press Q to continue" enable-rich-text="true" class="inspection-hint" style="left: auto; bottom: -5%; -unity-font-definition: url(&quot;project://database/Assets/Scripts/Scene%20Reconstruction/UI/Assets/9SYSTEMA.TTF?fileID=12800000&amp;guid=8b12920227da24f868e90898a1cde735&amp;type=3#9SYSTEMA&quot;); color: rgb(255, 255, 255); -unity-text-align: upper-left; -unity-text-outline-color: rgb(255, 255, 255);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
