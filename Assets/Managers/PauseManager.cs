@@ -94,7 +94,7 @@ public class PauseManager : MonoBehaviour
         UnityEngine.Cursor.visible = true;
     }
 
-    public void ResumeGame()
+    void ResumeGame()
     {
         isPaused = false;
 

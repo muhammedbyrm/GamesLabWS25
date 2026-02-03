@@ -435,6 +435,7 @@ public class GameManager : MonoBehaviour
         }
         RenderSettings.ambientIntensity = 0f;
         SoundManager.Instance.PlaySoundClip(blackout, fpc.transform, 1f);
+        isUIOpen = true;
     }
 
     private void CameraShake()
@@ -454,6 +455,7 @@ public class GameManager : MonoBehaviour
             light.enabled = true;
         }
         RenderSettings.ambientIntensity = 1f;
+        isUIOpen = false;
     }
 
     private IEnumerator CameraFadeIn()
