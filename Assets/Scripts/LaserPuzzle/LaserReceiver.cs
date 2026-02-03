@@ -9,7 +9,7 @@ public class LaserReceiver : MonoBehaviour
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
         inactiveColor = meshRenderer.material.color;
     }
 
