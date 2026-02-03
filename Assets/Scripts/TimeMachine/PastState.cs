@@ -46,6 +46,11 @@ public class PastState : State
         InteractionUnlocker.Instance.EnableInteractions();
         GameManager.Instance.SetPuzzleLights(true);
 
+        if(GameManager.Instance.GetLoopCount() == 1)
+        {
+            TaskUIManager.Instance.ChangeTask(3);
+        }
+
 
     }
     public override void Update()

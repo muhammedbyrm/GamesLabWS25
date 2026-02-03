@@ -535,6 +535,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
             {
                 hasBRDoorMessageBeenRead = true;
                 GameManager.Instance.UIclosedBRDoor();
+                TaskUIManager.Instance.ChangeTask(4);
             }
         }
     }
@@ -664,6 +665,7 @@ public class FirstPersonControllerInteractable : MonoBehaviour
                 Debug.Log("Picked up Knife");
                 GameManager.Instance.PickUpMurderWeapon();
                 hit.collider.gameObject.SetActive(false);
+                TaskUIManager.Instance.ChangeTask(6);
             }
             else if (interactable.CompareTag("Drop Knife"))
             {

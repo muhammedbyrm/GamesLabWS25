@@ -113,6 +113,7 @@ public class LaserPuzzleController : MonoBehaviour
 
         UpdateUIState();
 
+        TaskUIManager.Instance.ChangeVisbility(false);
     }
 
     void HandlePlacementInput(bool isLeftClick)
@@ -217,6 +218,8 @@ public class LaserPuzzleController : MonoBehaviour
         // Hide instructions
         if (instructionPanel != null)
             instructionPanel.SetActive(false);
+
+        TaskUIManager.Instance.ChangeVisbility(true);
     }
 
     void CheckWinCondition()

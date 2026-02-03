@@ -138,6 +138,7 @@ namespace NavKeypad
             {
                 hasOpenDoorUIBeenReadied = true;
                 GameManager.Instance.UIopenBRDoor();
+                TaskUIManager.Instance.ChangeTask(5);
             }
         }
 

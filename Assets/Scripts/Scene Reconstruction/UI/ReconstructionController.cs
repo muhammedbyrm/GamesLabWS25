@@ -152,6 +152,8 @@ public class ReconstructionController : MonoBehaviour
             }
 
             GameManager.Instance.FinishSceneReconstruction();
+
+            TaskUIManager.Instance.ChangeTask(1); 
         }
         else
         {

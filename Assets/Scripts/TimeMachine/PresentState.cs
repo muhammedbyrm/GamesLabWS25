@@ -51,6 +51,7 @@ public class PresentState : State
         if (GameManager.Instance.GetHasDestroyedMurderWeapon())
         {
             SoundManager.Instance.PlayBGMChoose(3);
+            TaskUIManager.Instance.ChangeVisbility(false);
         }
         else
         {

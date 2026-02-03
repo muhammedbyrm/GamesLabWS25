@@ -70,6 +70,8 @@ public class BubbleSortPuzzle : MonoBehaviour
 
         // set UIOpen flag
         GameManager.Instance.isUIOpen = true;
+
+        TaskUIManager.Instance.ChangeVisbility(false);
     }
 
     public void ClosePuzzle()
@@ -88,6 +90,8 @@ public class BubbleSortPuzzle : MonoBehaviour
 
         // set UIOpen flag
         GameManager.Instance.isUIOpen = false;
+
+        TaskUIManager.Instance.ChangeVisbility(true);
     }
 
     private void ResetAndClose()

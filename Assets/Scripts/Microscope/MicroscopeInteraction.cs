@@ -99,6 +99,8 @@ public class MicroscopeInteraction : MonoBehaviour
         var selector = FindFirstObjectByType<MicroscopeImageSelector>();
         if (selector != null)
             selector.ResetToFirstImage();
+
+        TaskUIManager.Instance.ChangeVisbility(false);
     }
 
     private void CloseMicroscope()
@@ -122,5 +124,7 @@ public class MicroscopeInteraction : MonoBehaviour
         Cursor.visible = false;
 
         GameManager.Instance.isUIOpen = false;
+
+        TaskUIManager.Instance.ChangeVisbility(true);
     }
 }

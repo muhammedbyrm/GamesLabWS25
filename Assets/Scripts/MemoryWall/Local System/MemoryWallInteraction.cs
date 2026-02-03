@@ -96,6 +96,8 @@ public class MemoryWallInteraction : MonoBehaviour
 
         if (!GameManager.Instance.memoryWallInteraction)
             GameManager.Instance.memoryWallInteraction = true;
+
+        TaskUIManager.Instance.ChangeVisbility(false);
     }
 
     public void CloseUI()
@@ -131,6 +133,9 @@ public class MemoryWallInteraction : MonoBehaviour
         {
             hasOpenedOnce = true;
             GameManager.Instance.UIAfterMemoryWall();
+            TaskUIManager.Instance.ChangeTask(2);
         }
+
+        TaskUIManager.Instance.ChangeVisbility(true);
     }
 }
