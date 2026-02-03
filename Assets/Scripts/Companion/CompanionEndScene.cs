@@ -17,7 +17,6 @@ public class CompanionEndScene : MonoBehaviour
     [SerializeField] private float speakDuration = 3f;
     [SerializeField] private float stopToTalkDelay = 0.5f;
 
-    // 👉 SADECE TEXT (TMP)
     [SerializeField] private GameObject dialogueText;
     [SerializeField] private float textShowDelay = 0.5f;
 

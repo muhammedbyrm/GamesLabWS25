@@ -68,7 +68,6 @@ public class MainMenuUI : MonoBehaviour
 
         nicknameField.RegisterValueChangedCallback(FilterNicknameInput);
 
-        // Klavye kontrolleri (Enter / Esc)
         nicknameField.RegisterCallback<KeyUpEvent>(OnKeyUp);
     }
 

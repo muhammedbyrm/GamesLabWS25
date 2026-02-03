@@ -17520,8 +17520,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Companion: Where have you been? I\u2019ve been looking for you all day.
-    What could be so important?"
+  m_text: "Alice: Where have you been? I\u2019ve been looking for you all day. What
+    could be so important?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

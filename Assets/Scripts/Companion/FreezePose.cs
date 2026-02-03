@@ -12,10 +12,9 @@ public class DeadPoseInstant : MonoBehaviour
 
     void OnEnable()
     {
-        // Animator kapalıyken state ayarla
         anim.enabled = true;
         anim.Play(0, 0, poseTime);
-        anim.Update(0f);   // 🔥 ÇOK KRİTİK
+        anim.Update(0f);   
         anim.speed = 0f;
     }
 }

@@ -1,3 +1,4 @@
+// This scripts unlock puzzle colliders
 using UnityEngine;
 
 public class InteractionUnlocker : MonoBehaviour
