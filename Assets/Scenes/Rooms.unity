@@ -3473,6 +3473,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 2009054178}
+    - target: {fileID: 6641886435082941688, guid: 9a266fc4a3c21f247b0bd6803edadc73, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6980757321498740170, guid: 9a266fc4a3c21f247b0bd6803edadc73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6798801
@@ -29792,6 +29796,7 @@ MonoBehaviour:
   fadeDuration: 5
   creditsDuration: 13
   startSceneName: StartScene
+  pauseManager: {fileID: 1475218584}
 --- !u!114 &1194914180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40067,7 +40072,7 @@ MonoBehaviour:
   interactMessage: Press E to Interact
   textVerticalOffset: 1
   enableByDistance: 1
-  maxVisibleDistance: 5
+  maxVisibleDistance: 3
   fontSize: 1
 --- !u!1001 &1562986331
 PrefabInstance:
@@ -44048,8 +44053,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4, y: 2, z: 2.0294442}
+  m_Center: {x: 0, y: 0, z: 0.5147221}
 --- !u!114 &1734708238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49498,7 +49503,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

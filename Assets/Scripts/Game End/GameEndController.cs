@@ -15,6 +15,8 @@ public class GameEndController : MonoBehaviour
     [SerializeField] float creditsDuration = 13f;
     [SerializeField] string startSceneName = "StartScreen";
 
+    [SerializeField] private PauseManager pauseManager;
+
     void OnEnable()
     {
         uiDocument = GetComponent<UIDocument>();
@@ -30,6 +32,12 @@ public class GameEndController : MonoBehaviour
 
     public void StartFadeOut()
     {
+        if (pauseManager != null)
+        {
+            pauseManager.ResumeGame();         
+            pauseManager.gameObject.SetActive(false); 
+        }
+
         StartCoroutine(FadeOutSequence());
     }
 
