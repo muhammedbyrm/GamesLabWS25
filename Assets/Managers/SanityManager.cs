@@ -13,9 +13,8 @@ public class SanityManager : MonoBehaviour
     [SerializeField] private int decreaseLevel = 3; 
     
     [Header("Effect Timing")]
-    private const float MIN_EFFECT_WAIT_TIME = 10f; 
-    private const float MAX_EFFECT_WAIT_TIME = 10f;
-    private const float RANDOM_EFFECT_CHANCE = 0.8f;
+    private const float MIN_EFFECT_WAIT_TIME = 30f; 
+    private const float MAX_EFFECT_WAIT_TIME = 60f;
 
     private int time_travel_attempts = 0;
     private SanityLevel currentLevel;
@@ -90,18 +89,15 @@ public class SanityManager : MonoBehaviour
             float waitTime = Random.Range(MIN_EFFECT_WAIT_TIME, MAX_EFFECT_WAIT_TIME);
             yield return new WaitForSeconds(waitTime);
 
-            if (Random.value <= RANDOM_EFFECT_CHANCE)
+            
+            // Pick a random effect from the current level's allowed list
+            VisualEffectType randomType = allowedEffects[Random.Range(0, allowedEffects.Length)];
+            if (effectLookup.TryGetValue(randomType, out ISanityEffect effect))
             {
-                // Pick a random effect from the current level's allowed list
-                //VisualEffectType randomType = allowedEffects[Random.Range(0, allowedEffects.Length)];
-                // testing the camera distortion
-                VisualEffectType randomType = VisualEffectType.CameraDistorion;
-                if (effectLookup.TryGetValue(randomType, out ISanityEffect effect))
-                {
-                    Debug.Log("Applied effect: " + randomType.ToString());
-                    effect?.TriggerEffect();
-                }
+                Debug.Log("Applied effect: " + randomType.ToString());
+                effect?.TriggerEffect();
             }
+            
         }
     }
 }
