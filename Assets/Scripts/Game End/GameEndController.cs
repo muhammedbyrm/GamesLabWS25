@@ -15,6 +15,8 @@ public class GameEndController : MonoBehaviour
     [SerializeField] float creditsDuration = 13f;
     [SerializeField] string startSceneName = "StartScreen";
 
+    [SerializeField] private GameObject reticle;
+
 
     void OnEnable()
     {
@@ -33,6 +35,9 @@ public class GameEndController : MonoBehaviour
     {
         if (GameManager.Instance != null)
             GameManager.Instance.isUIOpen = true;
+
+        if (reticle != null)
+            reticle.SetActive(false);
 
         StartCoroutine(FadeOutSequence());
     }

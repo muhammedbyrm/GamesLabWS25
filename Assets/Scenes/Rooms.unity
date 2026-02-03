@@ -30371,7 +30371,7 @@ MonoBehaviour:
   fadeDuration: 5
   creditsDuration: 13
   startSceneName: StartScene
-  pauseManager: {fileID: 1475218584}
+  reticle: {fileID: 311945073}
 --- !u!114 &1194914180
 MonoBehaviour:
   m_ObjectHideFlags: 0
