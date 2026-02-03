@@ -35522,6 +35522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sit_companion
       objectReference: {fileID: 0}
+    - target: {fileID: 5156341722150704124, guid: d6710ce883210e5448fbc08dcce38e8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5531776961717848390, guid: d6710ce883210e5448fbc08dcce38e8a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.585
