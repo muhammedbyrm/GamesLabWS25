@@ -6,6 +6,8 @@ public class LaserReceiver : MonoBehaviour
     public Color activeColor = Color.green;
     private Color inactiveColor;
     private MeshRenderer meshRenderer;
+    private float lastHitTime;
+    public float hitTimeout = 0.1f;
 
     void Start()
     {
@@ -15,14 +17,17 @@ public class LaserReceiver : MonoBehaviour
 
     void Update()
     {
-        // Reset every frame; if the laser hits it, it will set to true again
-        isHit = false;
-        meshRenderer.material.color = inactiveColor;
+        if (Time.time - lastHitTime > hitTimeout)
+        {
+            isHit = false;
+            meshRenderer.material.color = inactiveColor;
+        }
     }
 
     public void NotifyHit()
     {
         isHit = true;
+        lastHitTime = Time.time;
         meshRenderer.material.color = activeColor;
     }
 }
